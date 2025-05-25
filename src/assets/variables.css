@@ -1,0 +1,46 @@
+:root {
+    /* Primary Colors */
+    --primary-color: #13294b;
+    --secondary-color: #a7bdb1;
+
+    /* Backgrounds */
+    --primary-background-color: white;
+    --secondary-background-color: #e9eeeb;
+    --tertiary-background-color: #f5f5f5;
+
+    /* Functional Colors */
+    --disabled-color: #959698;
+    --danger-color: #a52a2a;
+    --success-color: green;
+    --border-color: #d8d8d8;
+
+    /* Navigation & Links */
+    --nav-color: var(--primary-color);
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--primary-color);
+    --nav-background-color: var(--secondary-background-color);
+
+    /* Fonts */
+    --sans-serif-font: 'Roboto', sans-serif;
+    --monospace-font: 'Roboto Mono', monospace;
+    --serif-font: 'Roboto Slab', serif;
+    --button-font: var(--sans-serif-font);
+
+    /* Common Colors */
+    --black: var(--primary-color);
+    --violet: #261759;
+    --indigo: rgba(75, 0, 130, 1.0);
+    --green: rgba(0, 180, 0, 1.0);
+    --blue: rgba(0, 0, 255, 1.0);
+    --yellow: rgba(180, 180, 0, 1.0);
+    --orange: rgba(255, 127, 0, 1.0);
+    --red: rgba(255, 0, 0, 1.0);
+    --brown: var(--danger-color);
+
+    /* Sizes */
+    --extra-small-size: 20rem;
+    --small-size: 22rem;
+    --medium-size: 40rem;
+    --large-size: 62rem;
+    --extra-large-size: 75rem;
+}

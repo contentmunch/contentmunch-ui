@@ -1,0 +1,99 @@
+{
+  "name": "@contentmunch/contentmunch-ui",
+  "version": "1.0.15",
+  "description": "Contentmunch UI components",
+  "author": "contentmunch",
+  "license": "MIT",
+  "main": "./lib/index.cjs.js",
+  "module": "./lib/index.es.js",
+  "types": "./lib/index.d.ts",
+  "style": "./lib/index.css",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.cjs.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./index.css": {
+      "default": "./lib/index.css"
+    }
+  },
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "clean": "rimraf lib",
+    "clean:tsx": "rimraf lib/*.tsx lib/**/*.tsx lib/**/**/*.tsx lib/**/**/**/*.tsx",
+    "clean:stories": "rimraf  lib/*.stories.* lib/**/*.stories.* lib/**/**/*.stories.* lib/**/**/**/*.stories.*",
+    "clean:tests": "rimraf lib/*.test.* lib/**/*.test.* lib/setupTests.* lib/__snapshots__/",
+    "clean:public": "rimraf lib/CNAME lib/favicon/ lib/favicon.svg",
+    "clean:docs": "rimraf docs",
+    "prebuild": "npm run clean",
+    "build:types": "tsc -p tsconfig.types.json",
+    "build:js": "vite build",
+    "build": "npm run build:js && npm run build:types && mv lib/contentmunch-ui.css lib/index.css && npm run postbuild:js && npm run postbuild:clean",
+    "postbuild:js": "rsync -avz --exclude='*.ts' src/ lib/",
+    "postbuild:clean": "npm run clean:stories && npm run clean:public && npm run clean:tsx",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o docs",
+    "prepublishOnly": "npm run build",
+    "predeploy": "",
+    "deploy": "npm run predeploy && npm run build-storybook",
+    "postdeploy": "cp public/CNAME docs/CNAME"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/addon-onboarding": "^8.6.14",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/react": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
+    "@storybook/test": "^8.6.14",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-storybook": "^0.12.0",
+    "globals": "^16.0.0",
+    "rimraf": "^5.0.10",
+    "storybook": "^8.6.14",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.30.1",
+    "vite": "^6.3.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contentmunch/contentmunch-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/contentmunch/contentmunch-ui/issues"
+  },
+  "homepage": "https://component.contentmunch.com",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "keywords": [
+    "html5",
+    "reactjs",
+    "ui",
+    "component driven"
+  ]
+}
