@@ -1,0 +1,30 @@
+.muncher-tabs {
+    width: 100%;
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .muncher-button {
+            text-transform: uppercase;
+        }
+
+        .spacer {
+            padding: .2rem;
+        }
+
+        .muncher-button--active {
+            background: none;
+            border-bottom: 2px solid var(--primary-color);
+        }
+    }
+
+    .muncher-tab {
+        display: none;
+    }
+
+    .muncher-tab--active {
+        display: block;
+    }
+}

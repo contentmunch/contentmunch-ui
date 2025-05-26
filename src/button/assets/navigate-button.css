@@ -1,0 +1,14 @@
+
+:root {
+    --navigation-background-color: 25, 26, 26;
+}
+
+.muncher-button--navigate .muncher-button {
+    /* Uncomment below if using the variable */
+    /* background-color: rgba(var(--navigation-background-color), 0.3); */
+    background-color: rgba(10, 30, 37, 0.4);
+}
+
+.muncher-button--navigate .muncher-button--transparent {
+    background-color: inherit;
+}

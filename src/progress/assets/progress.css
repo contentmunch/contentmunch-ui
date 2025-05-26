@@ -1,0 +1,35 @@
+:root {
+    --progress-color: var(--secondary-color);
+    --progress-value-color: var(--primary-color);
+}
+
+.muncher-progress {
+    width: 30vw;
+    margin: 1rem;
+    display: inline-block;
+
+    label {
+        display: block;
+        text-align: center;
+        font-size: .8rem;
+        font-weight: bold;
+    }
+
+    progress {
+        display: block;
+        height: .6rem;
+        background: var(--progress-color);
+        width: 100%;
+
+    }
+
+    progress::-webkit-progress-bar {
+        background: var(--progress-color);
+
+    }
+
+    progress::-webkit-progress-value {
+        background: var(--progress-value-color);
+    }
+
+}

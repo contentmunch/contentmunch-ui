@@ -1,0 +1,14 @@
+.icon-search-story {
+    .muncher-input--div {
+        margin-bottom: 1rem;
+
+        .muncher-input {
+            width: 50%;
+
+        }
+    }
+
+    .muncher-button {
+        margin: 1rem;
+    }
+}

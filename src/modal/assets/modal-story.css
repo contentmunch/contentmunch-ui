@@ -1,0 +1,14 @@
+.muncher-modal-story {
+    position: relative;
+
+    .muncher-modal {
+        color: var(--primary-background-color);
+        text-align: center;
+        top: 10rem;
+        left: 30rem;
+        width: 20rem;
+        height: 20rem;
+    }
+}
+
+
