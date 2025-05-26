@@ -1,0 +1,90 @@
+
+:root {
+    --table-dark-background-color: rgba(234, 233, 227, 0.30);
+}
+
+
+.muncher-table {
+    > :nth-child(even) {
+        background: var(--table-dark-background-color);
+    }
+
+    font-size: .8rem;
+
+    .row {
+        font-family: var(--sans-serif-font), sans-serif;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+        min-height: 3rem;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: .5rem;
+        padding-right: .5rem;
+
+        .col {
+            padding: 0 .2rem;
+
+            .muncher-button {
+                text-transform: none;
+                white-space: normal;
+                text-align: left;
+            }
+        }
+    }
+
+    .head {
+        .sort-button {
+            padding-left: 0;
+
+            .muncher-button {
+                font-weight: bold;
+                padding: 0;
+            }
+
+            .muncher-icon {
+                width: 1rem;
+                height: 1rem;
+                padding-left: .1rem;
+            }
+        }
+    }
+
+    .row-footer {
+        font-family: var(--sans-serif-font), sans-serif;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        @media (min-width: var(--medium-size)) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .row-footer-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem;
+
+            .left, .center, .right {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 .5rem;
+            }
+
+            .muncher-input--div {
+                margin: 0 .5rem;
+            }
+        }
+    }
+
+}

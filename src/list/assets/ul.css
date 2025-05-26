@@ -1,0 +1,19 @@
+.muncher-ul {
+    list-style: none;
+    padding-left: .5rem;
+
+    .muncher-li {
+        letter-spacing: .03rem;
+        line-height: 1.5rem;
+    }
+
+    .featured {
+        font-weight: bold;
+    }
+
+    .muncher-icon {
+        .content-right {
+            padding-left: .5rem;
+        }
+    }
+}

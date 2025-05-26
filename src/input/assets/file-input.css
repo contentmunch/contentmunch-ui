@@ -1,0 +1,22 @@
+.muncher-file-input--div .file-input-element {
+  display: inline-flex;
+  align-items: center;
+}
+
+.muncher-file-input--div .file-input-element p {
+  margin-left: 0.5rem;
+}
+
+.muncher-file-input--div .muncher-file-input {
+  display: none;
+}
+
+.muncher-file-input--div .span-file-name {
+  padding-left: 1rem;
+}
+
+.muncher-file-input--div .muncher-input-error-message {
+  font-size: 0.8rem;
+  color: var(--danger-color);
+  margin: 0.4rem;
+}
