@@ -1,9 +1,3 @@
-
-:root {
-    --slider-color: var(--primary-color);
-    --slider-thumb-color: var(--secondary-color);
-}
-
 .muncher-slider {
     margin: 5%;
     position: relative;

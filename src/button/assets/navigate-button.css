@@ -1,8 +1,3 @@
-
-:root {
-    --navigation-background-color: 25, 26, 26;
-}
-
 .muncher-button--navigate .muncher-button {
     /* Uncomment below if using the variable */
     /* background-color: rgba(var(--navigation-background-color), 0.3); */
