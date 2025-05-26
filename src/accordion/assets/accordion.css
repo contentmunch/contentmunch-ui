@@ -1,14 +1,3 @@
-:root {
-    --accordion-button-color: black;
-    --accordion-icon-color: black;
-    --accordion-icon-secondary-color: white;
-    --accordion-secondary-background-color: white;
-    --accordion-button-background-color: var(--accordion-secondary-background-color);
-    --accordion-button-primary-background-color: var(--primary-color);
-    --accordion-button-secondary-background-color: var(--secondary-background-color);
-    --accordion-button-tertiary-background-color: var(--tertiary-background-color);
-}
-
 .muncher-accordion {
     .fold-content {
         max-height: 0;

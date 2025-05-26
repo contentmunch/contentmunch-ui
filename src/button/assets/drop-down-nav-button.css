@@ -1,8 +1,3 @@
-:root {
-  --dropdown-nav-content-color: var(--primary-color);
-  --dropdown-nav-content-background-color: var(--secondary-background-color);
-}
-
 .muncher-dropdown-nav {
   position: relative;
 }

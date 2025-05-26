@@ -1,8 +1,3 @@
-:root {
-    --muncher-input-dropdown-content-color: var(--primary-color);
-    --muncher-input-dropdown-content-background-color: var(--secondary-background-color);
-}
-
 .muncher-input-drop-down {
     position: relative;
 }

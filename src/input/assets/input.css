@@ -1,10 +1,3 @@
-:root {
-    --input-focus-color: var(--secondary-color);
-    --input-border-color: var(--secondary-background-color);
-    --input-placeholder-color: var(--disabled-color);
-    --input-icon-color: var(--primary-color);
-}
-
 .muncher-input--div {
     position: relative;
 }
