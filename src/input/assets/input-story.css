@@ -1,0 +1,9 @@
+.div-input-stories {
+    width: 16rem;
+}
+
+@media (min-width: var(--medium-size)) {
+    .div-input-stories {
+        width: 40rem;
+    }
+}
