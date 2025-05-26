@@ -1,7 +1,3 @@
-:root {
-    --pill-color: var(--primary-color);
-}
-
 .muncher-pill {
     color: var(--pill-color);
     display: inline-flex;

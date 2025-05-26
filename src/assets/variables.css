@@ -43,4 +43,63 @@
     --medium-size: 40rem;
     --large-size: 62rem;
     --extra-large-size: 75rem;
+
+    /* Accordion */
+    --accordion-button-color: black;
+    --accordion-icon-color: black;
+    --accordion-icon-secondary-color: white;
+    --accordion-secondary-background-color: white;
+    --accordion-button-background-color: var(--accordion-secondary-background-color);
+    --accordion-button-primary-background-color: var(--primary-color);
+    --accordion-button-secondary-background-color: var(--secondary-background-color);
+    --accordion-button-tertiary-background-color: var(--tertiary-background-color);
+
+    /* Badge */
+    --badge-color: var(--primary-color);
+    --badge-background-color: var(--secondary-background-color);
+    --badge-primary-background-color: var(--primary-color);
+    --badge-secondary-background-color: var(--secondary-background-color);
+    --badge-danger-background-color: var(--danger-color);
+    --badge-tertiary-background-color: var(--tertiary-background-color);
+
+    /* Icon Badge */
+    --icon-badge-color: var(--primary-color);
+    --icon-badge-background-color: var(--secondary-background-color);
+    --icon-badge-primary-background-color: var(--primary-color);
+    --icon-badge-secondary-background-color: var(--secondary-background-color);
+    --icon-badge-danger-background-color: var(--danger-color);
+    --icon-badge-tertiary-background-color: var(--tertiary-background-color);
+
+    /* Button */
+    --dropdown-content-color: var(--primary-color);
+    --dropdown-content-background-color: var(--secondary-background-color);
+    --dropdown-nav-content-color: var(--primary-color);
+    --dropdown-nav-content-background-color: var(--secondary-background-color);
+    --navigation-background-color: 25, 26, 26;
+
+    /* Input */
+    --input-focus-color: var(--secondary-color);
+    --input-border-color: var(--secondary-background-color);
+    --input-placeholder-color: var(--disabled-color);
+    --input-icon-color: var(--primary-color);
+    --muncher-input-dropdown-content-color: var(--primary-color);
+    --muncher-input-dropdown-content-background-color: var(--secondary-background-color);
+
+    /* Pill */
+    --pill-color: var(--primary-color);
+
+    /* Progress */
+    --progress-color: var(--secondary-color);
+    --progress-value-color: var(--primary-color);
+
+    /* Slider */
+    --slider-color: var(--primary-color);
+    --slider-thumb-color: var(--secondary-color);
+
+    /* Spinner */
+    --spinner-color: var(--disabled-color);
+
+    /* Table */
+    --table-dark-background-color: rgba(234, 233, 227, 0.30);
+
 }
