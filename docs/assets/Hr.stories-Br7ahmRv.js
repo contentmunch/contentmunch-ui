@@ -1,4 +1,4 @@
-import{j as H}from"./jsx-runtime-D_zvdyIk.js";import{H as t}from"./Hr-wE5IehCy.js";import"./index-D4lIrffr.js";const _={component:t,title:"Rule/Horizontal Rule",render:j=>H.jsx(t,{...j})},r={args:{}},e={args:{variant:"secondary"}},s={args:{style:"dotted"}},a={args:{style:"dashed"}},o={args:{style:"sold"}};var c,n,d;r.parameters={...r.parameters,docs:{...(c=r.parameters)==null?void 0:c.docs,source:{originalSource:`{
+import{j as H}from"./jsx-runtime-D_zvdyIk.js";import{H as t}from"./Hr-DywUS52c.js";import"./index-D4lIrffr.js";const _={component:t,title:"Rule/Horizontal Rule",render:j=>H.jsx(t,{...j})},r={args:{}},e={args:{variant:"secondary"}},s={args:{style:"dotted"}},a={args:{style:"dashed"}},o={args:{style:"sold"}};var c,n,d;r.parameters={...r.parameters,docs:{...(c=r.parameters)==null?void 0:c.docs,source:{originalSource:`{
   args: {}
 }`,...(d=(n=r.parameters)==null?void 0:n.docs)==null?void 0:d.source}}};var m,p,l;e.parameters={...e.parameters,docs:{...(m=e.parameters)==null?void 0:m.docs,source:{originalSource:`{
   args: {
