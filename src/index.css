@@ -30,6 +30,10 @@
 @import './slider/assets/slider.css';
 
 @import './spinner/assets/spinner.css';
+
+@import './star/assets/featured.css';
+@import './star/assets/star.css';
+
 @import './tab/assets/tabs.css';
 @import './table/assets/table.css';
 
