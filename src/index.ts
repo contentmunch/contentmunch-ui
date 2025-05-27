@@ -33,6 +33,7 @@ export {Modal} from "./modal/Modal";
 export {Paper} from "./paper/Paper";
 export {Pill} from "./pill/Pill";
 export {Progress} from "./progress/Progress";
+export {Hr} from "./rule/Hr";
 
 export {ItemSlider} from "./slider/ItemSlider";
 export {RangeSlider} from "./slider/RangeSlider";
@@ -42,5 +43,5 @@ export {Spinner} from "./spinner/Spinner";
 export {Tabs} from "./tab/Tabs";
 export {Table} from "./table/Table";
 
-
-
+export type {Variant} from "./common/Variant";
+export type {Size} from "./common/Size";

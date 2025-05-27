@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import './assets/share-button.css';
-import {Button, type Size, type Variant} from "./Button";
+import {Button} from "./Button";
 import {DropdownButton} from "./DropdownButton";
 import {Icon} from "../icon/Icon";
 import {CopyButton} from "./CopyButton";
+import type {Variant} from "../common/Variant.ts";
+import type {Size} from "../common/Size.ts";
 
 export const ShareButton: React.FC<ShareButtonProps> = (
     {

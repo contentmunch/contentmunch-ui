@@ -1,7 +1,7 @@
 import React from "react";
 import "./assets/icon-badge.css";
 import {Icon} from "../icon/Icon";
-import type {Variant} from "../button/Button";
+import type {Variant} from "../common/Variant.ts";
 import type {IconName} from "../icon/Drawings";
 import {Badge} from "./Badge";
 

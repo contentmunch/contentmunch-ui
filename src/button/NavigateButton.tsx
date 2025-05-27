@@ -1,8 +1,10 @@
 import React from 'react';
 import './assets/navigate-button.css';
-import {Button, type Size, type Variant} from "./Button";
+import {Button} from "./Button";
 import {Icon} from "../icon/Icon";
 import type {IconName} from "../icon/Drawings";
+import type {Variant} from "../common/Variant.ts";
+import type {Size} from "../common/Size.ts";
 
 export const NavigateButton: React.FC<NavigateButtonProps> = (
     {

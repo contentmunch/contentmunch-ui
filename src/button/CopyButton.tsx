@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {Button, type Size, type Variant} from "./Button";
+import {Button} from "./Button";
 import {Icon} from "../icon/Icon";
 import {copyToClipboard} from "../utils/Utils";
 import type {IconName} from "../icon/Drawings";
+import type {Variant} from "../common/Variant.ts";
+import type {Size} from "../common/Size.ts";
 
 export const CopyButton: React.FC<CopyButtonProps> = (
     {

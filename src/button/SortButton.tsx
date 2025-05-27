@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import {Button, type Size, type Variant} from "./Button";
+import {Button} from "./Button";
 import {Icon} from "../icon/Icon";
-
+import type {Variant} from "../common/Variant.ts";
+import type {Size} from "../common/Size.ts";
 export const SortButton: React.FC<SortButtonProps> = (
     {
         variant = 'transparent', size = 'small', title, sortAsc = 'true',

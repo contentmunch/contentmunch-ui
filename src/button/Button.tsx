@@ -1,5 +1,7 @@
 import React from 'react';
 import './assets/button.css';
+import type {Variant} from "../common/Variant.ts";
+import type {Size} from "../common/Size.ts";
 
 export const Button: React.FC<ButtonProps> =
     ({
@@ -65,6 +67,3 @@ export interface ButtonProps extends AllButtonProps {
     onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 
 }
-
-export type Variant = 'primary' | 'secondary' | 'tertiary' | 'transparent' | 'danger';
-export type Size = 'small' | 'medium' | 'large';

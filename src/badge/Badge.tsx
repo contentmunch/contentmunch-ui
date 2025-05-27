@@ -1,6 +1,6 @@
 import React from 'react';
 import './assets/badge.css';
-import type {Variant} from "../button/Button";
+import type {Variant} from "../common/Variant.ts";
 
 export const Badge: React.FC<BadgeProps> = ({variant, children, ...props}) => {
     return (
