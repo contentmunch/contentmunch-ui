@@ -14,7 +14,7 @@ export const Hr: React.FC<HrProps> = ({variant, size, style}) => {
 }
 
 export interface HrProps {
-    variant: Variant;
-    size: Size;
-    style: "sold" | "dotted" | "dashed";
+    variant?: Variant;
+    size?: Size;
+    style?: "sold" | "dotted" | "dashed";
 }
