@@ -1,7 +1,7 @@
 import React from "react";
 import {Icon} from "../icon/Icon";
-import type {Size} from "../button/Button";
 import type {IconName} from "../icon/Drawings";
+import type {Size} from "../common/Size.ts";
 
 export const Li: React.FC<LiProps> = (
     {isFeatured, bulletIcon = "arrow-right", bulletWeight = 2, bulletSize = "small", bulletColor, children}) => {
