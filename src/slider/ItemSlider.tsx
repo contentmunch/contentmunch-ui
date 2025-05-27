@@ -1,7 +1,8 @@
 import React, {type ReactElement, useState} from "react";
 import "./assets/item-slider.css";
 import {type NavIcon, NavigateButton} from "../button/NavigateButton";
-import type {Size, Variant} from "../button/Button";
+import type {Size} from "../common/Size.ts";
+import type {Variant} from "../common/Variant.ts";
 
 export const ItemSlider: React.FC<ItemSliderProps> = (
     {sliderItems, navButtonSize = 'large', navButtonWeight = 2, variant, navIcon}) => {
