@@ -153,3 +153,9 @@ export const Week: Story = {
         type: 'week',
     }
 };
+export const EnterPressed: Story = {
+    args: {
+        ...Default.args,
+        onEnterPress: () => {console.log("Enter pressed");}
+    }
+}
