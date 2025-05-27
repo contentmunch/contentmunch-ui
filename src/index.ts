@@ -40,6 +40,10 @@ export {RangeSlider} from "./slider/RangeSlider";
 export {Slider} from "./slider/Slider";
 
 export {Spinner} from "./spinner/Spinner";
+
+export {Featured} from "./star/Featured";
+export {Star} from "./star/Star";
+
 export {Tabs} from "./tab/Tabs";
 export {Table} from "./table/Table";
 
