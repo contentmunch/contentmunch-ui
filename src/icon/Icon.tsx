@@ -1,8 +1,7 @@
 import React from "react";
 import {drawings, type IconName} from "./Drawings";
 import './assets/icon.css';
-import type {Size} from "../button/Button";
-
+import type {Size} from "../common/Size.ts";
 
 export const Icon: React.FC<IconProps> =
     ({color, name, size = 'small', weight = 2, onClick, iconString, orientation, children}) => {
