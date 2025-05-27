@@ -10,7 +10,7 @@ export const Input: React.FC<InputProps> = (
         readOnly, icon, hoverIcon, onHoverIconClick,
         type = 'text', list, onBlur, labelPosition = 'top',
         onKeyDown, error, focus = false, placeholder,
-        onChange, step, value, maxLength, ...props
+        onChange, step, value, maxLength, onEnterPress, ...props
     }
 ) => {
     const hasError = () => error && error !== "";
@@ -24,6 +24,15 @@ export const Input: React.FC<InputProps> = (
     const addLabel = () => {
         return label ? <Label label={label} required={required} id={name}/> : '';
     }
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && onEnterPress) {
+            onEnterPress();
+        }
+        if (onKeyDown) {
+            onKeyDown(event);
+        }
+    };
+
     return (
         <div className="muncher-input--div">
             {labelPosition !== 'side' ? addLabel() : ''}
@@ -45,7 +54,7 @@ export const Input: React.FC<InputProps> = (
                     required={required}
                     readOnly={readOnly}
                     list={list}
-                    onKeyDown={onKeyDown}
+                    onKeyDown={handleKeyDown}
                     onBlur={onBlur}
                     step={step}
                     maxLength={maxLength}
@@ -82,4 +91,5 @@ export interface InputProps {
     step?: number;
     maxLength?: number;
     labelPosition?: 'top' | 'side';
+    onEnterPress?: () => void;
 }
