@@ -47,5 +47,13 @@ export {Star} from "./star/Star";
 export {Tabs} from "./tab/Tabs";
 export {Table} from "./table/Table";
 
+
+export type {Fold} from "./accordion/Accordion";
+export type {Tab} from "./tab/Tabs";
+export type {Page, Sort, Head, Col} from "./table/Table";
 export type {Variant} from "./common/Variant";
 export type {Size} from "./common/Size";
+export type {Range} from "./slider/RangeSlider";
+export type {SpinnerSize} from "./spinner/Spinner";
+
+export {copyToClipboard} from "./utils/Utils";
