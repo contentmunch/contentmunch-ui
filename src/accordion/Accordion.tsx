@@ -1,6 +1,6 @@
 import React, {type ReactNode, useState} from "react";
 import "./assets/accordion.css";
-import type {Variant} from "../button/Button";
+import type {Variant} from "../common/Variant.ts";
 
 
 export const Accordion: React.FC<AccordionProps> = ({variant, children}) => {
