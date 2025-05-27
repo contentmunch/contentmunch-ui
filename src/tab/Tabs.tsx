@@ -41,11 +41,13 @@ export const Tabs: React.FC<TabsProps> = ({handleTabSelected, children}) => {
 
 export interface TabsProps {
     children: {
-        tabs: {
-            header: string,
-            headerTitle?: string,
-            body: ReactNode
-        }[]
+        tabs: Tab[]
     },
     handleTabSelected?: (index: number) => void
+}
+
+export interface Tab {
+    header: string;
+    headerTitle?: string;
+    body: ReactNode
 }
