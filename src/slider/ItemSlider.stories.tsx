@@ -55,3 +55,10 @@ export const SingleItem: Story = {
                            className="slide" width="500" height="300"/>]
     }
 };
+
+export const NavButtonOutside: Story = {
+    args: {
+        ...Default.args,
+        navButtonPlacement: "outside"
+    }
+}
