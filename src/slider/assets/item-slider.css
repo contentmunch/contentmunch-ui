@@ -36,3 +36,32 @@
     }
 
 }
+
+.muncher-item-slider-wrapper--outside {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .muncher-button--navigate {
+        position: absolute;
+        top: 45%;
+        z-index: 100;
+
+        .muncher-button {
+            color: var(--secondary-background-color);
+        }
+    }
+
+    .muncher-button--navigate-left {
+        left: .1rem;
+    }
+
+    .muncher-button--navigate-right {
+        right: .1rem;
+    }
+
+    .muncher-item-slider {
+        width: 85%;
+    }
+}
