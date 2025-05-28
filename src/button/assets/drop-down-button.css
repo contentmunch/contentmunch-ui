@@ -50,7 +50,7 @@
     transform: translate(-50%, 0);
 }
 
-@media (min-width: var(--large-size)) {
+@media (min-width: 62rem) {
     .muncher-dropdown--nav {
         display: none;
     }

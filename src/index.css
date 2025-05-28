@@ -70,8 +70,7 @@ label .required {
     padding-left: 0.1rem;
     color: var(--danger-color);
 }
-
-@media (min-width: var(--medium-size)) {
+@media (min-width: 40rem) {
     .container {
         /* Reserved space: add layout styles here if needed */
     }
@@ -85,7 +84,7 @@ label .required {
     }
 }
 
-@media (min-width: var(--large-size)) {
+@media (min-width: 62rem) {
     .mobile {
         display: none;
     }
@@ -103,7 +102,7 @@ label .required {
     }
 }
 
-@media (min-width: var(--extra-large-size)) {
+@media (min-width: 75rem) {
     .container {
         width: 70rem;
     }

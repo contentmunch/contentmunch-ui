@@ -90,7 +90,7 @@
     text-decoration: none;
 }
 
-@media (min-width: var(--large-size)) {
+@media (min-width: 62rem) {
     .muncher-button--nav {
         padding: 0 0.5rem;
         display: inline-block;
