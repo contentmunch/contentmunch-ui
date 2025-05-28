@@ -23,8 +23,7 @@
   padding-left: 1.5rem;
   z-index: 10;
 }
-
-@media (min-width: var(--large-size)) {
+@media (min-width: 62rem) {
   .muncher-dropdown-nav .muncher-dropdown-nav--content {
     box-shadow: 0.5rem 0.5rem 0.6rem rgba(0, 0, 0, 0.2);
     display: none;
