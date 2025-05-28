@@ -156,6 +156,14 @@ export const Week: Story = {
 export const EnterPressed: Story = {
     args: {
         ...Default.args,
-        onEnterPress: () => {console.log("Enter pressed");}
+        onEnterPress: () => {
+            console.log("Enter pressed");
+        }
+    }
+}
+export const WithSpinner: Story = {
+    args: {
+        ...Default.args,
+        displayLoader: true
     }
 }

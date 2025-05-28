@@ -3,6 +3,7 @@ import "./assets/input.css";
 import {Label} from "./Label";
 import type {IconName} from "../icon/Drawings";
 import {Icon} from "../icon/Icon";
+import {Spinner} from "../spinner/Spinner.tsx";
 
 export const Input: React.FC<InputProps> = (
     {
@@ -10,7 +11,7 @@ export const Input: React.FC<InputProps> = (
         readOnly, icon, hoverIcon, onHoverIconClick,
         type = 'text', list, onBlur, labelPosition = 'top',
         onKeyDown, error, focus = false, placeholder,
-        onChange, step, value, maxLength, onEnterPress, ...props
+        onChange, step, value, maxLength, onEnterPress, displayLoader, ...props
     }
 ) => {
     const hasError = () => error && error !== "";
@@ -39,27 +40,32 @@ export const Input: React.FC<InputProps> = (
             <div className="muncher-input-element">
                 {labelPosition === 'side' ? addLabel() : ''}
                 {icon ? <Icon name={icon}/> : ""}
-                {hoverIcon ? <span className="muncher-icon-hover"><Icon name={hoverIcon}
-                                                                        onClick={onHoverIconClick}/> </span> : ""}
-                <input
-                    id={name}
-                    className={className()}
-                    name={name}
-                    autoFocus={focus}
-                    value={value}
-                    type={type ? type : 'text'}
-                    autoComplete="off"
-                    placeholder={placeholder}
-                    onChange={onChange}
-                    required={required}
-                    readOnly={readOnly}
-                    list={list}
-                    onKeyDown={handleKeyDown}
-                    onBlur={onBlur}
-                    step={step}
-                    maxLength={maxLength}
-                    {...props}
-                />
+                {hoverIcon ?
+                    <span className="muncher-icon-hover">
+                    <Icon name={hoverIcon} onClick={onHoverIconClick}/> </span>
+                    : ""}
+                <div className="muncher-input-wrapper">
+                    <input
+                        id={name}
+                        className={className()}
+                        name={name}
+                        autoFocus={focus}
+                        value={value}
+                        type={type ? type : 'text'}
+                        autoComplete="off"
+                        placeholder={placeholder}
+                        onChange={onChange}
+                        required={required}
+                        readOnly={readOnly}
+                        list={list}
+                        onKeyDown={handleKeyDown}
+                        onBlur={onBlur}
+                        step={step}
+                        maxLength={maxLength}
+                        {...props}
+                    />
+                    {displayLoader ? <Spinner size="tiny"/> : ""}
+                </div>
             </div>
             {hasError() ?
                 <div className="muncher-input-error-message"><Icon name="alert">{error}</Icon></div> : ""}
@@ -92,4 +98,5 @@ export interface InputProps {
     maxLength?: number;
     labelPosition?: 'top' | 'side';
     onEnterPress?: () => void;
+    displayLoader?: boolean;
 }
