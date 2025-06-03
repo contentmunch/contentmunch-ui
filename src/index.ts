@@ -55,5 +55,5 @@ export type {Variant} from "./common/Variant";
 export type {Size} from "./common/Size";
 export type {Range} from "./slider/RangeSlider";
 export type {SpinnerSize} from "./spinner/Spinner";
-
+export type {IconName} from "./icon/Drawings";
 export {copyToClipboard} from "./utils/Utils";
