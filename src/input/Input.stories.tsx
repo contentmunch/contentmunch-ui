@@ -164,6 +164,7 @@ export const EnterPressed: Story = {
 export const WithSpinner: Story = {
     args: {
         ...Default.args,
-        displayLoader: true
+        displayLoader: true,
+        icon: 'search'
     }
 }
