@@ -14,7 +14,11 @@ export const Default: Story = {
         name: "select",
         label: "select what",
         required: true,
-        options: ["Option1", "Option2", "Option3"],
+        options: [
+            { label: "JavaScript", value: "js" },
+            { label: "Python", value: "py" },
+            { label: "Java", value: "java" }
+        ],
         onChange: (e) => {
             console.log(e.target.value);
         }
@@ -39,6 +43,6 @@ export const WithError: Story = {
 export const WithValue: Story = {
     args: {
         ...Default.args,
-        value: "Option2"
+        value: "py"
     }
 };
