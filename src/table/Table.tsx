@@ -96,7 +96,10 @@ export const Table: React.FC<TableProps> = (
 
                 {excludePagination ? "" :
                     <div className="pagination">
-                        <div className="left">Rows: <Select name="pageSize" options={["50", "100", "500"]}
+                        <div className="left">Rows: <Select name="pageSize" options={[{label: "50", value: "50"}, {
+                            label: "100",
+                            value: "100"
+                        }, {label: "500", value: "500"}]}
                                                             value={page.size}
                                                             onChange={e => {
                                                                 setPage({
