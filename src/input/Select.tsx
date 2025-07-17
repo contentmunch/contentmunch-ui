@@ -15,6 +15,7 @@ export const Select: React.FC<SelectProps> = (
         if (hasError()) inputClass += " muncher-input-error";
         return inputClass;
     };
+
     return (
         <div className="muncher-input--div">
             {label ? <Label label={label} required={required} id={name}/> : ''}
@@ -29,10 +30,13 @@ export const Select: React.FC<SelectProps> = (
                     multiple={multiple}
                     {...props}
                 >
-                    {required ? <option/> : ""}
+                    {required ? <option value="">-- Select --</option> : ""}
                     {
                         options.map((option, i) =>
-                            <option key={"select-option-" + i} value={option}>{option}</option>)
+                            <option key={`select-option-${i}`} value={option.value}>
+                                {option.label}
+                            </option>
+                        )
                     }
                 </select>
             </div>
@@ -41,13 +45,19 @@ export const Select: React.FC<SelectProps> = (
     );
 };
 
+// Updated interface
+export interface SelectOption {
+    label: string;
+    value: string;
+}
+
 export interface SelectProps {
     name: string;
-    options: string[];
+    options: SelectOption[];
     label?: string;
     required?: boolean;
     multiple?: boolean;
-    onChange?: (value: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     value?: any;
     error?: string;
 }
