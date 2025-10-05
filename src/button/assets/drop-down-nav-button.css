@@ -1,6 +1,6 @@
 .muncher-dropdown-nav {
     position: relative;
-    display: inline-block; /* 🔥 keeps dropdown anchored to the button */
+    display: inline-block; /* ensures dropdown anchors to button width */
     vertical-align: middle;
 }
 
@@ -22,7 +22,7 @@
     background: var(--dropdown-nav-content-background-color);
     color: var(--dropdown-nav-content-color);
     min-width: 5rem;
-    padding-left: 1.5rem;
+    padding: 0.7rem 1rem; /* ✅ equal left/right padding */
     z-index: 10;
 }
 
@@ -32,29 +32,24 @@
         display: none;
         position: absolute;
         top: 100%;
-        left: 0; /* default: dropdown starts from parent’s left edge */
+        left: 0; /* default: open from left edge of parent */
         transform-origin: top left;
+        opacity: 0;
+        transform: translateY(0.25rem);
+        transition: opacity 0.15s ease, transform 0.15s ease;
     }
 
-    .muncher-dropdown-nav .muncher-dropdown-nav--content > * {
-        text-align: left;
-        margin: 0.7rem 1rem 0.7rem 0.7rem;
-    }
-
-    /* 👇 DROPS LEFT instead of right */
+    /* ✅ drop-left: opens from right edge, but same text and padding */
     .muncher-dropdown-nav.drop-left .muncher-dropdown-nav--content {
         left: auto;
-        right: 0; /* anchored to parent’s right edge */
+        right: 0;
         transform-origin: top right;
-        text-align: right;
     }
 
-    .muncher-dropdown-nav.drop-left .muncher-dropdown-nav--content > * {
-        text-align: right;
-        margin: 0.7rem 0.3rem 0.7rem 1rem;
-    }
-
+    /* Hover behavior */
     .muncher-dropdown-nav:hover .muncher-dropdown-nav--content {
         display: block;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
