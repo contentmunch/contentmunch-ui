@@ -1,41 +1,60 @@
 .muncher-dropdown-nav {
-  position: relative;
+    position: relative;
+    display: inline-block; /* 🔥 keeps dropdown anchored to the button */
+    vertical-align: middle;
 }
 
 .muncher-dropdown-nav > * {
-  text-align: left;
+    text-align: left;
 }
 
 .muncher-dropdown-nav a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .muncher-dropdown-nav .small {
-  font-size: 0.5rem;
+    font-size: 0.5rem;
 }
 
 .muncher-dropdown-nav .muncher-dropdown-nav--content {
-  display: block;
-  white-space: nowrap;
-  background: var(--dropdown-nav-content-background-color);
-  color: var(--dropdown-nav-content-color);
-  min-width: 5rem;
-  padding-left: 1.5rem;
-  z-index: 10;
-}
-@media (min-width: 62rem) {
-  .muncher-dropdown-nav .muncher-dropdown-nav--content {
-    box-shadow: 0.5rem 0.5rem 0.6rem rgba(0, 0, 0, 0.2);
-    display: none;
-    position: absolute;
-  }
-
-  .muncher-dropdown-nav .muncher-dropdown-nav--content > * {
-    text-align: left;
-    margin: 0.7rem 1rem 0.7rem 0.3rem;
-  }
-
-  .muncher-dropdown-nav:hover .muncher-dropdown-nav--content {
     display: block;
-  }
+    white-space: nowrap;
+    background: var(--dropdown-nav-content-background-color);
+    color: var(--dropdown-nav-content-color);
+    min-width: 5rem;
+    padding-left: 1.5rem;
+    z-index: 10;
+}
+
+@media (min-width: 62rem) {
+    .muncher-dropdown-nav .muncher-dropdown-nav--content {
+        box-shadow: 0.5rem 0.5rem 0.6rem rgba(0, 0, 0, 0.2);
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; /* default: dropdown starts from parent’s left edge */
+        transform-origin: top left;
+    }
+
+    .muncher-dropdown-nav .muncher-dropdown-nav--content > * {
+        text-align: left;
+        margin: 0.7rem 1rem 0.7rem 0.3rem;
+    }
+
+    /* 👇 DROPS LEFT instead of right */
+    .muncher-dropdown-nav.drop-left .muncher-dropdown-nav--content {
+        left: auto;
+        right: 0; /* anchored to parent’s right edge */
+        transform-origin: top right;
+        text-align: right;
+    }
+
+    .muncher-dropdown-nav.drop-left .muncher-dropdown-nav--content > * {
+        text-align: right;
+        margin: 0.7rem 0.3rem 0.7rem 1rem;
+    }
+
+    .muncher-dropdown-nav:hover .muncher-dropdown-nav--content {
+        display: block;
+    }
 }

@@ -4,12 +4,12 @@ import {Button} from "./Button";
 
 export const DropdownNavButton: React.FC<DropdownNavButtonProps> = (
     {
-        title, active, disabled, element, rounded,
+        title, active, disabled, element, rounded, dropLeft,
         children, ...props
     }) => {
 
     return (
-        <div className="muncher-dropdown-nav">
+        <div className={`muncher-dropdown-nav ${dropLeft ? 'drop-left' : ''}`}>
             <Button type="nav" title={title} disabled={disabled} rounded={rounded}
                     active={active} {...props}>
                 {element}
@@ -32,7 +32,7 @@ export interface DropdownNavButtonProps {
      * if true, the button edges are rounded
      */
     rounded?: boolean;
-
+    dropLeft?: boolean;
     element: React.ReactNode;
     children?: any;
 }

@@ -22,3 +22,11 @@ export const Default: Story = {
         element: <p>drop down <span className="small">&#9660;</span></p>
     }
 };
+
+export const DropLeft: Story = {
+    args: {
+        title: 'Default Nav Dropdown',
+        dropLeft: true,
+        element: <p>drop down <span className="small">&#9660;</span></p>
+    }
+};
