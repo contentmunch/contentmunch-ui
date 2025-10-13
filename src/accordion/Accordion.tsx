@@ -35,6 +35,15 @@ export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, childre
         }
         event.preventDefault();
     };
+
+    const handleOnClick = (index: number) => {
+        if (currentIndex === index) {
+            setCurrentIndex(-1);
+        } else {
+            setCurrentIndex(index);
+        }
+    }
+
     return (
         <div className="muncher-accordion">
             {folds.map((fold, index) =>
@@ -42,7 +51,7 @@ export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, childre
                      aria-expanded={currentIndex === index}>
                     <button className={buttonClass(index)}
                             onKeyDown={handleButtonKeyDown}
-                            onClick={() => setCurrentIndex(index)}>
+                            onClick={() => handleOnClick(index)}>
                         <span>{fold.heading}</span>
                     </button>
                     <section className="fold-content">
