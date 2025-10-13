@@ -3,9 +3,9 @@ import "./assets/accordion.css";
 import type {Variant} from "../common/Variant.ts";
 
 
-export const Accordion: React.FC<AccordionProps> = ({variant, children}) => {
+export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, children}) => {
     const {folds} = children;
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(collapsed ? -1 : 0);
 
     const foldClass = (index: number) => index === currentIndex
         ? "fold active" : "fold";
@@ -66,6 +66,7 @@ export interface AccordionProps {
      * Variant for fold button
      */
     variant?: Variant;
+    collapsed?: boolean;
 }
 
 export interface Fold {
