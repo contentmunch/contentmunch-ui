@@ -58,9 +58,9 @@
     --badge-color: var(--primary-color);
     --badge-background-color: var(--secondary-background-color);
     --badge-primary-background-color: var(--primary-color);
-    --badge-secondary-background-color: var(--secondary-background-color);
+    --badge-secondary-background-color: #91a9b3;
     --badge-danger-background-color: var(--danger-color);
-    --badge-tertiary-background-color: var(--tertiary-background-color);
+    --badge-tertiary-background-color: #eae9e3;
 
     /* Icon Badge */
     --icon-badge-color: var(--primary-color);

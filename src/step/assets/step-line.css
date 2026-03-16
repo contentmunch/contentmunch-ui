@@ -1,0 +1,10 @@
+/* connecting lines between steps */
+.muncher-step--line {
+    height: .15rem;
+    background-color: var(--badge-primary-background-color);
+    flex: 1; /* stretch horizontally */
+    margin: 1rem 1rem; /* vertical offset to center line relative to circle (half of circle height) */
+    position: relative;
+    top: 0;
+    z-index: 0;
+}

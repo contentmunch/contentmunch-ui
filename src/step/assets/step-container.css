@@ -1,0 +1,8 @@
+.muncher-step--container {
+    display: flex;
+    align-items: flex-start; /* top-align for labels */
+    justify-content: center;
+    gap: 0; /* lines handle spacing */
+    margin-top: 50px;
+    position: relative;
+}
