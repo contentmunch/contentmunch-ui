@@ -282,6 +282,10 @@ export const drawings = {
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
             </Fragment>,
+        'simple-check':
+            <Fragment>
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </Fragment>,
         'check':
             <Fragment>
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>

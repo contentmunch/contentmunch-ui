@@ -1,0 +1,33 @@
+.muncher-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-size: .8rem;
+    font-weight: bold;
+
+    .muncher-badge--rounded {
+        z-index: 1;
+    }
+
+    .muncher-step--label {
+        margin-top: .6rem;
+        text-transform: uppercase;
+        text-align: center;
+        min-height: 1rem; /* reserve space for alignment */
+    }
+
+    /* connector line to next step */
+
+    .muncher-step--connector {
+        position: absolute;
+        top: 50%; /* align with center of badge */
+        left: 100%; /* start after badge */
+        width: 3rem; /* adjust spacing to next step */
+        height: .1rem;
+        background-color: var(--badge-background-color);
+        z-index: 0;
+    }
+
+}
+

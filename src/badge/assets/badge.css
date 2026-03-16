@@ -29,3 +29,18 @@
 .muncher-badge--tertiary {
     background: var(--badge-tertiary-background-color);
 }
+
+.muncher-badge--rounded {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.muncher-badge--border {
+    border: .15rem solid var(--badge-secondary-background-color);
+    color: var(--badge-color);
+}
