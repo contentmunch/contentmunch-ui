@@ -184,6 +184,15 @@ export const drawings = {
                 <circle cx="12" cy="12" r="10"/>
                 <polyline points="12 6 12 12 16 14"/>
             </Fragment>,
+        'cloud':
+            <Fragment>
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </Fragment>,
+        'cloud-lightning':
+            <Fragment>
+                <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/>
+                <polyline points="13 11 9 17 15 17 11 23"/>
+            </Fragment>,
         'camera':
             <Fragment>
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
