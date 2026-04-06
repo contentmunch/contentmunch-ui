@@ -14,6 +14,9 @@ export const TextInputDropdown: React.FC<TextInputDropdownProps> = (
         label,
         error,
         required,
+        onEnterPress,
+        list,
+        displayLoader,
         children
     }) => {
     const ref = useRef(null);
@@ -52,6 +55,7 @@ export const TextInputDropdown: React.FC<TextInputDropdownProps> = (
     return (
         <div className="muncher-input-drop-down" ref={ref}>
             <Input focus={focus} placeholder={inputPlaceHolder} name="query" onChange={handleQueryChange}
+                   onEnterPress={onEnterPress} list={list} displayLoader={displayLoader}
                    readOnly={readOnly} value={value} label={label} required={required} error={error}/>
 
             {
@@ -78,4 +82,7 @@ export interface TextInputDropdownProps {
     label?: string;
     required?: boolean;
     error?: string;
+    onEnterPress?: () => void;
+    list?: string;
+    displayLoader?: boolean;
 }
