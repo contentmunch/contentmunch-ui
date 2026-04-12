@@ -4,6 +4,7 @@ import {Input} from "./Input";
 
 export const TextInputDropdown: React.FC<TextInputDropdownProps> = (
     {
+        name='query',
         focus = false,
         inputPlaceHolder,
         handleInputChange,
@@ -54,7 +55,7 @@ export const TextInputDropdown: React.FC<TextInputDropdownProps> = (
     }, [escFunction, onContentClose]);
     return (
         <div className="muncher-input-drop-down" ref={ref}>
-            <Input focus={focus} placeholder={inputPlaceHolder} name="query" onChange={handleQueryChange}
+            <Input focus={focus} placeholder={inputPlaceHolder} name={name} onChange={handleQueryChange}
                    onEnterPress={onEnterPress} list={list} displayLoader={displayLoader}
                    readOnly={readOnly} value={value} label={label} required={required} error={error}/>
 
@@ -71,6 +72,7 @@ export const TextInputDropdown: React.FC<TextInputDropdownProps> = (
 }
 
 export interface TextInputDropdownProps {
+    name?: string;
     focus?: boolean;
     inputPlaceHolder?: string;
     handleInputChange: (value: string) => void;
