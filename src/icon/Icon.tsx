@@ -41,7 +41,7 @@ export const Icon: React.FC<IconProps> =
                     }
                 </svg>
                 {children && orientation === "left" && (
-                    <span className="content-left">{children}</span>
+                    <span className="content-right">{children}</span>
                 )}
             </span>
         );
