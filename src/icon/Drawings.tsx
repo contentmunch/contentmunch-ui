@@ -3,6 +3,10 @@ import {Fragment} from "react";
 export type IconName = keyof typeof drawings;
 
 export const drawings = {
+        // Navigation & Movement (Anything related to direction, traversal, layout movement)
+        // Actions & Controls (Generic system actions and state changes)
+        // Content & Creation
+
         'align-center':
             <Fragment>
                 <line x1="18" y1="10" x2="6" y2="10"/>
@@ -37,6 +41,22 @@ export const drawings = {
                 <line x1="9" y1="20" x2="15" y2="20"/>
                 <line x1="12" y1="4" x2="12" y2="20"/>
             </Fragment>,
+        'italic':
+            <Fragment>
+                <line x1="19" y1="4" x2="10" y2="4"/>
+                <line x1="14" y1="20" x2="5" y2="20"/>
+                <line x1="15" y1="4" x2="9" y2="20"/>
+            </Fragment>,
+        'bold':
+            <Fragment>
+                <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+                <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+            </Fragment>,
+        'underline':
+            <Fragment>
+                <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/>
+                <line x1="4" y1="21" x2="20" y2="21"/>
+            </Fragment>,
         'ordered-list':
             <Fragment>
                 <line x1="9" y1="5" x2="21" y2="5"/>
@@ -54,18 +74,6 @@ export const drawings = {
                 <circle cx="4" cy="12" r="1"/>
                 <circle cx="4" cy="5" r="1"/>
                 <circle cx="4" cy="19" r="1"/>
-            </Fragment>,
-        'table':
-            <Fragment>
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <line x1="3" y1="9" x2="21" y2="9"/>
-                <line x1="3" y1="15" x2="21" y2="15"/>
-                <line x1="12" y1="3" x2="12" y2="21"/>
-            </Fragment>,
-        'split-view':
-            <Fragment>
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <line x1="12" y1="3" x2="12" y2="21"/>
             </Fragment>,
         'undo':
             <Fragment>
@@ -91,36 +99,7 @@ export const drawings = {
                 <line x1="16" y1="19" x2="16" y2="22"/>
                 <line x1="19" y1="16" x2="22" y2="16"/>
             </Fragment>,
-        'arrow-left':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 8 8 12 12 16"/>
-                <line x1="16" y1="12" x2="8" y2="12"/>
-            </Fragment>,
-        'arrow-right':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 16 16 12 12 8"/>
-                <line x1="8" y1="12" x2="16" y2="12"/>
-            </Fragment>,
-        'arrow-down':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="8 12 12 16 16 12"/>
-                <line x1="12" y1="8" x2="12" y2="16"/>
-            </Fragment>,
-        'arrow-up':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="16 12 12 8 8 12"/>
-                <line x1="12" y1="16" x2="12" y2="8"/>
-            </Fragment>,
-        'anchor':
-            <Fragment>
-                <circle cx="12" cy="5" r="3"/>
-                <line x1="12" y1="22" x2="12" y2="8"/>
-                <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
-            </Fragment>,
+
         'hamburger':
             <Fragment>
                 <line x1="3" y1="12" x2="21" y2="12"/>
@@ -190,10 +169,9 @@ export const drawings = {
                     d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
             </Fragment>,
-        'clock':
+        'moon':
             <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </Fragment>,
         'cloud':
             <Fragment>
@@ -214,6 +192,13 @@ export const drawings = {
                 <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/>
                 <polyline points="13 11 9 17 15 17 11 23"/>
             </Fragment>,
+        'server':
+            <Fragment>
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </Fragment>,
         'camera':
             <Fragment>
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
@@ -233,15 +218,14 @@ export const drawings = {
                 <line x1="10" y1="1" x2="10" y2="4"/>
                 <line x1="14" y1="1" x2="14" y2="4"/>
             </Fragment>,
-        'compass':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-            </Fragment>,
         'eye':
             <Fragment>
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                 <circle cx="12" cy="12" r="3"/>
+            </Fragment>,
+        'droplet':
+            <Fragment>
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
             </Fragment>,
         'feather':
             <Fragment>
@@ -249,22 +233,37 @@ export const drawings = {
                 <line x1="16" y1="8" x2="2" y2="22"/>
                 <line x1="17.5" y1="15" x2="9" y2="15"/>
             </Fragment>,
-        'globe':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </Fragment>,
         'headphone':
             <Fragment>
                 <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
                 <path
                     d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
             </Fragment>,
+        'slash':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+            </Fragment>,
+        'circle':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+            </Fragment>,
+        'triangle':
+            <Fragment>
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            </Fragment>,
+        'square':
+            <Fragment>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            </Fragment>,
         'hexagon':
             <Fragment>
                 <path
                     d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </Fragment>,
+        'octagon':
+            <Fragment>
+                <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
             </Fragment>,
         'package':
             <Fragment>
@@ -322,10 +321,39 @@ export const drawings = {
                     d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"/>
                 <line x1="1" y1="1" x2="23" y2="23"/>
             </Fragment>,
+        'speaker':
+            <Fragment>
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                <circle cx="12" cy="14" r="4"/>
+                <line x1="12" y1="6" x2="12.01" y2="6"/>
+            </Fragment>,
         'tv':
             <Fragment>
                 <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
                 <polyline points="17 2 12 7 7 2"/>
+            </Fragment>,
+        'film':
+            <Fragment>
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                <line x1="7" y1="2" x2="7" y2="22"/>
+                <line x1="17" y1="2" x2="17" y2="22"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <line x1="2" y1="7" x2="7" y2="7"/>
+                <line x1="2" y1="17" x2="7" y2="17"/>
+                <line x1="17" y1="17" x2="22" y2="17"/>
+                <line x1="17" y1="7" x2="22" y2="7"/>
+            </Fragment>,
+        'monitor':
+            <Fragment>
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </Fragment>,
+        'music':
+            <Fragment>
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
             </Fragment>,
         'truck':
             <Fragment>
@@ -392,15 +420,50 @@ export const drawings = {
                 <line x1="23" y1="9" x2="17" y2="15"/>
                 <line x1="17" y1="9" x2="23" y2="15"/>
             </Fragment>,
+        'mic':
+            <Fragment>
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+            </Fragment>,
+        'mic-off':
+            <Fragment>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+                <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/>
+                <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+            </Fragment>,
+        'arrow-left':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 8 8 12 12 16"/>
+                <line x1="16" y1="12" x2="8" y2="12"/>
+            </Fragment>,
+        'arrow-right':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 16 16 12 12 8"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </Fragment>,
+        'arrow-down':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="8 12 12 16 16 12"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+            </Fragment>,
+        'arrow-up':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="16 12 12 8 8 12"/>
+                <line x1="12" y1="16" x2="12" y2="8"/>
+            </Fragment>,
         'alert':
             <Fragment>
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </Fragment>,
-        'simple-check':
-            <Fragment>
-                <polyline points="20 6 9 17 4 12"></polyline>
             </Fragment>,
         'check':
             <Fragment>
@@ -424,6 +487,82 @@ export const drawings = {
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="15" y1="9" x2="9" y2="15"/>
                 <line x1="9" y1="9" x2="15" y2="15"/>
+            </Fragment>,
+        'plus':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </Fragment>,
+        'minus':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </Fragment>,
+        'divide':
+            <Fragment>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+                <line x1="12" y1="16" x2="12" y2="16"/>
+                <line x1="12" y1="8" x2="12" y2="8"/>
+                <circle cx="12" cy="12" r="10"/>
+            </Fragment>,
+        'disc':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+            </Fragment>,
+        'target':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+            </Fragment>,
+        'clock':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+            </Fragment>,
+        'compass':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </Fragment>,
+        'globe':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </Fragment>,
+        'dribble':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path
+                    d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+            </Fragment>,
+        'smile':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </Fragment>,
+        'frown':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </Fragment>,
+        'meh':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="8" y1="15" x2="16" y2="15"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </Fragment>,
+        'simple-check':
+            <Fragment>
+                <polyline points="20 6 9 17 4 12"></polyline>
             </Fragment>,
         'code':
             <Fragment>
@@ -495,17 +634,7 @@ export const drawings = {
                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
             </Fragment>,
-        'plus':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="16"/>
-                <line x1="8" y1="12" x2="16" y2="12"/>
-            </Fragment>,
-        'minus':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="8" y1="12" x2="16" y2="12"/>
-            </Fragment>,
+
         'external-link':
             <Fragment>
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -562,20 +691,45 @@ export const drawings = {
                 <line x1="14.47" y1="14.48" x2="20" y2="20"/>
                 <line x1="8.12" y1="8.12" x2="12" y2="12"/>
             </Fragment>,
-        'slash':
+        'table':
             <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="3" y1="15" x2="21" y2="15"/>
+                <line x1="12" y1="3" x2="12" y2="21"/>
+            </Fragment>,
+        'layout':
+            <Fragment>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
             </Fragment>,
         'sidebar':
             <Fragment>
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                 <line x1="9" y1="3" x2="9" y2="21"/>
             </Fragment>,
+        'split-view':
+            <Fragment>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="12" y1="3" x2="12" y2="21"/>
+            </Fragment>,
+        'hash':
+            <Fragment>
+                <line x1="4" y1="9" x2="20" y2="9"/>
+                <line x1="4" y1="15" x2="20" y2="15"/>
+                <line x1="10" y1="3" x2="8" y2="21"/>
+                <line x1="16" y1="3" x2="14" y2="21"/>
+            </Fragment>,
         'dollar':
             <Fragment>
                 <line x1="12" y1="1" x2="12" y2="23"/>
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </Fragment>,
+        'credit-card':
+            <Fragment>
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
             </Fragment>,
         'box':
             <Fragment>
@@ -742,6 +896,22 @@ export const drawings = {
                 <circle cx="6.5" cy="16.5" r="2.5"/>
                 <circle cx="16.5" cy="16.5" r="2.5"/>
             </Fragment>,
+        'anchor':
+            <Fragment>
+                <circle cx="12" cy="5" r="3"/>
+                <line x1="12" y1="22" x2="12" y2="8"/>
+                <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </Fragment>,
+        'book':
+            <Fragment>
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </Fragment>,
+        'briefcase':
+            <Fragment>
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </Fragment>,
         'more':
             <Fragment>
                 <circle cx="12" cy="12" r="1"/>
@@ -785,6 +955,11 @@ export const drawings = {
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </Fragment>,
+        'crop':
+            <Fragment>
+                <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"/>
+                <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"/>
+            </Fragment>,
         'clipboard':
             <Fragment>
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
@@ -812,10 +987,21 @@ export const drawings = {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
             </Fragment>,
+        'message':
+            <Fragment>
+                <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </Fragment>,
         'phone':
             <Fragment>
                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
                 <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </Fragment>,
+        'voicemail':
+            <Fragment>
+                <circle cx="5.5" cy="11.5" r="4.5"/>
+                <circle cx="18.5" cy="11.5" r="4.5"/>
+                <line x1="5.5" y1="16" x2="18.5" y2="16"/>
             </Fragment>,
         'inbox':
             <Fragment>
@@ -925,27 +1111,7 @@ export const drawings = {
                 <rect x="1" y="5" width="22" height="14" rx="7" ry="7"/>
                 <circle cx="16" cy="12" r="3" color="green"/>
             </Fragment>,
-        'smile':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </Fragment>,
-        'frown':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
-                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </Fragment>,
-        'meh':
-            <Fragment>
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="8" y1="15" x2="16" y2="15"/>
-                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </Fragment>,
+
         'at':
             <Fragment>
                 <circle cx="12" cy="12" r="4"/>
@@ -972,6 +1138,16 @@ export const drawings = {
             <Fragment>
                 <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
                 <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </Fragment>,
+        'trending-up':
+            <Fragment>
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+            </Fragment>,
+        'trending-down':
+            <Fragment>
+                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                <polyline points="17 18 23 18 23 12"/>
             </Fragment>,
         'gift':
             <Fragment>
