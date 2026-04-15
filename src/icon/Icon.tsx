@@ -40,7 +40,7 @@ export const Icon: React.FC<IconProps> =
                        glyph
                     }
                 </svg>
-                {children && orientation === "right" && (
+                {children && orientation === "left" && (
                     <span className="content-left">{children}</span>
                 )}
             </span>
