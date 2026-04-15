@@ -5,7 +5,21 @@ import type {Size} from "../common/Size.ts";
 
 export const Icon: React.FC<IconProps> =
     ({color, name, size = 'small', weight = 2, onClick, iconString, orientation, children}) => {
-        const iconClass = size ? 'muncher-icon--' + size : 'muncher-icon--small';
+        const iconClass = `muncher-icon--${size}`;
+
+        const glyph = (() => {
+            if (name) return drawings[name];
+
+            if (iconString && iconString in drawings) {
+                return drawings[iconString as keyof typeof drawings];
+            }
+
+            if (process.env.NODE_ENV === "development") {
+                console.warn("Unknown icon:", iconString);
+            }
+
+            return drawings.muncher;
+        })();
 
         return (
             <span className="muncher-icon">
@@ -23,11 +37,12 @@ export const Icon: React.FC<IconProps> =
                     onClick={onClick}
                 >
                     {
-                        name ? drawings[name] : iconString ? Object(drawings)[iconString] : ""
+                       glyph
                     }
                 </svg>
-                {(children && (!orientation || orientation === "left")) ?
-                    <span className="content-right">{children}</span> : ""}
+                {children && orientation === "right" && (
+                    <span className="content-left">{children}</span>
+                )}
             </span>
         );
     };

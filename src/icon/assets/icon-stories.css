@@ -1,14 +1,33 @@
 .icon-search-story {
-    .muncher-input--div {
-        margin-bottom: 1rem;
 
-        .muncher-input {
-            width: 50%;
 
+    .search-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 1rem;
+
+        input {
+            width: 60vw;
+        }
+
+        .muncher-button {
+            margin: .5rem;
         }
     }
 
-    .muncher-button {
-        margin: 1rem;
+    .icon-group {
+
+        .muncher-button {
+            margin: .8rem;
+        }
+
+        .group-title {
+            text-transform: capitalize;
+            text-align: center;
+            font-size: .9rem;
+        }
+
     }
 }
