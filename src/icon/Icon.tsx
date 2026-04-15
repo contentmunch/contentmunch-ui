@@ -4,7 +4,7 @@ import './assets/icon.css';
 import type {Size} from "../common/Size.ts";
 
 export const Icon: React.FC<IconProps> =
-    ({color, name, size = 'small', weight = 2, onClick, iconString, orientation, children}) => {
+    ({color, name, size = 'small', weight = 2, onClick, iconString, orientation="left", children}) => {
         const iconClass = `muncher-icon--${size}`;
 
         const glyph = (() => {
