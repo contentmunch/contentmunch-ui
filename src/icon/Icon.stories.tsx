@@ -339,8 +339,6 @@ export const Dark: Story = {
 export const IconWithText: Story = {
     args: {
         name: 'muncher',
-        size: 'small',
-        orientation: 'left'
     },
     render: (args) => <div><Icon {...args} ><p>Text</p></Icon></div>
 }
