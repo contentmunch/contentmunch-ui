@@ -12,6 +12,15 @@
     }
 
     .muncher-icon {
+        display: flex;
+        align-items: flex-start; /* or center depending on your design */
+
+        svg {
+            flex-shrink: 0;   /* 🔥 key fix */
+            width: 16px;      /* or based on your size system */
+            height: 16px;
+        }
+
         .content-right {
             padding-left: .5rem;
         }
