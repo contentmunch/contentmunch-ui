@@ -37,6 +37,9 @@
 @import './tab/assets/tabs.css';
 @import './table/assets/table.css';
 
+@import './card/assets/card.css';
+@import './card/assets/flippable-card.css';
+
 html {
     scroll-behavior: smooth;
     font-size: 100%;
