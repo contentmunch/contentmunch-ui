@@ -47,6 +47,8 @@ export {Star} from "./star/Star";
 export {Tabs} from "./tab/Tabs";
 export {Table} from "./table/Table";
 
+export {Card} from "./card/Card";
+export {FlippableCard} from "./card/FlippableCard";
 
 export type {Fold} from "./accordion/Accordion";
 export type {Tab} from "./tab/Tabs";

@@ -13,11 +13,11 @@
 
     .muncher-icon {
         display: flex;
-        align-items: flex-start; /* or center depending on your design */
+        align-items: flex-start;
 
         svg {
-            flex-shrink: 0;   /* 🔥 key fix */
-            width: 16px;      /* or based on your size system */
+            flex-shrink: 0;
+            width: 16px;
             height: 16px;
         }
 
