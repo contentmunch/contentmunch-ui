@@ -2,7 +2,7 @@
     --card-max-width: 25rem;
 }
 
-.card {
+.muncher-card {
     width: 100%;
     max-width: var(--card-max-width);
     perspective: 62.5rem;
@@ -11,7 +11,7 @@
     position: relative;
     margin: auto;
 
-    .face {
+    .muncher-card--face {
         background: var(--primary-background-color);
         color: var(--primary-color);
         border: .2rem solid var(--primary-background-color);
@@ -32,7 +32,7 @@
         }
     }
 
-    .card-content-scrollable {
+    .muncher-card-content-scrollable {
         overflow-y: auto;
         max-height: 100%;
         width: 100%;
