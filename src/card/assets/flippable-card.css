@@ -1,53 +1,56 @@
 :root {
-    --flash-card-max-width: 25rem;
+    --flippable-card-max-width: 25rem;
 }
 
-.flippable-card {
+.muncher-flippable-card {
     width: 100%;
-    max-width: var(--flash-card-max-width);
+    max-width: var(--flippable-card-max-width);
     perspective: 62.5rem;
     height: 15rem;
     cursor: pointer;
     user-select: none;
     position: relative;
     margin: auto;
-}
 
-.card-face {
-    background: var(--primary-background-color);
-    color: var(--primary-color);
-    border: .2rem solid var(--primary-background-color);
-    border-radius: 1rem;
-    box-shadow: 0 .5rem 12px rgba(0, 0, 0, 0.08);
-    font-size: 1.25rem;
-    backface-visibility: hidden;
-    position: absolute;
-    transition: transform 0.5s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    height: 100%;
-    margin: 2rem 1rem;
-    @media (min-width: 62rem) {
-        margin: 2rem;
+    .muncher-flippable-card-face {
+        background: var(--primary-background-color);
+        color: var(--primary-color);
+        border: .2rem solid var(--primary-background-color);
+        border-radius: 1rem;
+        box-shadow: 0 .5rem 12px rgba(0, 0, 0, 0.08);
+        font-size: 1.25rem;
+        backface-visibility: hidden;
+        position: absolute;
+        transition: transform 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        height: 100%;
+        margin: 2rem 1rem;
+        @media (min-width: 62rem) {
+            margin: 2rem;
+        }
     }
+
+    .muncher-flippable-card-content-scrollable {
+        overflow-y: auto;
+        max-height: 100%;
+        width: 100%;
+    }
+
 }
 
-.flippable-card .back {
+
+.muncher-flippable-card .back {
     transform: rotateY(180deg);
 }
 
-.flippable-card.flipped .front {
+.muncher-flippable-card.flipped .front {
     transform: rotateY(180deg);
 }
 
-.flippable-card.flipped .back {
+.muncher-flippable-card.flipped .back {
     transform: rotateY(360deg);
 }
 
-.card-content-scrollable {
-    overflow-y: auto;
-    max-height: 100%;
-    width: 100%;
-}
