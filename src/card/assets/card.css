@@ -1,0 +1,43 @@
+:root {
+    --card-max-width: 25rem;
+}
+
+.card {
+    width: 100%;
+    max-width: var(--card-max-width);
+    perspective: 62.5rem;
+    height: 15rem;
+    user-select: none;
+    position: relative;
+    margin: auto;
+
+    .face {
+        background: var(--primary-background-color);
+        color: var(--primary-color);
+        border: .2rem solid var(--primary-background-color);
+        border-radius: 1rem;
+        box-shadow: 0 .5rem 12px rgba(0, 0, 0, 0.08);
+        font-size: 1.25rem;
+        backface-visibility: hidden;
+        position: absolute;
+        transition: transform 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        height: 100%;
+        margin: 2rem 1rem;
+        @media (min-width: 62rem) {
+            margin: 2rem;
+        }
+    }
+
+    .card-content-scrollable {
+        overflow-y: auto;
+        max-height: 100%;
+        width: 100%;
+    }
+
+}
+
+
