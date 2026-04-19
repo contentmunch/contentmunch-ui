@@ -40,6 +40,7 @@
 @import './card/assets/card.css';
 @import './card/assets/flippable-card.css';
 
+@import './scroll/assets/fab.css';
 html {
     scroll-behavior: smooth;
     font-size: 100%;
