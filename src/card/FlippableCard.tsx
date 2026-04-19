@@ -12,14 +12,10 @@ export const FlippableCard: React.FC<FlippableCardProps> = ({flipped, setFlipped
             whileHover={{scale: 1.02}}
         >
             <div className="muncher-flippable-card-face front">
-                <div className="muncher-card-content-scrollable">
-                    {front}
-                </div>
+                {front}
             </div>
             <div className="muncher-flippable-card-face back">
-                <div className="muncher-flippable-card-content-scrollable">
-                    {back}
-                </div>
+                {back}
             </div>
         </motion.div>
     );
