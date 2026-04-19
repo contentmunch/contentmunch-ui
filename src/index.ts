@@ -50,6 +50,9 @@ export {Table} from "./table/Table";
 export {Card} from "./card/Card";
 export {FlippableCard} from "./card/FlippableCard";
 
+export {ScrollFab} from "./scroll/ScrollFab";
+export {useScrollPosition} from "./scroll/useScrollPosition";
+
 export type {Fold} from "./accordion/Accordion";
 export type {Tab} from "./tab/Tabs";
 export type {Page, Sort, Head, Col} from "./table/Table";
