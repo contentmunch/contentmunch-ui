@@ -1,0 +1,84 @@
+.muncher-pie-chart {
+    .svg-pie-chart-legend {
+        display: none;
+    }
+
+
+    .svg-pie-chart {
+        width: 12rem;
+        height: 12rem;
+
+        path {
+            cursor: pointer;
+            opacity: 1;
+            transition: fill ease-in-out .4s;
+        }
+
+        path:hover {
+            opacity: .9;
+        }
+
+        .selected {
+            opacity: .9;
+            stroke: var(--light-color);
+            stroke-width: .1rem;
+        }
+
+        .text {
+            font-size: .3rem;
+            font-weight: bold;
+            font-family: var(--sans-serif-font), sans-serif;
+        }
+
+        .value {
+            font-size: .2rem;
+        }
+
+        @media (max-width: 40rem) {
+            width: 15rem;
+            height: 15rem;
+            .text {
+                font-weight: lighter;
+            }
+        }
+    }
+
+    @media (max-width: 40rem) {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .svg-pie-chart-legend {
+            display: block;
+            width: 10rem;
+            height: 15rem;
+
+            .legend-rect {
+                cursor: pointer;
+            }
+
+            .legend-rect--selected {
+                stroke: var(--light-color);
+                stroke-width: .05rem;
+
+            }
+
+            .legend-title {
+                font-size: .3rem;
+            }
+
+            .legend-text {
+                font-size: .25rem;
+                cursor: pointer;
+            }
+
+            .legend-text--selected {
+                text-decoration: underline;
+            }
+
+            .legend-rect:hover, .legend-text:hover {
+                opacity: .8;
+            }
+        }
+    }
+}

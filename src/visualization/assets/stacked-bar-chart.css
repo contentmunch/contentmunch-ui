@@ -1,0 +1,50 @@
+.muncher-bar-chart {
+    .svg-bar-chart-legend {
+        display: none;
+    }
+
+    .svg-bar-chart {
+        width: 90vw;
+        @media (max-width: 40rem) {
+            width: 60vw;
+        }
+
+        .tick {
+            text {
+                color: #000;
+                font-family: var(--serif-font), serif;
+                font-size: .4rem;
+            }
+        }
+
+        .bar-rectangle:hover {
+            opacity: .8;
+        }
+
+        .bar-text {
+            font-family: var(--serif-font), serif;
+            color: white;
+            font-size: .3rem;
+            fill: #000;
+
+        }
+    }
+
+    @media (max-width: 40rem) {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        .svg-bar-chart-legend {
+            display: block;
+            width: 10vw;
+
+            text {
+                font-family: var(--serif-font), serif;
+                font-size: .16rem;
+                text-transform: capitalize;
+            }
+
+        }
+    }
+
+}
