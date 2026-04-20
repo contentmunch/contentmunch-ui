@@ -3,10 +3,6 @@ import {Fragment} from "react";
 export type IconName = keyof typeof drawings;
 
 export const drawings = {
-        // Navigation & Movement (Anything related to direction, traversal, layout movement)
-        // Actions & Controls (Generic system actions and state changes)
-        // Content & Creation
-
         'align-center':
             <Fragment>
                 <line x1="18" y1="10" x2="6" y2="10"/>
@@ -506,10 +502,38 @@ export const drawings = {
                 <line x1="12" y1="8" x2="12" y2="8"/>
                 <circle cx="12" cy="12" r="10"/>
             </Fragment>,
+        'equals':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="8" y1="10" x2="16" y2="10"/>
+                <line x1="8" y1="14" x2="16" y2="14"/>
+            </Fragment>,
         'disc':
             <Fragment>
                 <circle cx="12" cy="12" r="10"/>
                 <circle cx="12" cy="12" r="3"/>
+            </Fragment>,
+        'quiz':
+            <Fragment>
+                <path
+                    d="M12 2a7.5 7.5 0 0 0-4.8 13.263C8.19 16.089 9 17.21 9 18.5h6c0-1.29.81-2.411 1.8-3.238A7.5 7.5 0 0 0 12 2Z"/>
+                <path d="M15 18.5H9v2a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5z"/>
+                <path d="M10 8c0-1.013.895-2 2-2s2 .82 2 1.833c0 .365-.116.705-.317.991C13.085 9.676 12 10.488 12 11.5"/>
+                <path d="M11.992 14h.009"/>
+            </Fragment>,
+        'ai':
+            <Fragment>
+                <path
+                    d="M15.5 22v-.5c0-1.105.932-2 1.922-2.489c.963-.476 1.772-1.26 1.875-2.18L19.5 15l2-1l-2.5-3.75a8.25 8.25 0 1 0-13 6.746m0 0V22m0-5.004c.75.53 1.594.937 2.5 1.194"/>
+                <path d="M11.308 12L9.847 7.479A.72.72 0 0 0 9.154 7a.72.72 0 0 0-.693.479L7 12m7-5v5m-6.462-1.5h3.231"/>
+            </Fragment>,
+        'flash-card':
+            <Fragment>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                <line x1="7" y1="10" x2="17" y2="10"/>
+                <line x1="7" y1="14" x2="17" y2="14"/>
+                <line x1="7" y1="18" x2="17" y2="18"/>
             </Fragment>,
         'target':
             <Fragment>

@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Icon>;
 type StoryFunction = StoryFn<typeof meta>;
 export const Search: StoryFunction = () => {
     const [query, setQuery] = useState("");
-    const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
+    const [sortOrder, setSortOrder] = useState<"asc" | "desc">();
 
     const toggleSort = () => {
         if (sortOrder === "asc") {
@@ -30,11 +30,35 @@ export const Search: StoryFunction = () => {
         }
     }
 
-    const navigation: IconName[] = [
+    const cirular: IconName[] = [
         "arrow-left",
         "arrow-right",
         "arrow-up",
         "arrow-down",
+        "compass",
+        "plus",
+        "minus",
+        "close",
+        "divide",
+        "equals",
+        "slash",
+        "disc",
+        "alert",
+        "check",
+        "info",
+        "help",
+        "meh",
+        "smile",
+        "frown",
+        "circle",
+        "dribble",
+        "clock",
+        "target",
+        "globe",
+    ];
+
+    const navigation: IconName[] = [
+
         "chevron-left",
         "chevron-right",
         "skip-back",
@@ -42,23 +66,16 @@ export const Search: StoryFunction = () => {
         "fast-forward",
         "rewind",
         "external-link",
-        "compass",
         "hamburger",
         "repeat",
         "shuffle",
         "eye",
-        "slash",
-        "plus",
-        "minus",
-        "divide",
         "hash",
         "share",
         "rss",
         "muncher",
         "code-pen",
         "youtube",
-
-
     ];
     const actions: IconName[] = [
         "undo",
@@ -176,7 +193,6 @@ export const Search: StoryFunction = () => {
         "cloud",
         "cloud-drizzle",
         "cloud-lightning",
-        "globe",
         "map",
         "book",
         "briefcase",
@@ -188,22 +204,16 @@ export const Search: StoryFunction = () => {
         "dollar",
         "shopping-cart",
         "calendar",
-        "clock",
         "watch",
         "layers",
         "mixer",
-        "disc",
-        "target",
         "tag",
     ];
 
     const signals: IconName[] = [
-        "alert",
-        "info",
-        "help",
-        "check",
+
+
         "simple-check",
-        "close",
         "star",
         "thumbs-up",
         "thumbs-down",
@@ -211,9 +221,6 @@ export const Search: StoryFunction = () => {
         "bell",
         "bell-off",
         "flag",
-        "smile",
-        "frown",
-        "meh",
         "trending-up",
         "trending-down",
         "bar-chart",
@@ -227,6 +234,7 @@ export const Search: StoryFunction = () => {
 
 
     const allCategories = [
+        cirular,
         navigation,
         actions,
         content,
@@ -257,6 +265,7 @@ export const Search: StoryFunction = () => {
     }
 
     const categories = [
+        {name: "circular", icons: cirular},
         {name: "navigation", icons: navigation},
         {name: "actions", icons: actions},
         {name: "content", icons: content},
@@ -275,7 +284,19 @@ export const Search: StoryFunction = () => {
         icons: cat.icons.filter(icon => filtered.includes(icon)),
     })).filter(group => group.icons.length > 0);
 
-
+    const getSort = (group: {
+        name: "circular" | "navigation" | "actions" | "content" | "entity" | "signals" | "miscellaneous";
+        icons: IconName[]
+    }) => {
+        if (sortOrder)
+            return group.icons.sort((a, b) =>
+                sortOrder === "desc"
+                    ? b.localeCompare(a)
+                    : a.localeCompare(b)
+            );
+        else
+            return group.icons;
+    }
     return (
         <div className="icon-search-story">
             <div className="search-panel">
@@ -292,11 +313,7 @@ export const Search: StoryFunction = () => {
                         <div className="group-title">{group.name}</div>
 
                         <div className="icon-grid">
-                            {group.icons.sort((a, b) =>
-                                sortOrder === "desc"
-                                    ? b.localeCompare(a)
-                                    : a.localeCompare(b)
-                            ).map(icon => (
+                            {getSort(group).map(icon => (
                                 <Button
                                     key={icon}
                                     size="small"
