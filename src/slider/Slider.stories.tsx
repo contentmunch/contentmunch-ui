@@ -15,7 +15,7 @@ export const Default: Story = (args) => {
     const [value, setValue] = useState(200);
     return (
         <div className="slider-story">
-            <Slider  {...args} min={1} max={1000}
+            <Slider  {...args} min={1} max={5}
                      numberFormatter={num => new Intl.NumberFormat('en-US', {
                          style: 'currency',
                          currency: 'USD'

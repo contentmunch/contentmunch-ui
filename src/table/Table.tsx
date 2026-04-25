@@ -24,7 +24,7 @@ export const Table: React.FC<TableProps> = (
         children,
     }) => {
     const {header, rows} = children;
-    const [sort, setSort] = useState<Sort>(sortBy ?? {index: 0});
+    const [sort, setSort] = useState<Sort>(sortBy ?? {index: -1});
     const [page, setPage] = useState<Page>({num: 0, size: defaultPageSize});
 
     const handleSortClicked = (index: number) => {
@@ -35,6 +35,9 @@ export const Table: React.FC<TableProps> = (
 
     const sortedRows = useMemo(() => {
         const cloned = [...rows];
+        if (sort.index < 0)
+            return cloned;
+
         const sortFn = header[sort.index]?.sort;
 
         if (sortFn) {
