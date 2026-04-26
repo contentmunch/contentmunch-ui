@@ -6,19 +6,21 @@ import type {Size} from "../common/Size.ts";
 export const Button: React.FC<ButtonProps> =
     ({
          type = 'button', variant, size = 'medium', title,
-         active, disabled, rounded,
+         active, disabled, rounded, className,
          onClick, onMouseDown, onMouseEnter, onMouseLeave, children, ...props
      }) => {
-        const className = 'muncher-button' +
+        const mergedClassName = 'muncher-button' +
             (type && type === 'nav' ? ' muncher-button--nav' : '') +
             (variant ? ' muncher-button--' + variant : '') +
             (size ? ' muncher-button--' + size : '') +
             (active ? ' muncher-button--active' : '') +
-            (rounded ? ' muncher-button--rounded' : '');
+            (rounded ? ' muncher-button--rounded' : '') +
+            (className ? ' ' + className : '');
+
         return (
             <button
                 type={type ? type !== 'nav' ? type : 'button' : 'button'}
-                className={className}
+                className={mergedClassName}
                 disabled={!!disabled}
                 title={title}
                 onClick={onClick}
@@ -37,6 +39,7 @@ export type ButtonTypes = 'button' | 'submit' | 'reset' | 'nav';
 export interface AllButtonProps {
     variant?: Variant;
     size?: Size;
+    className?: string;
     /**
      *  button title, corresponds to title on hover
      */
@@ -52,6 +55,7 @@ export interface AllButtonProps {
 
 export interface ButtonProps extends AllButtonProps {
     type?: ButtonTypes;
+
 
     /**
      * button click handler
