@@ -105,7 +105,7 @@ export const Pageable: Story = () => {
         return data;
     };
     return (
-        <Table>{{
+        <Table defaultPageSize={20}>{{
             header: [
                 {name: "Id", title: "Id", sort: (a, b) => +a - +b},
                 {name: "Name", title: "First name and Last name"},
