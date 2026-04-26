@@ -3,7 +3,7 @@ import "./assets/accordion.css";
 import type {Variant} from "../common/Variant.ts";
 
 
-export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, children}) => {
+export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, className, children}) => {
     const {folds} = children;
     const [currentIndex, setCurrentIndex] = useState(collapsed ? -1 : 0);
 
@@ -44,8 +44,11 @@ export const Accordion: React.FC<AccordionProps> = ({variant, collapsed, childre
         }
     }
 
+    const mergedClassName = 'muncher-accordion' +
+        (className ? ' ' + className : '');
+
     return (
-        <div className="muncher-accordion">
+        <div className={mergedClassName}>
             {folds.map((fold, index) =>
                 <div key={"muncher-accordion-fold-" + index} className={foldClass(index)}
                      aria-expanded={currentIndex === index}>
@@ -76,6 +79,7 @@ export interface AccordionProps {
      */
     variant?: Variant;
     collapsed?: boolean;
+    className?: string;
 }
 
 export interface Fold {

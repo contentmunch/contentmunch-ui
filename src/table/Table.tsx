@@ -14,6 +14,7 @@ export const Table: React.FC<TableProps> = (
         skeleton,
         handleOnUpload,
         sortBy,
+        className,
         excludeDownload,
         includeUpload,
         isUploading,
@@ -62,8 +63,11 @@ export const Table: React.FC<TableProps> = (
         row.filter((_col, i) => !header[i].csvExclude).map(col => col.csv ?? col.value ?? "")
     );
 
+    const mergedClassName = 'muncher-table' +
+        (className ? ' ' + className : '');
+
     return (
-        <section className="muncher-table">
+        <section className={mergedClassName}>
             <div className="row head">
                 {header.map((head, index) =>
                     head.visibility === "hidden" ? null : (
@@ -181,6 +185,7 @@ export interface TableProps {
         header: Head[];
         rows: Col[][];
     };
+    className?: string;
     skeleton?: ReactNode;
     sortBy?: Sort;
     fileName?: string;
