@@ -1,4 +1,4 @@
-.muncher-input--div {
+.muncher-input-element{
     position: relative;
 }
 
@@ -8,7 +8,6 @@
     position: absolute;
     padding: 0.57rem;
 }
-
 .muncher-input--div .muncher-input {
     height: 2rem;
     font-size: 0.9rem;
@@ -19,7 +18,7 @@
 
 .muncher-input--div .muncher-input-icon {
     padding-left: 2rem;
-    width: 90%;
+    width: 100%
 }
 
 .muncher-input--div .muncher-icon-hover {
@@ -34,10 +33,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .muncher-spinner {
         margin-left: .5rem;
     }
 }
+
 /* Placeholder styling */
 .muncher-input--div .muncher-input::placeholder,
 .muncher-input--div .muncher-textarea::placeholder {

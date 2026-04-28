@@ -38,7 +38,7 @@ export const TextWithLabelOnTheSide: Story = {
         required: true,
         labelPosition: 'side'
     }
-};
+};``
 export const TextWithIcon: Story = {
     args: {
         ...TextWithLabel.args,
