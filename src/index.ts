@@ -21,6 +21,7 @@ export {Checkbox} from "./input/Checkbox";
 export {CsvInput} from "./input/CsvInput";
 export {ImageInput} from "./input/ImageInput";
 export {Input} from "./input/Input";
+export {PasswordInput} from "./input/PasswordInput";
 export {Label} from "./input/Label";
 export {Radio} from "./input/Radio";
 export {Select} from "./input/Select";
@@ -56,6 +57,7 @@ export {useScrollPosition} from "./scroll/useScrollPosition";
 export type {Fold} from "./accordion/Accordion";
 export type {Tab} from "./tab/Tabs";
 export type {Page, Sort, Head, Col} from "./table/Table";
+export type {SelectOption} from "./input/Select"
 export type {Variant} from "./common/Variant";
 export type {Size} from "./common/Size";
 export type {Range} from "./slider/RangeSlider";
