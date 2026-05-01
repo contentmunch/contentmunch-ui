@@ -70,6 +70,7 @@ export const Search: StoryFunction = () => {
         "repeat",
         "shuffle",
         "eye",
+        "eye-off",
         "hash",
         "share",
         "rss",
