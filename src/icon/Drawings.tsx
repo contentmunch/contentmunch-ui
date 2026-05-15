@@ -102,6 +102,12 @@ export const drawings = {
                 <line x1="3" y1="6" x2="21" y2="6"/>
                 <line x1="3" y1="18" x2="21" y2="18"/>
             </Fragment>,
+        'uneven-hamburger':
+            <Fragment>
+                <line x1="17" y1="11" x2="3" y2="11"/>
+                <line x1="21" y1="6" x2="3" y2="6"/>
+                <line x1="21" y1="16" x2="3" y2="16"/>
+            </Fragment>,
         'chevron-left':
             <Fragment>
                 <polyline points="15 18 9 12 15 6"/>
