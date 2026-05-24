@@ -7,18 +7,18 @@ echo "🛠️ Verifying build and running tests..."
 npm run build --if-present
 npm test --if-present
 
-# Step 2: Stage your source code changes
-echo "➕ Staging current changes..."
-git add .
-
-# Step 3: Bump npm patch version
+# Step 2: Bump npm patch version
 echo "🔢 Bumping npm patch version..."
 NEW_VERSION=$(npm version patch --no-git-tag-version)
 echo "✅ New version generated: $NEW_VERSION"
 
-# Step 4: Stage the updated package files
-echo "➕ Staging updated package files..."
-git add package.json package-lock.json
+# Step 3: Run deploy script
+echo "🚀 Running deployment script..."
+npm run deploy
+
+# Step 4: Stage all changes (source code, package files, and deploy artifacts)
+echo "➕ Staging all changes..."
+git add .
 
 # Step 5: Prompt for commit message
 echo ""
