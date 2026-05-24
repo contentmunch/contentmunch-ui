@@ -171,10 +171,7 @@ export const drawings = {
                     d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
             </Fragment>,
-        'moon':
-            <Fragment>
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </Fragment>,
+
         'cloud':
             <Fragment>
                 <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
@@ -312,6 +309,13 @@ export const drawings = {
         'wind':
             <Fragment>
                 <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+            </Fragment>,
+        'water':
+            <Fragment>
+                <path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/>
+                <path d="M5 8h14"/>
+                <path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/>
+                <path d="m12 8 1-6h2"/>
             </Fragment>,
         'zap':
             <Fragment>
@@ -525,6 +529,15 @@ export const drawings = {
                 <circle cx="12" cy="12" r="10"/>
                 <circle cx="12" cy="12" r="3"/>
             </Fragment>,
+        'scale':
+            <Fragment>
+                <path d="M12 3v18"/>
+                <path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/>
+                <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/>
+                <path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/>
+                <path d="M7 21h10"/>
+
+            </Fragment>,
         'quiz':
             <Fragment>
                 <path
@@ -670,7 +683,61 @@ export const drawings = {
                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
             </Fragment>,
-
+        'sunrise':
+            <Fragment>
+                <path d="M17 18a5 5 0 0 0-10 0"/>
+                <line x1="12" y1="2" x2="12" y2="9"/>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+                <line x1="1" y1="18" x2="3" y2="18"/>
+                <line x1="21" y1="18" x2="23" y2="18"/>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+                <line x1="23" y1="22" x2="1" y2="22"/>
+                <polyline points="8 6 12 2 16 6"/>
+            </Fragment>,
+        'sunset':
+            <Fragment>
+                <path d="M17 18a5 5 0 0 0-10 0"/>
+                <line x1="12" y1="9" x2="12" y2="2"/>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+                <line x1="1" y1="18" x2="3" y2="18"/>
+                <line x1="21" y1="18" x2="23" y2="18"/>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+                <line x1="23" y1="22" x2="1" y2="22"/>
+                <polyline points="16 5 12 9 8 5"/>
+            </Fragment>,
+        'sun-moon':
+            <Fragment>
+                <path d="M12 2v2"/>
+                <path
+                    d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"/>
+                <path d="M16 12a4 4 0 0 0-4-4"/>
+                <path d="m19 5-1.256 1.256"/>
+                <path d="M20 12h2"/>
+            </Fragment>,
+        'moon':
+            <Fragment>
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </Fragment>,
+        'moon-star':
+            <Fragment>
+                <path d="M18 5h4"/>
+                <path d="M20 3v4"/>
+                <path
+                    d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+            </Fragment>,
+        'orbit':
+            <Fragment>
+                <path d="M20.341 6.484A10 10 0 0 1 10.266 21.85"/>
+                <path d="M3.659 17.516A10 10 0 0 1 13.74 2.152"/>
+                <circle cx="12" cy="12" r="3"/>
+                <circle cx="19" cy="5" r="2"/>
+                <circle cx="5" cy="19" r="2"/>
+            </Fragment>,
+        'eclipse':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a7 7 0 1 0 10 10"/>
+            </Fragment>,
         'external-link':
             <Fragment>
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -892,10 +959,41 @@ export const drawings = {
             </Fragment>,
         'bed':
             <Fragment>
-                <path d="M2 4v16"/>
-                <path d="M2 8h18a2 2 0 0 1 2 2v10"/>
-                <path d="M2 17h20"/>
-                <path d="M6 8v9"/>
+                <path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/>
+                <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/>
+                <path d="M12 4v6"/>
+                <path d="M2 18h20"/>
+            </Fragment>,
+        'awake':
+            <Fragment>
+                <circle cx="12" cy="5" r="1"/>
+                <path d="m9 20 3-6 3 6"/>
+                <path d="m6 8 6 2 6-2"/>
+                <path d="M12 10v4"/>
+            </Fragment>,
+        'food':
+            <Fragment>
+                <path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/>
+                <path d="M7 21h10"/>
+                <path d="M19.5 12 22 6"/>
+                <path d="M16.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.73 1.62"/>
+                <path d="M11.25 3c.27.1.8.53.74 1.36-.05.83-.93 1.2-.98 2.02-.06.78.33 1.24.72 1.62"/>
+                <path d="M6.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.74 1.62"/>
+            </Fragment>,
+        'utensils':
+            <Fragment>
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                <path d="M7 2v20"/>
+                <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+            </Fragment>,
+        'walk':
+            <Fragment>
+                <path
+                    d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/>
+                <path
+                    d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/>
+                <path d="M16 17h4"/>
+                <path d="M4 13h4"/>
             </Fragment>,
         'bath':
             <Fragment>
@@ -982,13 +1080,13 @@ export const drawings = {
             </Fragment>,
         'tithi':
             <Fragment>
-                <line x1="2" y1="17" x2="22" y2="17"/>
-                <path d="M5,17 A7,7 0 0,1 19,17" fill="none"/>
-                <line x1="12" y1="10" x2="12" y2="8"/>
-                <line x1="16.95" y1="12.05" x2="18.36" y2="10.64"/>
-                <line x1="7.05" y1="12.05" x2="5.64" y2="10.64"/>
-                <line x1="19" y1="17" x2="21" y2="17"/>
-                <line x1="5" y1="17" x2="3" y2="17"/>
+                <path d="M17 18a5 5 0 0 0-10 0"/>
+                <line x1="12" y1="6" x2="12" y2="9"/>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+                <line x1="1" y1="18" x2="3" y2="18"/>
+                <line x1="21" y1="18" x2="23" y2="18"/>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+                <line x1="23" y1="22" x2="1" y2="22"/>
             </Fragment>,
         'save':
             <Fragment>
