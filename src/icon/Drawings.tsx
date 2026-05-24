@@ -980,6 +980,16 @@ export const drawings = {
                 <line x1="7" y1="14" x2="17" y2="14"/>
                 <line x1="7" y1="18" x2="17" y2="18"/>
             </Fragment>,
+        'tithi':
+            <Fragment>
+                <line x1="2" y1="17" x2="22" y2="17"/>
+                <path d="M5,17 A7,7 0 0,1 19,17" fill="none"/>
+                <line x1="12" y1="10" x2="12" y2="8"/>
+                <line x1="16.95" y1="12.05" x2="18.36" y2="10.64"/>
+                <line x1="7.05" y1="12.05" x2="5.64" y2="10.64"/>
+                <line x1="19" y1="17" x2="21" y2="17"/>
+                <line x1="5" y1="17" x2="3" y2="17"/>
+            </Fragment>,
         'save':
             <Fragment>
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
