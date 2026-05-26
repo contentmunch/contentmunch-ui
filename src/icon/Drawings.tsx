@@ -940,6 +940,16 @@ export const drawings = {
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </Fragment>,
+        'meditate':
+            <Fragment>
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                <path d="M20 25a8 8 0 0 0-16 0"/>
+            </Fragment>,
         'log-in':
             <Fragment>
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
