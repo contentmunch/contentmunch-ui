@@ -609,6 +609,35 @@ export const drawings = {
                 <line x1="9" y1="9" x2="9.01" y2="9"/>
                 <line x1="15" y1="9" x2="15.01" y2="9"/>
             </Fragment>,
+        'angry':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                <path d="M7.5 8 10 9"/>
+                <path d="m14 9 2.5-1"/>
+                <path d="M9 10h.01"/>
+                <path d="M15 10h.01"/>
+            </Fragment>,
+        'annoyed':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 15h8"/>
+                <path d="M8 9h2"/>
+                <path d="M14 9h2"/>
+            </Fragment>,
+        'laugh':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M18 13a6 6 0 0 1-6 5 6 6 0 0 1-6-5h12Z"/>
+                <line x1="9" x2="9.01" y1="9" y2="9"/>
+                <line x1="15" x2="15.01" y1="9" y2="9"/>
+            </Fragment>,
+        'balloon':
+            <Fragment>
+                <path d="M12 16v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1"/>
+                <path d="M12 6a2 2 0 0 1 2 2"/>
+                <path d="M18 8c0 4-3.5 8-6 8s-6-4-6-8a6 6 0 0 1 12 0"/>
+            </Fragment>,
         'simple-check':
             <Fragment>
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -1353,6 +1382,148 @@ export const drawings = {
                 <polyline points="23 4 23 10 17 10"/>
                 <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
                 <text x="6" y="14" fontSize="6" fontFamily="'Lucida Grande', sans-serif">360</text>
-            </Fragment>
+            </Fragment>,
+        'fingerprint':
+            <Fragment>
+                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+                <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+                <path d="M2 12a10 10 0 0 1 18-6"/>
+                <path d="M2 16h.01"/>
+                <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+                <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+            </Fragment>,
+        'user-lock':
+            <Fragment>
+                <path d="M19 16v-2a2 2 0 0 0-4 0v2"/>
+                <path d="M9.5 15H7a4 4 0 0 0-4 4v2"/>
+                <circle cx="10" cy="7" r="4"/>
+                <rect x="13" y="16" width="8" height="5" rx=".899"/>
+            </Fragment>,
+        'hand-shake':
+            <Fragment>
+                <path d="m11 17 2 2a1 1 0 1 0 3-3"/>
+                <path
+                    d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/>
+                <path d="m21 3 1 11h-2"/>
+                <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/>
+                <path d="M3 4h8"/>
+            </Fragment>,
+        'rose':
+            <Fragment>
+                <path d="M17 10h-1a4 4 0 1 1 4-4v.534"/>
+                <path d="M17 6h1a4 4 0 0 1 1.42 7.74l-2.29.87a6 6 0 0 1-5.339-10.68l2.069-1.31"/>
+                <path d="M4.5 17c2.8-.5 4.4 0 5.5.8s1.8 2.2 2.3 3.7c-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2"/>
+                <path d="M9.77 12C4 15 2 22 2 22"/>
+                <circle cx="17" cy="8" r="2"/>
+            </Fragment>,
+        'leaf':
+            <Fragment>
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+            </Fragment>,
+        'flower':
+            <Fragment>
+                <path
+                    d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"/>
+                <circle cx="12" cy="8" r="2"/>
+                <path d="M12 10v12"/>
+                <path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"/>
+                <path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"/>
+            </Fragment>,
+        'microscope':
+            <Fragment>
+                <path d="M6 18h8"/>
+                <path d="M3 22h18"/>
+                <path d="M14 22a7 7 0 1 0 0-14h-1"/>
+                <path d="M9 14h2"/>
+                <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/>
+                <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+            </Fragment>,
+        'telescope':
+            <Fragment>
+                <path
+                    d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/>
+                <path d="m13.56 11.747 4.332-.924"/>
+                <path d="m16 21-3.105-6.21"/>
+                <path
+                    d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/>
+                <path d="m6.158 8.633 1.114 4.456"/>
+                <path d="m8 21 3.105-6.21"/>
+                <circle cx="12" cy="13" r="2"/>
+            </Fragment>,
+        'atom':
+            <Fragment>
+                <circle cx="12" cy="12" r="1"/>
+                <path
+                    d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/>
+                <path
+                    d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>
+            </Fragment>,
+        'activity':
+            <Fragment>
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="M17 12h-2l-2 5-2-10-2 5H7"/>
+            </Fragment>,
+        'alarm-clock':
+            <Fragment>
+                <circle cx="12" cy="13" r="8"/>
+                <path d="M12 9v4l2 2"/>
+                <path d="M5 3 2 6"/>
+                <path d="m22 6-3-3"/>
+                <path d="M6.38 18.7 4 21"/>
+                <path d="M17.64 18.67 20 21"/>
+            </Fragment>,
+        'palm-tree':
+            <Fragment>
+                <path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4"/>
+                <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3"/>
+                <path
+                    d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35"/>
+                <path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14"/>
+            </Fragment>,
+        'calendar-heart':
+            <Fragment>
+                <path d="M12.127 22H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.125"/>
+                <path
+                    d="M14.62 18.8A2.25 2.25 0 1 1 18 15.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"/>
+                <path d="M16 2v4"/>
+                <path d="M3 10h18"/>
+                <path d="M8 2v4"/>
+            </Fragment>,
+        'a-z':
+            <Fragment>
+                <path d="m3 16 4 4 4-4"/>
+                <path d="M7 20V4"/>
+                <path d="M20 8h-5"/>
+                <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
+                <path d="M15 14h5l-5 6h5"/>
+            </Fragment>,
+        'z-a':
+            <Fragment>
+                <path d="m3 8 4-4 4 4"/>
+                <path d="M7 4v16"/>
+                <path d="M15 4h5l-5 6h5"/>
+                <path d="M15 20v-3.5a2.5 2.5 0 0 1 5 0V20"/>
+                <path d="M20 18h-5"/>
+            </Fragment>,
+        '0-1':
+            <Fragment>
+                <path d="m3 16 4 4 4-4"/>
+                <path d="M7 20V4"/>
+                <rect x="15" y="4" width="4" height="6" ry="2"/>
+                <path d="M17 20v-6h-2"/>
+                <path d="M15 20h4"/>
+            </Fragment>,
+        '1-0':
+            <Fragment>
+                <path d="m3 8 4-4 4 4"/>
+                <path d="M7 4v16"/>
+                <path d="M17 10V4h-2"/>
+                <path d="M15 10h4"/>
+                <rect x="15" y="14" width="4" height="6" ry="2"/>
+            </Fragment>,
     }
 ;
