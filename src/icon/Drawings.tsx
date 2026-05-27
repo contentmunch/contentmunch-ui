@@ -1080,6 +1080,16 @@ export const drawings = {
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </Fragment>,
+        'book-text':
+            <Fragment>
+                <path d="M12 7v14"/>
+                <path d="M16 12h2"/>
+                <path d="M16 8h2"/>
+                <path
+                    d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>
+                <path d="M6 12h2"/>
+                <path d="M6 8h2"/>
+            </Fragment>,
         'briefcase':
             <Fragment>
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
@@ -1525,5 +1535,13 @@ export const drawings = {
                 <path d="M15 10h4"/>
                 <rect x="15" y="14" width="4" height="6" ry="2"/>
             </Fragment>,
+        'arm-chair':
+            <Fragment>
+                <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/>
+                <path
+                    d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/>
+                <path d="M5 18v2"/>
+                <path d="M19 18v2"/>
+            </Fragment>
     }
 ;
