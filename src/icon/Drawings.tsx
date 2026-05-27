@@ -1090,6 +1090,18 @@ export const drawings = {
                 <path d="M6 12h2"/>
                 <path d="M6 8h2"/>
             </Fragment>,
+        'notebook':
+            <Fragment>
+
+                <path d="M2 6h4"/>
+                <path d="M2 10h4"/>
+                <path d="M2 14h4"/>
+                <path d="M2 18h4"/>
+                <rect width="16" height="20" x="4" y="2" rx="2"/>
+                <path d="M9.5 8h5"/>
+                <path d="M9.5 12H16"/>
+                <path d="M9.5 16H14"/>
+            </Fragment>,
         'briefcase':
             <Fragment>
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
