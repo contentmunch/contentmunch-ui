@@ -32,3 +32,10 @@ export const Tertiary: Story = {
         variant: 'tertiary'
     }
 };
+export const Bordered: Story = {
+    args: {
+        title: 'Bordered Button',
+        bordered: true,
+        variant: 'transparent'
+    }
+};
