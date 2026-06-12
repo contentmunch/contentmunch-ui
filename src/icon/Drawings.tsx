@@ -1227,6 +1227,17 @@ export const drawings = {
                 <line x1="8" y1="2" x2="8" y2="6"/>
                 <line x1="3" y1="10" x2="21" y2="10"/>
             </Fragment>,
+        'best-days':
+            <Fragment>
+                <rect width="18" height="18" x="3" y="4" rx="2"/>
+                <path d="M16 2v4"/>
+                <path d="M3 10h18"/>
+                <path d="M8 2v4"/>
+                <path d="M17 14h-6"/>
+                <path d="M13 18H7"/>
+                <path d="M7 14h.01"/>
+                <path d="M17 18h.01"/>
+            </Fragment>,
         'mail':
             <Fragment>
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -1370,6 +1381,15 @@ export const drawings = {
                 <path d="M3 10h18"/>
                 <path d="M8 2v4"/>
                 <circle cx="18" cy="18" r="3"/>
+            </Fragment>,
+        'calendar-clock':
+            <Fragment>
+                <path d="M16 14v2.2l1.6 1"/>
+                <path d="M16 2v4"/>
+                <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/>
+                <path d="M3 10h5"/>
+                <path d="M8 2v4"/>
+                <circle cx="16" cy="16" r="6"/>
             </Fragment>,
         'tool':
             <Fragment>
