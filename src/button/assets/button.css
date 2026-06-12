@@ -67,6 +67,11 @@
     padding: 0.5rem;
 }
 
+.muncher-button--bordered {
+    border: .05rem solid var(--border-color);
+    border-radius: var(--border-radius-md);
+}
+
 /* States */
 .muncher-button:disabled {
     color: var(--disabled-color);

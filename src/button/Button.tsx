@@ -6,7 +6,7 @@ import type {Size} from "../common/Size.ts";
 export const Button: React.FC<ButtonProps> =
     ({
          type = 'button', variant, size = 'medium', title,
-         active, disabled, rounded, className,
+         active, disabled, rounded, className, bordered,
          onClick, onMouseDown, onMouseEnter, onMouseLeave, children, ...props
      }) => {
         const mergedClassName = 'muncher-button' +
@@ -15,6 +15,7 @@ export const Button: React.FC<ButtonProps> =
             (size ? ' muncher-button--' + size : '') +
             (active ? ' muncher-button--active' : '') +
             (rounded ? ' muncher-button--rounded' : '') +
+            (bordered ? ' muncher-button--bordered' : '') +
             (className ? ' ' + className : '');
 
         return (
@@ -38,6 +39,7 @@ export type ButtonTypes = 'button' | 'submit' | 'reset' | 'nav';
 
 export interface AllButtonProps {
     variant?: Variant;
+    bordered?: boolean;
     size?: Size;
     className?: string;
     /**
