@@ -361,6 +361,13 @@ export const drawings = {
                 <line x1="8" y1="21" x2="16" y2="21"/>
                 <line x1="12" y1="17" x2="12" y2="21"/>
             </Fragment>,
+        'computer':
+            <Fragment>
+                <rect width="14" height="8" x="5" y="2" rx="2"/>
+                <rect width="20" height="8" x="2" y="14" rx="2"/>
+                <path d="M6 18h2"/>
+                <path d="M12 18h6"/>
+            </Fragment>,
         'music':
             <Fragment>
                 <path d="M9 18V5l12-2v13"/>
@@ -477,10 +484,21 @@ export const drawings = {
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
             </Fragment>,
+        'triangle-alert':
+            <Fragment>
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+                <path d="M12 9v4"/>
+                <path d="M12 17h.01"/>
+            </Fragment>,
         'check':
             <Fragment>
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                 <polyline points="22 4 12 14.01 9 11.01"/>
+            </Fragment>,
+        'circle-check':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
             </Fragment>,
         'help':
             <Fragment>
@@ -949,6 +967,7 @@ export const drawings = {
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
             </Fragment>,
+
         'user-plus':
             <Fragment>
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -968,6 +987,27 @@ export const drawings = {
                 <circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </Fragment>,
+        'circle-user':
+            <Fragment>
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+            </Fragment>,
+        'baby':
+            <Fragment>
+                <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/>
+                <path d="M15 12h.01"/>
+                <path
+                    d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/>
+                <path d="M9 12h.01"/>
+            </Fragment>,
+        'piggy-bank':
+            <Fragment>
+                <path
+                    d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"/>
+                <path d="M16 10h.01"/>
+                <path d="M2 8v1a2 2 0 0 0 2 2h1"/>
             </Fragment>,
         'meditate':
             <Fragment>
@@ -1526,7 +1566,7 @@ export const drawings = {
                     <path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/>
                     <path
                         d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7 2.51 2.51 0 0 1 .03 1.1"
-                       />
+                    />
                     <path d="m13 12 4-4"/>
                     <path d="M10.9 7.25A3.99 3.99 0 0 0 4 10c0 .73.2 1.41.54 2"/>
                 </g>
