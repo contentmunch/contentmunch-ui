@@ -116,6 +116,14 @@ export const drawings = {
             <Fragment>
                 <polyline points="9 18 15 12 9 6"/>
             </Fragment>,
+        'chevron-up':
+            <Fragment>
+                <path d="m18 15-6-6-6 6"/>
+            </Fragment>,
+        'chevron-down':
+            <Fragment>
+                <path d="m6 9 6 6 6-6"/>
+            </Fragment>,
         'fast-forward':
             <Fragment>
                 <polygon points="13 19 22 12 13 5 13 19"/>
