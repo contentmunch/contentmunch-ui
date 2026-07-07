@@ -1,0 +1,6 @@
+.note-content-story {
+    max-width: 45rem;
+    margin: 1rem auto;
+    border: 1px solid var(--secondary-background-color);
+    border-radius: 0.5rem;
+}

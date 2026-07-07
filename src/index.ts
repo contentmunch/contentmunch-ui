@@ -53,6 +53,7 @@ export {FlippableCard} from "./card/FlippableCard";
 
 export {ScrollFab} from "./scroll/ScrollFab";
 export {useScrollPosition} from "./scroll/useScrollPosition";
+export {RenderedNoteContent} from "./note/RenderedNoteContent.tsx";
 
 export type {Fold} from "./accordion/Accordion";
 export type {Tab} from "./tab/Tabs";

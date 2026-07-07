@@ -13,6 +13,7 @@
     --danger-color: #a52a2a;
     --success-color: green;
     --border-color: #d8d8d8;
+    --muted-color: #6b7280;
 
     /* Navigation & Links */
     --nav-color: var(--primary-color);

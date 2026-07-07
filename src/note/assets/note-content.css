@@ -1,0 +1,253 @@
+.muncher-note-content {
+    font-family: var(--serif-font), serif;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: var(--primary-color);
+    margin: 0 auto;
+    padding: 1.5rem;
+    word-break: break-word;
+}
+
+.muncher-note-content .mermaid-render-error {
+    font-size: 0.75rem;
+    color: var(--muted-color);
+    font-style: italic;
+    padding: 0.5rem 0;
+}
+
+/* Headings */
+.muncher-note-content h1,
+.muncher-note-content h2,
+.muncher-note-content h3,
+.muncher-note-content h4,
+.muncher-note-content h5,
+.muncher-note-content h6 {
+    font-weight: bold;
+    line-height: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.muncher-note-content h1 {
+    font-size: 2rem;
+}
+
+.muncher-note-content h2 {
+    font-size: 1.6rem;
+}
+
+.muncher-note-content h3 {
+    font-size: 1.4rem;
+}
+
+.muncher-note-content h4 {
+    font-size: 1.25rem;
+}
+
+.muncher-note-content h5 {
+    font-size: 1.125rem;
+}
+
+.muncher-note-content h6 {
+    font-size: 1rem;
+}
+
+/* Paragraphs */
+.muncher-note-content p {
+    margin: .5rem 0;
+}
+
+/* Lists */
+.muncher-note-content ul,
+.muncher-note-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+
+.muncher-note-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+.muncher-note-content blockquote {
+    border-left: 4px solid var(--border-color);
+    padding-left: 1rem;
+    color: var(--primary-color);
+    margin: 1.5rem 0;
+    font-style: italic;
+}
+
+/* Tables */
+.muncher-note-content table {
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.muncher-note-content th,
+.muncher-note-content td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.muncher-note-content th {
+    background-color: var(--secondary-background-color);
+    font-weight: bold;
+}
+
+/* Definition list */
+.muncher-note-content dl {
+    margin-bottom: 1rem;
+}
+
+.muncher-note-content dt {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    color: var(--primary-color);
+}
+
+.muncher-note-content dd {
+    margin-left: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--muted-color);
+}
+
+.muncher-note-content sup {
+    vertical-align: super;
+    font-size: 0.75em;
+    line-height: 0;
+}
+
+.muncher-note-content sub {
+    vertical-align: sub;
+    font-size: 0.75em;
+    line-height: 0;
+}
+
+.muncher-note-content hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+
+.muncher-note-content code {
+    font-family: var(--monospace-font), monospace;
+    color: var(--primary-color);
+}
+
+@media print {
+    @page {
+        margin: 1.5cm;
+    }
+
+    .muncher-note-content {
+        font-size: 10pt;
+        line-height: 1.5;
+        padding: 0;
+        color: #000 !important;
+        background: transparent !important;
+    }
+
+    .muncher-note-content h1,
+    .muncher-note-content h2,
+    .muncher-note-content h3 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    .muncher-note-content p,
+    .muncher-note-content li,
+    .muncher-note-content blockquote {
+        orphans: 3;
+        widows: 3;
+    }
+
+    .muncher-note-content pre,
+    .muncher-note-content blockquote,
+    .muncher-note-content table,
+    .muncher-note-content img,
+    .mermaid-wrapper {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .muncher-note-content h1 {
+        font-size: 20pt;
+        margin-top: 0;
+    }
+
+    .muncher-note-content h2 {
+        font-size: 16pt;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .muncher-note-content h3 {
+        font-size: 14pt;
+    }
+
+    .muncher-note-content h4 {
+        font-size: 13pt;
+    }
+
+    .muncher-note-content h5 {
+        font-size: 12pt;
+    }
+
+    .muncher-note-content h6 {
+        font-size: 11pt;
+    }
+
+    .muncher-note-content ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .muncher-note-content ul,
+    .muncher-note-content p,
+    .muncher-note-content ol,
+    .muncher-note-content table,
+    .muncher-note-content dl {
+        font-size: 10pt;
+    }
+
+    .muncher-note-content a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    .muncher-note-content a[href^="#"]:after,
+    .muncher-note-content a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    .muncher-note-content hr {
+        border-top: 1pt solid #ccc;
+        margin: 2rem 0;
+    }
+
+    .muncher-note-content table {
+        border: 1pt solid #000;
+    }
+
+    .muncher-note-content th {
+        background-color: #eee !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .muncher-note-content code {
+        background-color: #f5f5f5 !important;
+        border: 1px solid #ddd;
+        -webkit-print-color-adjust: exact;
+        font-size: 9pt;
+    }
+
+    .mermaid-wrapper {
+        background-color: transparent !important;
+        padding: 0;
+    }
+}
