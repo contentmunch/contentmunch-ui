@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 export const useScrollPosition = () => {
     const [position, setPosition] = useState({
+        scrollTop: 0,
         isTop: true,
         isBottom: false,
     });
@@ -15,7 +16,7 @@ export const useScrollPosition = () => {
             const isTop = scrollTop < 50;
             const isBottom = scrollTop + windowHeight >= docHeight - 50;
 
-            setPosition({isTop, isBottom});
+            setPosition({scrollTop, isTop, isBottom});
         };
 
         window.addEventListener("scroll", handleScroll);
