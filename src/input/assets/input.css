@@ -1,4 +1,4 @@
-.muncher-input-element{
+.muncher-input-element {
     position: relative;
 }
 
@@ -8,6 +8,7 @@
     position: absolute;
     padding: 0.57rem;
 }
+
 .muncher-input--div .muncher-input {
     height: 2rem;
     font-size: 0.9rem;
@@ -107,5 +108,14 @@
     flex-wrap: wrap;
     font-size: 0.8rem;
     color: var(--danger-color);
+    margin: 0.4rem;
+}
+
+.muncher-input--div .muncher-input-info-message {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--primary-color);
     margin: 0.4rem;
 }

@@ -10,11 +10,12 @@ export const Input: React.FC<InputProps> = (
         name, label, required,
         readOnly, icon, hoverIcon, onHoverIconClick,
         type = 'text', list, onBlur, labelPosition = 'top',
-        onKeyDown, error, focus = false, placeholder,
+        onKeyDown, error, focus = false, placeholder, information,
         onChange, step, value, maxLength, onEnterPress, displayLoader, ...props
     }
 ) => {
     const hasError = () => error && error !== "";
+    const hasInfo = () => information && information !== "";
     const className = () => {
         let inputClass = "muncher-input";
         if (icon || hoverIcon) inputClass += " muncher-input-icon";
@@ -69,6 +70,8 @@ export const Input: React.FC<InputProps> = (
             </div>
             {hasError() ?
                 <div className="muncher-input-error-message"><Icon name="alert">{error}</Icon></div> : ""}
+            {hasInfo() ?
+                <div className="muncher-input-info-message"><Icon name="info">{information}</Icon></div> : ""}
         </div>
 
     );
@@ -94,6 +97,7 @@ export interface InputProps {
     onBlur?: () => void;
     value?: any;
     error?: string;
+    information?: string;
     step?: number;
     maxLength?: number;
     labelPosition?: 'top' | 'side';

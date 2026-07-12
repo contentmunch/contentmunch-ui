@@ -61,6 +61,13 @@ export const WithError: Story = {
     }
 };
 
+export const WithInfo: Story = {
+    args: {
+        ...TextWithIcon.args,
+        information: "The Value comes from title"
+    }
+};
+
 export const Color: Story = {
     args: {
         ...Default.args,
