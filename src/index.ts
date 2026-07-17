@@ -16,6 +16,7 @@ export {CopyButton} from "./button/CopyButton";
 export {NavigateButton} from "./button/NavigateButton";
 
 export {Icon} from "./icon/Icon";
+export {drawings} from "./icon/Drawings";
 
 export {Checkbox} from "./input/Checkbox";
 export {CsvInput} from "./input/CsvInput";
