@@ -2,9 +2,10 @@ import React, {useCallback, useEffect} from 'react';
 import './assets/modal.css';
 import {Backdrop} from '..';
 
+let openModalCount = 0;
 export const Modal: React.FC<ModalProps> = ({show = false, setShow, children, ...props}) => {
-    const escFunction = useCallback((event: any) => {
-        if (event.keyCode === 27) {
+    const escFunction = useCallback((event: KeyboardEvent) => {
+        if (event.key === "Escape") {
             setShow(false);
         }
     }, [setShow]);
@@ -17,10 +18,17 @@ export const Modal: React.FC<ModalProps> = ({show = false, setShow, children, ..
     }, [escFunction]);
     useEffect(() => {
         if (show) {
+            openModalCount += 1;
             document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
         }
+        return () => {
+            if (show) {
+                openModalCount = Math.max(0, openModalCount - 1);
+                if (openModalCount === 0) {
+                    document.body.style.overflow = 'unset';
+                }
+            }
+        };
     }, [show]);
     return (
         <React.Fragment>
