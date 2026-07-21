@@ -1,4 +1,4 @@
-import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{R as o}from"./RenderedNoteContent-DC26_sZC.js";import"./index-D4lIrffr.js";const c=`<article xmlns="http://www.w3.org/1999/xhtml">
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{R as o}from"./RenderedNoteContent-_K7fguIU.js";import"./index-D4lIrffr.js";const c=`<article xmlns="http://www.w3.org/1999/xhtml">
 <h1>Access Token and Refresh Token</h1>
 <h2>1. What is an Access Token?</h2>
 <ul>
