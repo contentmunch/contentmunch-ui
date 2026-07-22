@@ -55,6 +55,9 @@ export {FlippableCard} from "./card/FlippableCard";
 export {ScrollFab} from "./scroll/ScrollFab";
 export {useScrollPosition} from "./scroll/useScrollPosition";
 export {RenderedNoteContent} from "./note/RenderedNoteContent.tsx";
+export {ImageLightbox} from "./note/ImageLightbox.tsx";
+export {useMediaImageLightbox} from "./note/useMediaImageLightbox.ts";
+export type {MediaImageLightboxState} from "./note/useMediaImageLightbox.ts";
 
 export type {Fold} from "./accordion/Accordion";
 export type {Tab} from "./tab/Tabs";

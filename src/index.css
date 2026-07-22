@@ -42,6 +42,7 @@
 
 @import './scroll/assets/fab.css';
 @import './note/assets/note-content.css';
+@import './note/assets/image-lightbox.css';
 
 html {
     scroll-behavior: smooth;

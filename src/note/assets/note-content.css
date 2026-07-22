@@ -207,6 +207,7 @@
 .muncher-note-content .media-image {
     max-width: 100%;
     display: block;
+    cursor: zoom-in;
 }
 
 .muncher-note-content .media-image-caption {
