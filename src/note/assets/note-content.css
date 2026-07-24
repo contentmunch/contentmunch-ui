@@ -8,6 +8,13 @@
     margin: 0 auto;
     padding: 1.5rem;
     word-break: break-word;
+    /* Belt-and-suspenders alongside the mermaid svg max-width rule below:
+       some mobile engines report scrollable/intrinsic width for a wide
+       embedded svg differently than what's actually painted on screen, which
+       can widen the page even though the diagram visually renders at the
+       right size. Clipping overflow here keeps any such gap contained to the
+       note body instead of letting it become page-wide horizontal scroll. */
+    overflow-x: hidden;
 }
 
 .muncher-note-content .mermaid-render-error {
@@ -30,6 +37,23 @@
     max-width: 100% !important;
     height: auto;
     display: block;
+}
+
+/* Fallback for any <img> written directly in markdown (e.g. a bare
+   ![alt](src)) rather than going through the .media-image wrap/caption
+   pipeline further below, which already sets this -- a plain <img> has no
+   width constraint of its own otherwise. */
+.muncher-note-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fallback for any inline svg besides Mermaid diagrams (icons, future
+   diagram types, custom directives) -- same unconstrained-width risk as
+   Mermaid's own svg above, just without a baked-in inline style to fight. */
+.muncher-note-content svg {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Headings */
@@ -101,6 +125,17 @@
     margin: 1.5rem 0;
     width: 100%;
     font-size: 0.95rem;
+    /* width: 100% only bounds the table when its own content allows it to
+       shrink -- many columns, or one cell holding an unbreakable long value
+       (URL, hash, path), can still force it wider, same failure mode as pre
+       and svg above. display: block turns the table into a plain scroll
+       container (children keep their table-row/table-cell layout) so it
+       scrolls in place instead of widening the page -- no wrapper element
+       needed. */
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .muncher-note-content th,
@@ -108,6 +143,14 @@
     border: 1px solid var(--border-color);
     padding: 0.75rem;
     text-align: left;
+    /* word-break: break-word cascades down from .muncher-note-content (it's
+       needed there for prose/long URLs), but inside a table with many
+       columns it makes cells break every word mid-character instead of just
+       letting the table scroll -- reverting to normal here keeps columns
+       readable at their natural content width; the table's own
+       overflow-x: auto above handles anything that doesn't fit. */
+    white-space: nowrap;
+    word-break: normal;
 }
 
 .muncher-note-content th {
@@ -153,6 +196,19 @@
 .muncher-note-content code {
     font-family: var(--monospace-font), monospace;
     color: var(--primary-color);
+}
+
+/* Fenced code blocks use white-space: pre by design (code shouldn't
+   reflow/wrap), so a single long line has nothing stopping it from widening
+   the box -- this was the actual cause of page-wide horizontal scroll (not
+   Mermaid, which already has its own max-width handling above). Scoping the
+   scroll to the block itself, like GitHub/most doc sites do, keeps long
+   lines usable (scrollable in place) instead of either breaking the page or
+   silently clipping via the container-level overflow-x: hidden above. */
+.muncher-note-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
 }
 
 
