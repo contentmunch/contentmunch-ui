@@ -17,6 +17,21 @@
     padding: 0.5rem 0;
 }
 
+/* Mermaid's own <svg> has no built-in max-width, unlike <img>/.media-image
+   below -- on a viewport narrower than the diagram's natural render width,
+   the SVG just overflows the note content in normal flow, widening the whole
+   page instead of scrolling within it. Constraining it here keeps that
+   horizontal scroll (if any) inside the note content, same as an image.
+   !important is needed because Mermaid bakes its own
+   style="max-width: Npx" (from the diagram's original render width) onto
+   the root <svg>, and an inline style always wins over an external
+   stylesheet rule regardless of selector specificity. */
+.muncher-note-content svg[id^="mermaid-"] {
+    max-width: 100% !important;
+    height: auto;
+    display: block;
+}
+
 /* Headings */
 .muncher-note-content h1,
 .muncher-note-content h2,
