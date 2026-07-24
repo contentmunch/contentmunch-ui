@@ -46,19 +46,7 @@
 
 .image-lightbox-content .image-lightbox-diagram svg {
     display: block;
-    /* width/height: auto -- the clone carries explicit width/height
-       attributes (set from its viewBox, so it has a real intrinsic size
-       instead of collapsing to 0) but those attributes act as fixed used
-       values unless overridden here. Without "auto" the browser shrinks
-       width to fit but leaves height pinned to its full intrinsic value,
-       distorting the diagram instead of scaling it proportionally. */
-    width: auto;
-    height: auto;
-    /* !important: Mermaid bakes its own style="max-width: Npx" (its natural
-       render width) onto the root svg, which as an inline style always wins
-       over this external rule regardless of specificity -- without it the
-       diagram never shrinks to fit the modal on a narrow viewport. */
-    max-width: 100% !important;
+    max-width: 100%;
     max-height: calc(100vh - 7rem);
 }
 
