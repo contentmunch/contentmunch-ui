@@ -1,9 +1,10 @@
 import React from "react";
 import {Modal} from "../modal/Modal";
 import {Icon} from "../icon/Icon";
+import type {LightboxState} from "./useMediaImageLightbox";
 import "./assets/image-lightbox.css";
 
-export const ImageLightbox: React.FC<ImageLightboxProps> = ({src, alt = "", caption, show, onClose}) => {
+export const ImageLightbox: React.FC<ImageLightboxProps> = ({state, show, onClose}) => {
     return (
         <span className="div-image-lightbox">
             <Modal show={show} setShow={onClose}>
@@ -11,8 +12,13 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({src, alt = "", capt
                     <button type="button" className="image-lightbox-close" aria-label="Close" onClick={onClose}>
                         <Icon name="close" size="small"/>
                     </button>
-                    {src && <img src={src} alt={alt}/>}
-                    {caption && <span className="image-lightbox-caption">{caption}</span>}
+                    {state?.type === "image" && <img src={state.src} alt={state.alt}/>}
+                    {state?.type === "diagram" && (
+                        <span className="image-lightbox-diagram" dangerouslySetInnerHTML={{__html: state.svg}}/>
+                    )}
+                    {state?.type === "image" && state.caption && (
+                        <span className="image-lightbox-caption">{state.caption}</span>
+                    )}
                 </span>
             </Modal>
         </span>
@@ -20,9 +26,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({src, alt = "", capt
 };
 
 export interface ImageLightboxProps {
-    src?: string;
-    alt?: string;
-    caption?: string;
+    state?: LightboxState | null;
     show: boolean;
     onClose: () => void;
 }

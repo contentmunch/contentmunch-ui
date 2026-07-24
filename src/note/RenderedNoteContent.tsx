@@ -14,13 +14,7 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = ({xhtml, 
                 onClick={handleClick}
                 onKeyDown={handleKeyDown}
             />
-            <ImageLightbox
-                show={lightbox !== null}
-                src={lightbox?.src}
-                alt={lightbox?.alt}
-                caption={lightbox?.caption}
-                onClose={close}
-            />
+            <ImageLightbox show={lightbox !== null} state={lightbox} onClose={close}/>
         </>
     );
 };

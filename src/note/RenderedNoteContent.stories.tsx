@@ -53,6 +53,59 @@ skips the caption pill.</p>
 </span>
 </article>`;
 
+// Hand-authored stand-in for Mermaid's own rendered output. Storybook has no
+// live Mermaid runtime, so this is a minimal flowchart SVG that matches the
+// one thing the lightbox click-detection actually keys off: an id starting
+// with "mermaid-", same convention Mermaid itself generates per diagram.
+// Real notes never author this markup directly -- it's captured from the
+// live preview at save time, same as described in XHTML5 Generation.
+const diagramSvg = `
+<svg id="mermaid-story-demo" viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg"
+     font-family="sans-serif" font-size="14">
+    <defs>
+        <marker id="story-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#28253D"/>
+        </marker>
+    </defs>
+    <rect x="20" y="70" width="110" height="40" rx="6" fill="#ffffff" stroke="#28253D" stroke-width="2"/>
+    <text x="75" y="95" text-anchor="middle" fill="#28253D">Fan pays</text>
+
+    <line x1="130" y1="90" x2="185" y2="90" stroke="#28253D" stroke-width="2" marker-end="url(#story-arrow)"/>
+
+    <rect x="185" y="70" width="140" height="40" rx="6" fill="#ffffff" stroke="#28253D" stroke-width="2"/>
+    <text x="255" y="95" text-anchor="middle" fill="#28253D">Command Handler</text>
+
+    <line x1="325" y1="90" x2="380" y2="90" stroke="#28253D" stroke-width="2" marker-end="url(#story-arrow)"/>
+
+    <rect x="290" y="10" width="120" height="40" rx="6" fill="#ffffff" stroke="#28253D" stroke-width="2"/>
+    <text x="350" y="35" text-anchor="middle" fill="#28253D">Projection</text>
+</svg>`;
+
+const diagramXhtml = `<article xmlns="http://www.w3.org/1999/xhtml">
+<h1>3.7 Full flow</h1>
+<p>Click the diagram below to zoom -- same lightbox as images, branched to
+render the diagram's own SVG instead of an &lt;img&gt; tag.</p>
+${diagramSvg}
+<p>Diagrams have no caption concept today, so the lightbox renders this one
+without a caption pill underneath it.</p>
+</article>`;
+
+const combinedXhtml = `<article xmlns="http://www.w3.org/1999/xhtml">
+<h1>Mixed content</h1>
+<p>A note can hold both images and diagrams -- each click resolves to its own
+lightbox branch independently.</p>
+
+<span class="media-image-wrap media-image-wrap--medium">
+<img class="media-image" alt="July 2026 calendar" role="button" tabindex="0" aria-label="Enlarge image"
+     src="${placeholderImage('July 2026')}"/>
+<span class="media-image-caption">
+<span data-link-text>Calendar for tithi</span>
+</span>
+</span>
+
+${diagramSvg}
+</article>`;
+
 const meta: Meta<typeof RenderedNoteContent> = {
     component: RenderedNoteContent,
     title: 'Content/RenderedNoteContent',
@@ -73,5 +126,17 @@ export const Default: Story = {
 export const WithImages: Story = {
     args: {
         xhtml: imagesXhtml,
+    }
+};
+
+export const WithDiagram: Story = {
+    args: {
+        xhtml: diagramXhtml,
+    }
+};
+
+export const WithImagesAndDiagram: Story = {
+    args: {
+        xhtml: combinedXhtml,
     }
 };
