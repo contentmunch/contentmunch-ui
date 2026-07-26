@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{R as d}from"./Modal-DSZoTjpV.js";import"./index-D4lIrffr.js";/* empty css              */import"./Accordion-CM44lgGc.js";import"./Backdrop-B_dFhGSg.js";import"./Badge-DyX1sYip.js";import"./IconBadge-D9jC50y4.js";import"./Icon-1_RwmGu3.js";import"./Button-CpAfKxsB.js";import"./DropdownButton-irs1yMoW.js";import"./DropdownNavButton-BJB-Par7.js";import"./ShareButton-CaP10xHi.js";import"./CopyButton-OOLUmhKo.js";import"./CsvButton-5VEuvKyO.js";import"./SortButton-DiZOgp43.js";import"./NavigateButton-D8qkO0to.js";import"./Checkbox-B1IiCnS1.js";/* empty css              */import"./Label-WHfwOnzY.js";import"./CsvInput-CsqwqRpP.js";/* empty css                   */import"./Spinner-Bp0FQ2cK.js";import"./ImageInput-D-cOjKP2.js";import"./Input-Cqf7JKmc.js";import"./PasswordInput-C25rVnwy.js";import"./Radio-Z5_Dey7K.js";import"./Select-DPMYrMY0.js";import"./Textarea-BFEtmDz2.js";import"./TextInputDropdown-stBR8hbx.js";import"./Li-BXwfRjCs.js";import"./Paper-7Qt7Ew3B.js";import"./Progress-CdK5Z50d.js";import"./Hr-DywUS52c.js";import"./ItemSlider-DXHSwitA.js";import"./RangeSlider-Bl7iMCYB.js";/* empty css               */import"./Slider-CI6O3bQt.js";import"./Featured-D1GSdbLo.js";import"./Star-2LGqRjU-.js";import"./Tabs-CD4dBFt4.js";import"./Table-BlH6J0Ay.js";import"./Card-sHLkWQUK.js";import"./FlippableCard-DWER4QIe.js";import"./ScrollFab-6zpsM4ZS.js";const L=`<article xmlns="http://www.w3.org/1999/xhtml">
+import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{R as d}from"./Modal-DDzOfZDp.js";import"./index-D4lIrffr.js";/* empty css              */import"./Accordion-CM44lgGc.js";import"./Backdrop-B_dFhGSg.js";import"./Badge-DyX1sYip.js";import"./IconBadge-D9jC50y4.js";import"./Icon-1_RwmGu3.js";import"./Button-CpAfKxsB.js";import"./DropdownButton-irs1yMoW.js";import"./DropdownNavButton-BJB-Par7.js";import"./ShareButton-CaP10xHi.js";import"./CopyButton-OOLUmhKo.js";import"./CsvButton-5VEuvKyO.js";import"./SortButton-DiZOgp43.js";import"./NavigateButton-D8qkO0to.js";import"./Checkbox-B1IiCnS1.js";/* empty css              */import"./Label-WHfwOnzY.js";import"./CsvInput-CsqwqRpP.js";/* empty css                   */import"./Spinner-Bp0FQ2cK.js";import"./ImageInput-D-cOjKP2.js";import"./Input-Cqf7JKmc.js";import"./PasswordInput-C25rVnwy.js";import"./Radio-Z5_Dey7K.js";import"./Select-DPMYrMY0.js";import"./Textarea-BFEtmDz2.js";import"./TextInputDropdown-stBR8hbx.js";import"./Li-BXwfRjCs.js";import"./Paper-7Qt7Ew3B.js";import"./Progress-CdK5Z50d.js";import"./Hr-DywUS52c.js";import"./ItemSlider-DXHSwitA.js";import"./RangeSlider-Bl7iMCYB.js";/* empty css               */import"./Slider-CI6O3bQt.js";import"./Featured-D1GSdbLo.js";import"./Star-2LGqRjU-.js";import"./Tabs-CD4dBFt4.js";import"./Table-BlH6J0Ay.js";import"./Card-sHLkWQUK.js";import"./FlippableCard-DWER4QIe.js";import"./ScrollFab-6zpsM4ZS.js";const L=`<article xmlns="http://www.w3.org/1999/xhtml">
 <h1>Access Token and Refresh Token</h1>
 <h2>1. What is an Access Token?</h2>
 <ul>
@@ -6,16 +6,13 @@ import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{R as d}from"./Modal-DSZoTjp
 <li><strong>Lifespan:</strong> Short-lived (e.g., 15 minutes)</li>
 </ul>
 <blockquote><p>Short-lived tokens reduce blast radius if compromised.</p></blockquote>
-<table>
-<thead><tr><th>Benefit</th><th>Access Token</th><th>Refresh Token</th></tr></thead>
-<tbody><tr><td>Short-lived</td><td>✅</td><td>❌</td></tr></tbody>
-</table>
+<table><thead><tr><th>Page</th><th>What's there</th></tr></thead><tbody><tr><td><strong><a href="/platform/re/read">Getting Started</a></strong></td><td>How the app works — notes, search, tasks, reuse, review, archiving, roles</td></tr><tr><td><strong><a href="/platform/gu/guid">Writing Guide: Markdown &amp; Directives</a></strong></td><td>How to format notes and link/embed content — boilers, notelinks, external links, YouTube, images, documents</td></tr><tr><td><strong><a href="/platform/no/note">Note</a></strong></td><td>What a note actually is — identity, versioning, cadence</td></tr><tr><td><strong><a href="/platform/ne/new">New Note Creation</a></strong></td><td>Starting a note from scratch</td></tr><tr><td><strong><a href="/platform/ed/edts">Editing Platform</a></strong></td><td>How the live editor, saving, and version conflicts work</td></tr><tr><td><strong><a href="/platform/re/refs">References</a></strong></td><td>Every way to link to or embed other content, in one place</td></tr><tr><td><strong><a href="/platform/bo/boil">Boiler</a></strong></td><td>Content reuse via boilers</td></tr><tr><td><strong><a href="/platform/im/imgs">Image Boiler</a></strong></td><td>Uploading and embedding images</td></tr><tr><td><strong><a href="/platform/do/docs">Document Boiler</a></strong></td><td>Uploading and embedding documents</td></tr><tr><td><strong><a href="/platform/ch/chat">AI Chat</a></strong></td><td>Chat in Markdown, turn it into a note, revisit history</td></tr><tr><td><strong><a href="/platform/qu/quiz">Quiz &amp; Flashcards</a></strong></td><td>Per-note practice sessions, generated from the note's own content</td></tr><tr><td><strong><a href="/platform/ta/task">Tasks</a></strong></td><td>Deep dive on the task tracker — building tasks, completion rules, scope boundaries</td></tr><tr><td><strong><a href="/platform/ro/role">Roles</a></strong></td><td>Who can do what, and how it's enforced</td></tr><tr><td><strong><a href="/platform/ar/arch">Architecture</a></strong></td><td>Technical reference — stack, module structure, data model, content pipeline</td></tr><tr><td><strong><a href="/platform/ti/tips">Tips</a></strong></td><td>Practical, day-to-day suggestions across every feature</td></tr><tr><td><strong><a href="/platform/fa/faqs">FAQs</a></strong></td><td>Short, direct answers to common questions</td></tr></tbody></table>
 <pre><code>const token = jwtService.generate(userId);</code></pre>
-</article>`,l=(o,e=560,r=360)=>`data:image/svg+xml;utf8,${encodeURIComponent(`
+</article>`,l=(i,e=560,r=360)=>`data:image/svg+xml;utf8,${encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="${e}" height="${r}">
             <rect width="${e}" height="${r}" fill="#f0f4f8"/>
             <rect x="20" y="20" width="${e-40}" height="40" fill="#d9e2ec"/>
-            <text x="${e/2}" y="45" font-family="sans-serif" font-size="16" fill="#334" text-anchor="middle">${o}</text>
+            <text x="${e/2}" y="45" font-family="sans-serif" font-size="16" fill="#334" text-anchor="middle">${i}</text>
             <g stroke="#c8d4e0" stroke-width="1">
                 <line x1="20" y1="90" x2="${e-20}" y2="90"/>
                 <line x1="20" y1="${r-50}" x2="${e-20}" y2="${r-50}"/>
@@ -50,7 +47,7 @@ render the diagram's own SVG instead of an &lt;img&gt; tag.</p>
 ${v}
 <p>Diagrams have no caption concept today, so the lightbox renders this one
 without a caption pill underneath it.</p>
-</article>`,_=`<article xmlns="http://www.w3.org/1999/xhtml">
+</article>`,M=`<article xmlns="http://www.w3.org/1999/xhtml">
 <h1>Mixed content</h1>
 <p>A note can hold both images and diagrams -- each click resolves to its own
 lightbox branch independently.</p>
@@ -64,20 +61,20 @@ lightbox branch independently.</p>
 </span>
 
 ${v}
-</article>`,ke={component:d,title:"Content/RenderedNoteContent",render:o=>n.jsx("div",{className:"note-content-story",children:n.jsx(d,{...o})})},a={args:{xhtml:L}},t={args:{xhtml:j}},s={args:{xhtml:O}},i={args:{xhtml:_}};var m,h,c;a.parameters={...a.parameters,docs:{...(m=a.parameters)==null?void 0:m.docs,source:{originalSource:`{
+</article>`,ke={component:d,title:"Content/RenderedNoteContent",render:i=>n.jsx("div",{className:"note-content-story",children:n.jsx(d,{...i})})},t={args:{xhtml:L}},a={args:{xhtml:j}},o={args:{xhtml:O}},s={args:{xhtml:M}};var m,h,c;t.parameters={...t.parameters,docs:{...(m=t.parameters)==null?void 0:m.docs,source:{originalSource:`{
   args: {
     xhtml: sampleXhtml
   }
-}`,...(c=(h=a.parameters)==null?void 0:h.docs)==null?void 0:c.source}}};var p,g,w;t.parameters={...t.parameters,docs:{...(p=t.parameters)==null?void 0:p.docs,source:{originalSource:`{
+}`,...(c=(h=t.parameters)==null?void 0:h.docs)==null?void 0:c.source}}};var p,g,f;a.parameters={...a.parameters,docs:{...(p=a.parameters)==null?void 0:p.docs,source:{originalSource:`{
   args: {
     xhtml: imagesXhtml
   }
-}`,...(w=(g=t.parameters)==null?void 0:g.docs)==null?void 0:w.source}}};var u,f,k;s.parameters={...s.parameters,docs:{...(u=s.parameters)==null?void 0:u.docs,source:{originalSource:`{
+}`,...(f=(g=a.parameters)==null?void 0:g.docs)==null?void 0:f.source}}};var w,u,k;o.parameters={...o.parameters,docs:{...(w=o.parameters)==null?void 0:w.docs,source:{originalSource:`{
   args: {
     xhtml: diagramXhtml
   }
-}`,...(k=(f=s.parameters)==null?void 0:f.docs)==null?void 0:k.source}}};var x,b,y;i.parameters={...i.parameters,docs:{...(x=i.parameters)==null?void 0:x.docs,source:{originalSource:`{
+}`,...(k=(u=o.parameters)==null?void 0:u.docs)==null?void 0:k.source}}};var x,b,y;s.parameters={...s.parameters,docs:{...(x=s.parameters)==null?void 0:x.docs,source:{originalSource:`{
   args: {
     xhtml: combinedXhtml
   }
-}`,...(y=(b=i.parameters)==null?void 0:b.docs)==null?void 0:y.source}}};const xe=["Default","WithImages","WithDiagram","WithImagesAndDiagram"];export{a as Default,s as WithDiagram,t as WithImages,i as WithImagesAndDiagram,xe as __namedExportsOrder,ke as default};
+}`,...(y=(b=s.parameters)==null?void 0:b.docs)==null?void 0:y.source}}};const xe=["Default","WithImages","WithDiagram","WithImagesAndDiagram"];export{t as Default,o as WithDiagram,a as WithImages,s as WithImagesAndDiagram,xe as __namedExportsOrder,ke as default};

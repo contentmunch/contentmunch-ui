@@ -147,9 +147,13 @@
        needed there for prose/long URLs), but inside a table with many
        columns it makes cells break every word mid-character instead of just
        letting the table scroll -- reverting to normal here keeps columns
-       readable at their natural content width; the table's own
-       overflow-x: auto above handles anything that doesn't fit. */
-    white-space: nowrap;
+       readable at their natural content width. Ordinary prose still wraps
+       at word boundaries (browser default), so a two-column table with
+       normal sentences just wraps and never needs to scroll. Only a token
+       that genuinely can't break -- a long URL, hash, or unbroken path --
+       will force its cell wider than it should be, and *that's* what
+       overflow-x: auto on the table wrapper above is for.
+    */
     word-break: normal;
 }
 
