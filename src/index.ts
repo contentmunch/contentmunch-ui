@@ -58,6 +58,10 @@ export {RenderedNoteContent} from "./note/RenderedNoteContent.tsx";
 export type {RenderedNoteContentProps, InteractiveRegion} from "./note/RenderedNoteContent.tsx";
 export {ImageLightbox} from "./note/ImageLightbox.tsx";
 export {useMediaImageLightbox} from "./note/useMediaImageLightbox.ts";
+export {PieChart} from "./visualization/PieChart.tsx";
+export {StackedBarChart} from "./visualization/StackedBarChart.tsx";
+export type {StackedBarChartData, FieldValue} from "./visualization/data/StackedBarChartData.ts";
+export type {PieChartData} from "./visualization/data/PieChartData.ts";
 export type {MediaImageLightboxState} from "./note/useMediaImageLightbox.ts";
 
 export type {Fold} from "./accordion/Accordion";

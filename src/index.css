@@ -44,6 +44,9 @@
 @import './note/assets/note-content.css';
 @import './note/assets/image-lightbox.css';
 
+@import './visualization/assets/pie-chart.css';
+@import './visualization/assets/stacked-bar-chart.css';
+
 html {
     scroll-behavior: smooth;
     font-size: 100%;
@@ -77,6 +80,7 @@ label .required {
     padding-left: 0.1rem;
     color: var(--danger-color);
 }
+
 @media (min-width: 40rem) {
     .container {
         /* Reserved space: add layout styles here if needed */
