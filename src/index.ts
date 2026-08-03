@@ -28,6 +28,7 @@ export {Radio} from "./input/Radio";
 export {Select} from "./input/Select";
 export {Textarea} from "./input/Textarea";
 export {TextInputDropdown} from "./input/TextInputDropdown";
+export {EditableText} from "./input/EditableText";
 
 export {Ul} from "./list/Ul";
 export {Li} from "./list/Li";
