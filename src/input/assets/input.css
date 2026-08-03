@@ -119,3 +119,34 @@
     color: var(--primary-color);
     margin: 0.4rem;
 }
+/* Add these rules to assets/input.css (or import this file alongside it) */
+
+.muncher-editable-text .muncher-editable-display {
+    display: flex;
+    align-items: center;
+    min-height: 2rem;
+    padding-left: 0.5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.muncher-editable-text .muncher-editable-display:hover {
+    border: 1px solid var(--input-border-color);
+}
+
+.muncher-editable-text .muncher-editable-display:focus {
+    outline: none;
+    border: 1px solid var(--input-focus-color);
+}
+
+.muncher-editable-text .muncher-editable-display-readonly {
+    cursor: default;
+}
+
+.muncher-editable-text .muncher-editable-display-readonly:hover {
+    border: 1px solid transparent;
+}
+
+.muncher-editable-text .muncher-editable-value {
+    font-size: 0.9rem;
+}
