@@ -7,6 +7,7 @@ export const Combobox: React.FC<ComboboxProps> = (
     {
         name, items, selectedId, onSelect,
         filter, emptyMessage = "No matching options",
+        readOnly, emptyText = "—",
         ...props
     }
 ) => {
@@ -35,6 +36,22 @@ export const Combobox: React.FC<ComboboxProps> = (
         setQuery(item.name);
         setShowContent(false);
     };
+
+    if (readOnly) {
+        return (
+            <div className="muncher-input--div muncher-editable-text">
+                <div
+                    className="muncher-editable-display muncher-editable-display-readonly"
+                    tabIndex={-1}
+                    role="button"
+                >
+                    <span className="muncher-editable-value">
+                        {selected ? selected.name : emptyText}
+                    </span>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <TextInputDropdown
@@ -78,4 +95,13 @@ export interface ComboboxProps {
      */
     filter?: (item: ComboboxItem, query: string) => boolean;
     emptyMessage?: string;
+    /**
+     * renders the selected item as plain, non-interactive text instead of
+     * the searchable input+dropdown -- e.g. for a condensed mobile view
+     */
+    readOnly?: boolean;
+    /**
+     * text shown when readOnly and no item is selected
+     */
+    emptyText?: string;
 }

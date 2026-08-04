@@ -96,3 +96,19 @@ export const OnSelect: Story = {
         }
     }
 };
+
+export const ReadOnlyWithSelection: Story = {
+    args: {
+        ...Default.args,
+        selectedId: 7,
+        readOnly: true,
+    }
+};
+
+export const ReadOnlyEmpty: Story = {
+    args: {
+        ...Default.args,
+        selectedId: null,
+        readOnly: true,
+    }
+};
