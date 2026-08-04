@@ -29,6 +29,7 @@ export {Select} from "./input/Select";
 export {Textarea} from "./input/Textarea";
 export {TextInputDropdown} from "./input/TextInputDropdown";
 export {EditableText} from "./input/EditableText";
+export {Combobox} from "./input/Combobox"
 
 export {Ul} from "./list/Ul";
 export {Li} from "./list/Li";
@@ -74,4 +75,5 @@ export type {Size} from "./common/Size";
 export type {Range} from "./slider/RangeSlider";
 export type {SpinnerSize} from "./spinner/Spinner";
 export type {IconName} from "./icon/Drawings";
+export type {ComboboxItem} from "./input/Combobox"
 export {copyToClipboard} from "./utils/Utils";

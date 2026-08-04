@@ -1,0 +1,32 @@
+.muncher-combobox-options {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    max-height: 220px;
+    overflow-y: auto;
+    background: var(--primary-background-color, #ffffff);
+    border: 1px solid var(--border-color, #d8d8d8);
+    border-radius: var(--border-radius-sm, 4px);
+}
+
+.muncher-combobox-options li button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 6px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: var(--primary-color, #13294b);
+}
+
+.muncher-combobox-options li button:hover,
+.muncher-combobox-options li button:focus {
+    background: var(--secondary-background-color, #eaf0ec);
+}
+
+.muncher-combobox-empty {
+    padding: 6px 10px;
+    color: var(--disabled-color, #959698);
+}
