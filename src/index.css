@@ -47,6 +47,7 @@
 
 @import './visualization/assets/pie-chart.css';
 @import './visualization/assets/stacked-bar-chart.css';
+@import './visualization/assets/donut-chart.css';
 
 html {
     scroll-behavior: smooth;

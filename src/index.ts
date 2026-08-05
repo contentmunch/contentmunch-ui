@@ -57,13 +57,16 @@ export {FlippableCard} from "./card/FlippableCard";
 export {ScrollFab} from "./scroll/ScrollFab";
 export {useScrollPosition} from "./scroll/useScrollPosition";
 export {RenderedNoteContent} from "./note/RenderedNoteContent.tsx";
-export type {RenderedNoteContentProps, InteractiveRegion} from "./note/RenderedNoteContent.tsx";
+
 export {ImageLightbox} from "./note/ImageLightbox.tsx";
 export {useMediaImageLightbox} from "./note/useMediaImageLightbox.ts";
 export {PieChart} from "./visualization/PieChart.tsx";
 export {StackedBarChart} from "./visualization/StackedBarChart.tsx";
+export {DonutChart} from "./visualization/DonutChart.tsx";
+
 export type {StackedBarChartData, FieldValue} from "./visualization/data/StackedBarChartData.ts";
 export type {PieChartData} from "./visualization/data/PieChartData.ts";
+export type {DonutChartData} from "./visualization/data/DonutChartData.ts";
 export type {MediaImageLightboxState} from "./note/useMediaImageLightbox.ts";
 
 export type {Fold} from "./accordion/Accordion";
@@ -76,4 +79,5 @@ export type {Range} from "./slider/RangeSlider";
 export type {SpinnerSize} from "./spinner/Spinner";
 export type {IconName} from "./icon/Drawings";
 export type {ComboboxItem} from "./input/Combobox"
+export type {RenderedNoteContentProps, InteractiveRegion} from "./note/RenderedNoteContent.tsx";
 export {copyToClipboard} from "./utils/Utils";
