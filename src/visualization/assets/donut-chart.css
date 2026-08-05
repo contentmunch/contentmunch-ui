@@ -1,0 +1,112 @@
+.muncher-donut-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+}
+
+.muncher-donut-chart-graphic {
+    position: relative;
+    margin: 0 auto;
+}
+
+.muncher-donut-chart-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.muncher-donut-slice {
+    cursor: pointer;
+    opacity: 0.92;
+    stroke: var(--primary-background-color, #ffffff);
+    stroke-width: 1.5;
+    transition: opacity .15s ease, transform .15s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.muncher-donut-slice:hover {
+    opacity: 1;
+}
+
+.muncher-donut-slice.is-selected {
+    opacity: 1;
+    transform: scale(1.035);
+}
+
+.muncher-donut-chart-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    padding: 0 2.2rem;
+}
+
+.muncher-donut-chart-center-label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--tertiary-color, #6b7280);
+    margin-bottom: .25rem;
+}
+
+.muncher-donut-chart-center-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color, #13294b);
+    word-break: break-word;
+}
+
+.muncher-donut-chart-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.muncher-donut-chart-legend-title {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--primary-color, #13294b);
+    margin-bottom: .15rem;
+}
+
+.muncher-donut-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    font-size: .8rem;
+    color: var(--primary-color, #13294b);
+}
+
+.muncher-donut-chart-legend-item:hover,
+.muncher-donut-chart-legend-item.is-selected {
+    opacity: .8;
+}
+
+.muncher-donut-chart-legend-item.is-selected .muncher-donut-chart-legend-text {
+    text-decoration: underline;
+}
+
+.muncher-donut-chart-legend-swatch {
+    width: .65rem;
+    height: .65rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.muncher-donut-chart-legend-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
