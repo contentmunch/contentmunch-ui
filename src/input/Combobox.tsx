@@ -21,11 +21,19 @@ export const Combobox: React.FC<ComboboxProps> = (
         // record's fetch) -- otherwise the input stays permanently blank
         // even though selectedId is set, since `selected` was computed
         // against an empty list on first render and never recomputed
-        // once the real list showed up.
-        const current = items.find(item => item.id === selectedId);
-        setQuery(current ? current.name : "");
+        // once the real list showed up. Also re-syncs if the selected
+        // item's own name changes (e.g. a rename elsewhere).
+        //
+        // Deliberately depends on `selected?.name`, NOT on `items` itself:
+        // a parent that derives its items list inline on every render
+        // (e.g. `categories.filter(c => c.active)`, a very common pattern)
+        // produces a brand new array reference every render, including the
+        // one triggered by the user typing a keystroke into this exact
+        // input -- depending on that reference would re-run this effect on
+        // every keystroke and silently clobber whatever the user just typed.
+        setQuery(selected ? selected.name : "");
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedId, items]);
+    }, [selectedId, selected?.name]);
 
     const defaultFilter = (item: ComboboxItem, q: string) =>
         item.name.toLowerCase().includes(q.trim().toLowerCase());
