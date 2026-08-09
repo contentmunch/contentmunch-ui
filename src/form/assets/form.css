@@ -1,0 +1,88 @@
+.form-embed-loading {
+    padding: .5rem 1rem;
+    color: var(--color-text-tertiary, inherit);
+    font-family: var(--sans-serif-font), sans-serif;
+}
+
+.form-embed {
+    font-family: var(--sans-serif-font), sans-serif;
+}
+
+/* Same reasoning as .poll-embed .poll-embed in poll.css: the static wrapper
+   and the live-rendered component root share a class and end up nested, so
+   box styling is scoped to only the innermost match. */
+.form-embed .form-embed {
+    border: 1px solid var(--color-border-tertiary, #e0e0e0);
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: .75rem 0;
+    background: var(--tertiary-background-color);
+}
+
+.form-title {
+    font-weight: bold;
+    margin: 0 0 .75rem;
+}
+
+.form-fields-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: .75rem;
+}
+
+/* The library's <label> only has a flat 0.2rem padding on every side
+   (global rule, not textarea-specific) and the character-count hint sits
+   flush against the textarea with margin: 0 -- fine next to a single-line
+   input, but reads as cramped above/below a tall multi-row textarea. */
+.form-fields-list .muncher-textarea {
+    margin-top: .4rem;
+    margin-bottom: .3rem;
+    /* Library default is content-box, so its own border+padding get added
+       on top of width: 100% instead of being included in it -- pushes the
+       right edge just past the container's inner edge, touching its border. */
+    box-sizing: border-box;
+}
+
+.form-fields-list .muncher-textarea + p {
+    margin-top: .3rem;
+}
+
+.form-field-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-field-group legend {
+    font-size: .85rem;
+    font-weight: 600;
+    padding: 0 0 .35rem;
+}
+
+.form-required-mark {
+    color: var(--danger-color);
+}
+
+.form-field-options {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.form-submit-error {
+    color: var(--danger-color);
+    font-size: .85rem;
+    margin: 0 0 .5rem;
+}
+
+.form-embed-ack .form-ack-message {
+    margin: 0;
+    color: var(--color-text-tertiary, inherit);
+}
+
+@media print {
+    .form-embed {
+        display: none !important;
+    }
+}

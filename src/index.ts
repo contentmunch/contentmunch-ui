@@ -56,10 +56,21 @@ export {FlippableCard} from "./card/FlippableCard";
 
 export {ScrollFab} from "./scroll/ScrollFab";
 export {useScrollPosition} from "./scroll/useScrollPosition";
-export {RenderedNoteContent} from "./note/RenderedNoteContent.tsx";
+export {RenderedNoteContent, defaultInteractiveRegions} from "./note/RenderedNoteContent.tsx";
+export {NoteWidgetClientProvider, usePollWidgetClient, useFormWidgetClient} from "./note/NoteWidgetClientProvider.tsx";
 
 export {ImageLightbox} from "./note/ImageLightbox.tsx";
 export {useMediaImageLightbox} from "./note/useMediaImageLightbox.ts";
+
+export {PollRenderer, PollDirectiveError} from "./poll/PollRenderer.tsx";
+export {PollAlreadyRespondedError} from "./poll/PollWidgetClient.ts";
+export type {PollWidgetClient} from "./poll/PollWidgetClient.ts";
+export type {Poll, PollTally, PollType} from "./poll/model/Poll.ts";
+
+export {FormRenderer, FormDirectiveError} from "./form/FormRenderer.tsx";
+export {FormSubmissionError} from "./form/FormWidgetClient.ts";
+export type {FormWidgetClient} from "./form/FormWidgetClient.ts";
+export type {Form, FormField, FormFieldType, FormAnswers, FormSubmissionAck} from "./form/model/Form.ts";
 export {PieChart} from "./visualization/PieChart.tsx";
 export {StackedBarChart} from "./visualization/StackedBarChart.tsx";
 export {DonutChart} from "./visualization/DonutChart.tsx";

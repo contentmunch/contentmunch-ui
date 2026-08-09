@@ -4,6 +4,8 @@ import {createPortal} from "react-dom";
 import "./assets/note-content.css";
 import {ImageLightbox} from "./ImageLightbox";
 import {useMediaImageLightbox} from "./useMediaImageLightbox";
+import {PollRenderer} from "../poll/PollRenderer.tsx";
+import {FormRenderer} from "../form/FormRenderer.tsx";
 
 interface HydratedRegion {
     key: string;
@@ -24,7 +26,26 @@ const findTopLevelMatches = (root: Element, selector: string): HTMLElement[] =>
     Array.from(root.querySelectorAll<HTMLElement>(selector))
         .filter((node) => !node.parentElement?.closest(selector));
 
-export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = ({xhtml, className = "", interactiveRegions}) => {
+// The default wiring for the two embedded-widget kinds this package ships a
+// renderer for. A caller that wants only some of these (or none) passes its
+// own `interactiveRegions` explicitly to override this -- it's a default,
+// not baked-in behavior. A future widget kind (rating, etc.) gets its own
+// entry here once it has a renderer, so every consumer picks it up for free
+// without touching their own call site.
+export const defaultInteractiveRegions: InteractiveRegion[] = [
+    {
+        selector: "[data-poll-nid]",
+        render: (node) => <PollRenderer data-poll-nid={node.getAttribute("data-poll-nid") ?? undefined}/>,
+    },
+    {
+        selector: "[data-form-nid]",
+        render: (node) => <FormRenderer data-form-nid={node.getAttribute("data-form-nid") ?? undefined}/>,
+    },
+];
+
+export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
+    {xhtml, className = "", interactiveRegions = defaultInteractiveRegions}
+) => {
     const {lightbox, handleClick, handleKeyDown, close} = useMediaImageLightbox();
     const sectionRef = useRef<HTMLElement>(null);
     const [hydrated, setHydrated] = useState<HydratedRegion[]>([]);
