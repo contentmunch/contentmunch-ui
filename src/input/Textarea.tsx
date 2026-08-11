@@ -6,15 +6,18 @@ export const Textarea: React.FC<TextareaProps> = (
     {
         name, label, required, readOnly = false,
         rows = 6, maxLength = 1000, focus = false,
-        placeholder, onChange, value, ...props
+        placeholder, onChange, value, showCount = true,
+        ...props
     }
 ) => {
     const [textareaValue, setTextareaValue] = useState(value);
-    const handleTextareaChange = (event: any) => {
+
+    const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextareaValue(event.target.value);
         if (onChange)
             onChange(event);
     }
+
     return (
         <div className="muncher-input--div">
             {label ? <Label label={label} required={required} id={name}/> : ''}
@@ -32,9 +35,10 @@ export const Textarea: React.FC<TextareaProps> = (
                 readOnly={readOnly}
                 {...props}
             />
-            <p>{textareaValue ? maxLength ? maxLength - textareaValue.length : 1000 : maxLength} characters left</p>
+            {showCount && (
+                <p>{textareaValue ? maxLength - textareaValue.length : maxLength} characters left</p>
+            )}
         </div>
-
     );
 }
 
@@ -47,6 +51,7 @@ export interface TextareaProps {
     maxLength?: number;
     focus?: boolean;
     placeholder?: string;
+    showCount?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    value?: any;
+    value?: string;
 }
