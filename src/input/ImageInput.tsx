@@ -29,7 +29,7 @@ export const ImageInput: React.FC<ImageInputProps> = (
             setFileNames(files.map(file => file.name).join(", "));
 
         } else {
-            setFiles(Array.from(event.currentTarget.files[0]));
+            setFiles([event.currentTarget.files[0]]);
             setFileNames(event.currentTarget.files[0].name);
         }
 
