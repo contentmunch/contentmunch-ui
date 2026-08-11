@@ -58,7 +58,7 @@ export {ScrollFab} from "./scroll/ScrollFab";
 export {useScrollPosition} from "./scroll/useScrollPosition";
 export {RenderedNoteContent, defaultInteractiveRegions} from "./note/RenderedNoteContent.tsx";
 export {RecipeCard} from "./note/RecipeCard.tsx";
-export type {RecipeCardData, RecipeCardIngredient, RecipeCardInstruction} from "./note/RecipeCard.tsx";
+export type {RecipeCardData, RecipeCardIngredient, RecipeCardInstruction, RecipeCardNote} from "./note/RecipeCard.tsx";
 export {NoteWidgetClientProvider, usePollWidgetClient, useFormWidgetClient} from "./note/NoteWidgetClientProvider.tsx";
 
 export {ImageLightbox} from "./note/ImageLightbox.tsx";

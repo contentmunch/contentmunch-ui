@@ -44,10 +44,13 @@
 @import './scroll/assets/fab.css';
 @import './note/assets/note-content.css';
 @import './note/assets/image-lightbox.css';
+@import './note/assets/hljs-github-theme.css';
+@import './note/assets/recipe-card.css';
 
 @import './visualization/assets/pie-chart.css';
 @import './visualization/assets/stacked-bar-chart.css';
 @import './visualization/assets/donut-chart.css';
+
 
 html {
     scroll-behavior: smooth;
