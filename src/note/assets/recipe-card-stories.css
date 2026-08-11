@@ -1,0 +1,58 @@
+/* Foodopean's actual theme.css values, scoped to this story only, so the
+   full-page preview (including the shared RecipeCard nested inside it)
+   renders in its real target palette rather than contentmunch-ui's bare
+   base tokens -- Storybook here has no app theme.css loaded to supply them. */
+.recipe-story-page {
+    --primary-background-color: #ffffff;
+    --secondary-background-color: #eaf1ea;
+    --tertiary-background-color: #f4f7f3;
+    --border-radius-lg: 10px;
+    --border-radius-md: 8px;
+    --border-radius-sm: 6px;
+    --color-text-primary: #16233f;
+    --color-text-secondary: #4a6e5e;
+    --color-text-tertiary: #7c8a83;
+    --color-border-primary: #cfdaca;
+    --color-border-tertiary: #e6ede2;
+
+    /* Effort / category swatches, same values as foodopean's theme.css */
+    --effort-standard: #b98a2e;
+    --cat-clay: #be6e45;
+    --cat-clay-bg: #f3e5db;
+
+    max-width: 56rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.recipe-story-head {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.recipe-story-head h1 {
+    margin: 0;
+    font-size: 1.7rem;
+    color: var(--color-text-primary);
+}
+
+.recipe-story-pill {
+    display: inline-block;
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.recipe-story-pill--category {
+    background: var(--cat-clay-bg);
+    color: var(--cat-clay);
+}
+
+.recipe-story-pill--effort {
+    background: var(--tertiary-background-color);
+    color: var(--effort-standard);
+}
