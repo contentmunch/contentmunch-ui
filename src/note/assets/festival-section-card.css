@@ -1,8 +1,17 @@
 .muncher-festival-section-card {
-    border: 1px solid var(--color-border-tertiary);
+    padding: 0;
+}
+
+/* LEARNING cards sit several-to-a-list, each on a distinct topic -- the
+   pre-redesign page always gave these their own soft card so they read as
+   separate items rather than one continuous block. MAIN/RITUAL stay
+   unboxed (see FestivalSectionCard.tsx's isBoxed) and get their padding
+   from tithi-ui's own .tfc-body instead, matching the pre-redesign layout
+   where only the learning track was boxed. */
+.muncher-festival-section-card--boxed {
+    background: var(--secondary-background-color);
     border-radius: var(--border-radius-lg);
-    background: var(--primary-background-color);
-    padding: 1.4rem 1.5rem 1.5rem;
+    padding: 1rem 1.25rem;
 }
 
 .muncher-festival-section-eyebrow {
@@ -19,16 +28,136 @@
     color: var(--color-text-primary);
 }
 
-.muncher-festival-section-body {
-    font-size: .9rem;
+/* .muncher-note-content (note-content.css) sets its own 1.5rem padding and
+   a serif font, both meant for a note viewed as a standalone full page --
+   nested inside a festival card, that padding stacks with the card's own
+   and the serif face doesn't match the rest of tithi-ui's sans-serif type.
+   The combined two-class selector outranks plain `.muncher-note-content` on
+   specificity regardless of CSS load order. */
+.muncher-note-content.muncher-festival-section-body {
+    font-family: var(--sans-serif-font), sans-serif;
+    padding: 0;
+    font-size: .8rem;
     line-height: 1.65;
     color: var(--color-text-primary);
 }
 
-.muncher-festival-section-body > :first-child {
+/* GFM tables (e.g. a MAIN note's per-community variations) -- markdown's
+   plain bordered-grid table (from note-content.css, used everywhere else)
+   reads as spreadsheet data here, not as a soft "info box" grouping related
+   rows -- this reproduces the mint info-box look the festival calendar page
+   has always used for that. Extra `article` in the selector beats
+   note-content.css's `.muncher-note-content table` on specificity. */
+.muncher-festival-section-body > article table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--secondary-background-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.muncher-festival-section-body > article th,
+.muncher-festival-section-body > article td {
+    border: none;
+    background: transparent;
+    padding: .6rem 1rem;
+}
+
+.muncher-festival-section-body > article th {
+    font-weight: inherit;
+}
+
+.muncher-festival-section-body > article td:first-child,
+.muncher-festival-section-body > article th:first-child {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Bullet lists read as plain dashes in the pre-redesign design, not filled
+   round bullets. */
+.muncher-festival-section-body > article ul {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+}
+
+.muncher-festival-section-body > article ul > li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: .5rem;
+}
+
+.muncher-festival-section-body > article ul > li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    color: var(--color-text-tertiary);
+}
+
+.muncher-festival-section-body > article ul > li:last-child {
+    margin-bottom: 0;
+}
+
+/* renderedContent's root is always a single wrapping <article> (how xhtml is
+   stored for every note, not specific to festivals) -- so "top level" here
+   means a direct child of that <article>, one level deeper than the
+   .muncher-festival-section-body section itself. */
+.muncher-festival-section-body > article > :first-child {
     margin-top: 0;
 }
 
-.muncher-festival-section-body > :last-child {
+.muncher-festival-section-body > article > :last-child {
+    margin-bottom: 0;
+}
+
+/* Circled step numbers for an ordered list (e.g. a RITUAL note's timeline) --
+   markdown's plain `<ol>` numbering on its own reads as a generic list, not
+   a sequence of ritual phases, so this reproduces the numbered-badge look
+   the festival calendar page has always used for that. Scoped to top-level
+   ordered lists only, so a nested `<ol>` inside a list item still numbers
+   plainly rather than getting badges within badges. */
+.muncher-festival-section-body > article > ol {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    counter-reset: festival-step;
+}
+
+.muncher-festival-section-body > article > ol > li {
+    counter-increment: festival-step;
+    position: relative;
+    padding-left: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.muncher-festival-section-body > article > ol > li:last-child {
+    margin-bottom: 0;
+}
+
+.muncher-festival-section-body > article > ol > li::before {
+    content: counter(festival-step);
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--secondary-background-color);
+    border: 1px solid var(--border-color, #ddd);
+    color: var(--color-text-secondary);
+    font-size: .7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.muncher-festival-section-body > article > ol > li > p:first-child {
+    margin-top: 0;
+}
+
+.muncher-festival-section-body > article > ol > li > p:last-child {
     margin-bottom: 0;
 }
