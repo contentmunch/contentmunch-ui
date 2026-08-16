@@ -6,6 +6,7 @@ import {ImageLightbox} from "./ImageLightbox";
 import {useMediaImageLightbox} from "./useMediaImageLightbox";
 import {PollRenderer} from "../poll/PollRenderer.tsx";
 import {FormRenderer} from "../form/FormRenderer.tsx";
+import {StepsRenderer} from "../steps/StepsRenderer.tsx";
 import {CopyButton} from "../button/CopyButton.tsx";
 
 interface HydratedRegion {
@@ -74,6 +75,10 @@ export const defaultInteractiveRegions: InteractiveRegion[] = [
     {
         selector: "[data-form-nid]",
         render: (node) => <FormRenderer data-form-nid={node.getAttribute("data-form-nid") ?? undefined}/>,
+    },
+    {
+        selector: "[data-steps]",
+        render: (node) => <StepsRenderer data-steps={node.getAttribute("data-steps") ?? undefined}/>,
     },
 ];
 

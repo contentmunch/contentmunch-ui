@@ -75,6 +75,10 @@ export {FormRenderer, FormDirectiveError} from "./form/FormRenderer.tsx";
 export {FormSubmissionError} from "./form/FormWidgetClient.ts";
 export type {FormWidgetClient} from "./form/FormWidgetClient.ts";
 export type {Form, FormField, FormFieldType, FormAnswers, FormSubmissionAck} from "./form/model/Form.ts";
+
+export {StepsRenderer, StepsDirectiveError} from "./steps/StepsRenderer.tsx";
+export type {StepsRendererProps} from "./steps/StepsRenderer.tsx";
+
 export {PieChart} from "./visualization/PieChart.tsx";
 export {StackedBarChart} from "./visualization/StackedBarChart.tsx";
 export {DonutChart} from "./visualization/DonutChart.tsx";

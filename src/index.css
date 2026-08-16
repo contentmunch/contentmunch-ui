@@ -47,6 +47,7 @@
 @import './note/assets/hljs-github-theme.css';
 @import './note/assets/recipe-card.css';
 @import './note/assets/festival-section-card.css';
+@import './step/assets/step.css';
 
 @import './visualization/assets/pie-chart.css';
 @import './visualization/assets/stacked-bar-chart.css';
