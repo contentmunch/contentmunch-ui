@@ -1,10 +1,20 @@
-.muncher-steps {
+/* Every rule here is duplicated with a .muncher-note-content prefix -- steps
+   render inline in ordinary note body content, and note-content.css's own
+   generic `.muncher-note-content ul`/`li` rules (indentation, item spacing)
+   have one more type selector than a bare `.muncher-steps` class, so they'd
+   otherwise win on specificity and override this reset (extra left indent,
+   wrong item spacing) regardless of import order. The bare selector is kept
+   too so this still renders correctly standalone (Storybook, anywhere with
+   no .muncher-note-content ancestor). */
+.muncher-steps,
+.muncher-note-content .muncher-steps {
     list-style: none;
     margin: 0 0 1rem;
     padding: 0;
 }
 
-.muncher-steps-item {
+.muncher-steps-item,
+.muncher-note-content .muncher-steps-item {
     margin: 0 0 .4rem;
 }
 
@@ -34,6 +44,7 @@
     text-align: right;
 }
 
-.muncher-steps-item .muncher-steps {
+.muncher-steps-item .muncher-steps,
+.muncher-note-content .muncher-steps-item .muncher-steps {
     margin: .4rem 0 0 1.6rem;
 }
