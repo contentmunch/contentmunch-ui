@@ -33,3 +33,7 @@
     font-variant-numeric: tabular-nums;
     text-align: right;
 }
+
+.muncher-steps-item .muncher-steps {
+    margin: .4rem 0 0 1.6rem;
+}

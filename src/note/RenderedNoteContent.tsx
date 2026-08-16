@@ -78,7 +78,12 @@ export const defaultInteractiveRegions: InteractiveRegion[] = [
     },
     {
         selector: "[data-steps]",
-        render: (node) => <StepsRenderer data-steps={node.getAttribute("data-steps") ?? undefined}/>,
+        render: (node) => (
+            <StepsRenderer
+                data-steps={node.getAttribute("data-steps") ?? undefined}
+                data-steps-ordered={node.getAttribute("data-steps-ordered") ?? undefined}
+            />
+        ),
     },
 ];
 
