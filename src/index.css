@@ -5,6 +5,7 @@
 
 @import './badge/assets/badge.css';
 @import './badge/assets/icon-badge.css';
+@import './badge/assets/badge-large-rounded.css';
 
 @import './button/assets/button.css';
 @import './button/assets/csv-button.css';
@@ -35,6 +36,10 @@
 @import './star/assets/featured.css';
 @import './star/assets/star.css';
 
+@import './step/assets/step.css';
+@import './step/assets/step-container.css';
+@import './step/assets/step-line.css';
+
 @import './tab/assets/tabs.css';
 @import './table/assets/table.css';
 
@@ -47,6 +52,9 @@
 @import './note/assets/hljs-github-theme.css';
 @import './note/assets/recipe-card.css';
 @import './note/assets/festival-section-card.css';
+
+@import './poll/assets/poll.css';
+@import './form/assets/form.css';
 @import './steps/assets/steps.css';
 
 @import './visualization/assets/pie-chart.css';

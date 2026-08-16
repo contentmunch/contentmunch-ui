@@ -25,3 +25,11 @@
     text-decoration: line-through;
     text-decoration-color: var(--color-text-tertiary);
 }
+
+.muncher-steps-number {
+    flex: none;
+    min-width: 1.2em;
+    color: var(--color-text-tertiary);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
