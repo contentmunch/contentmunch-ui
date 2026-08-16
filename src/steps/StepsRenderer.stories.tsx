@@ -60,19 +60,21 @@ export const Nested: Story = {
 };
 
 // Proves the actual bug fix: renders the SAME xhtml a note's captureXhtml would
-// produce (a plain static <ul data-steps="..."> with no React attached, exactly
-// what gets stored as renderedContent) through RenderedNoteContent, the same
-// component foodopean-ui/tithi-ui/the read view all use. Before the fix, this
-// <ul> never carried the marker attribute, so [data-steps] never matched and this
-// rendered as dead, unstyled static HTML -- clicking the checkbox did nothing to
-// the sibling text. After the fix, it hydrates into a fully live StepsRenderer.
+// produce (a plain static <div data-steps="..."> wrapping a <ul>, no React
+// attached, exactly what gets stored as renderedContent) through
+// RenderedNoteContent, the same component foodopean-ui/tithi-ui/the read view
+// all use. Before the fix, this marker lived directly on the <ul> instead of a
+// wrapping <div> -- hydrating it nested a live <ul> inside the static <ul> it
+// was replacing, which is invalid HTML (a <ul> can only contain <li> directly)
+// and would compound one layer deeper on every hydration pass. Now it hydrates
+// into a single, valid, fully live StepsRenderer.
 export const Hydrated: Story = {
     render: () => (
         <RenderedNoteContent xhtml={
             '<article><p>Some ordinary note prose leads into the checklist below.</p>'
-            + '<ul class="muncher-steps" data-steps=\''
+            + '<div data-steps=\''
             + JSON.stringify(["Marinate the chicken", "Sear the chicken", "Simmer the sauce"]).replace(/'/g, "&#39;")
-            + '\'><li class="muncher-steps-item">unhydrated placeholder</li></ul></article>'
+            + '\'><ul class="muncher-steps"><li class="muncher-steps-item">unhydrated placeholder</li></ul></div></article>'
         }/>
     ),
 };

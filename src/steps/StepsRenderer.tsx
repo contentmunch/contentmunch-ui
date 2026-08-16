@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./assets/steps.css";
 
-export interface StepsRendererProps extends React.ComponentProps<"ul"> {
+export interface StepsRendererProps extends React.ComponentProps<"div"> {
     "data-steps"?: string;
     /** Set when the authored list was ordered (`1. `, `2. `, ...) -- keeps the
      * numbering visible instead of collapsing to an undifferentiated bullet. */
@@ -64,21 +64,7 @@ export const StepsRenderer: React.FC<StepsRendererProps> = (props) => {
         });
     };
 
-    // data-steps (and data-steps-ordered) are re-declared on the actual output
-    // element -- not just read from props -- because this is what MarkdownEditor's
-    // XHTML capture serializes into the note's stored renderedContent. Without them
-    // on the real output element, the captured static HTML carries no [data-steps]
-    // marker at all, so RenderedNoteContent's hydration (every OTHER consumer: the
-    // read view, foodopean-ui, tithi-ui) never finds this block to bring back to
-    // life -- it stays frozen exactly as it looked at save time, checkbox clicks
-    // doing nothing since nothing is listening. Only the outermost list gets these
-    // attributes; a nested sub-list isn't its own independent hydration target.
-    const renderList = (
-        list: StepNode[],
-        listOrdered: boolean,
-        path: string,
-        rootAttrs?: {"data-steps"?: string; "data-steps-ordered"?: string}
-    ) => {
+    const renderList = (list: StepNode[], listOrdered: boolean, path: string) => {
         const className = `muncher-steps${listOrdered ? " muncher-steps--numbered" : ""}`;
         const rows = list.map((step, index) => {
             const itemPath = `${path}${index}`;
@@ -96,17 +82,30 @@ export const StepsRenderer: React.FC<StepsRendererProps> = (props) => {
             );
         });
 
-        return listOrdered
-            ? <ol className={className} {...rootAttrs}>{rows}</ol>
-            : <ul className={className} {...rootAttrs}>{rows}</ul>;
+        return listOrdered ? <ol className={className}>{rows}</ol> : <ul className={className}>{rows}</ul>;
     };
 
     if (items.length === 0) return null;
 
-    return renderList(items, ordered, "", {
-        "data-steps": raw,
-        "data-steps-ordered": ordered ? "true" : undefined,
-    });
+    // data-steps (and data-steps-ordered) are re-declared here, on a wrapping <div>
+    // -- not just read from props, and deliberately NOT on the <ul>/<ol> itself --
+    // because this is what MarkdownEditor's XHTML capture serializes into the
+    // note's stored renderedContent. Without the marker on the real output,
+    // RenderedNoteContent's hydration (every OTHER consumer: the read view,
+    // foodopean-ui, tithi-ui) never finds this block to bring back to life -- it
+    // stays frozen exactly as it looked at save time, checkbox clicks doing
+    // nothing since nothing is listening. A <div> wrapper, not the list element
+    // itself, is what makes that safe to re-hydrate: hydrating an already-rendered
+    // block nests a fresh copy of this component's own output inside the static
+    // markup it's replacing (same as Poll/Form's own root re-declaring
+    // data-poll-nid/data-form-nid) -- div-in-div is harmless, but <ul> containing
+    // a bare <ul> (no wrapping <li>) is invalid HTML and would compound one layer
+    // deeper on every hydration pass.
+    return (
+        <div data-steps={raw} data-steps-ordered={ordered ? "true" : undefined}>
+            {renderList(items, ordered, "")}
+        </div>
+    );
 };
 
 export const StepsDirectiveError: React.FC<React.ComponentProps<"span">> = () => (
