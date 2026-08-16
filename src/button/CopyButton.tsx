@@ -8,11 +8,11 @@ import type {Size} from "../common/Size.ts";
 
 export const CopyButton: React.FC<CopyButtonProps> = (
     {
-        text, variant = 'secondary', size = 'small'
+        text, variant = 'secondary', size = 'small', label = 'copy link'
     }) => {
     const [color, setColor] = useState<string>();
     const [name, setName] = useState<IconName>("copy");
-    const [title, setTitle] = useState<string>("copy link");
+    const [title, setTitle] = useState<string>(label);
     const copyButtonClicked = () => {
         copyToClipboard(text);
         setColor("green");
@@ -21,6 +21,7 @@ export const CopyButton: React.FC<CopyButtonProps> = (
         setTimeout(function () {
             setColor("");
             setName("copy");
+            setTitle(label);
         }, 2000);
 
     }
@@ -39,5 +40,7 @@ export interface CopyButtonProps {
     variant?: Variant;
     size?: Size;
     text: string;
+    /** Tooltip shown before copying, e.g. "copy code" for a code block; defaults to "copy link". */
+    label?: string;
 }
 

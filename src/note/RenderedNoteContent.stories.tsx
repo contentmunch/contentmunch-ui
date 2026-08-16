@@ -14,6 +14,39 @@ const sampleXhtml = `<article xmlns="http://www.w3.org/1999/xhtml">
 <pre><code>const token = jwtService.generate(userId);</code></pre>
 </article>`;
 
+// Real rehype-highlight output (hljs-* span-per-token markup), not the bare
+// <pre><code>text</code></pre> sampleXhtml above -- this is what actually
+// exercises the copy button's code.textContent extraction (see
+// RenderedNoteContent's findCodeBlocks): the highlight spans have to
+// flatten back down to plain, unhighlighted source text, not leak their
+// markup or lose whitespace/newlines, for the copied result to match what
+// was actually authored.
+const codeBlockXhtml = `<article xmlns="http://www.w3.org/1999/xhtml">
+<h1>Rate limiting</h1>
+<p>Click the copy button in the corner to copy the code below -- it copies
+the plain source text, not the syntax-highlighted markup.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TokenBucketRateLimiter</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> capacity;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> refillRatePerSecond;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> RedisTemplate&lt;String, String&gt; redis; <span class="hljs-comment">// or similar client</span>
+
+    <span class="hljs-comment">// Core operation: atomic check-and-consume via a Lua script</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">tryAcquire</span><span class="hljs-params">(String clientKey)</span> {
+        <span class="hljs-comment">// Lua script (executed atomically in Redis) roughly does:</span>
+        <span class="hljs-comment">// 1. Fetch current token count and last-refill timestamp for clientKey</span>
+        <span class="hljs-comment">// 2. Compute tokens to add based on elapsed time since last refill,</span>
+        <span class="hljs-comment">//    capped at \`capacity\`</span>
+        <span class="hljs-comment">// 3. If tokens available &gt;= 1, decrement by 1, update timestamp, return true</span>
+        <span class="hljs-comment">// 4. Else return false</span>
+        <span class="hljs-comment">// The atomicity of steps 1-4 happening as one Redis operation is the</span>
+        <span class="hljs-comment">// critical correctness property — this cannot be done as separate</span>
+        <span class="hljs-comment">// GET then SET calls from the application without a race condition.</span>
+        <span class="hljs-keyword">return</span> executeLuaScript(clientKey, capacity, refillRatePerSecond);
+    }
+}
+</code></pre>
+</article>`;
+
 const placeholderImage = (label: string, w = 560, h = 360) =>
     `data:image/svg+xml;utf8,${encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
@@ -148,5 +181,11 @@ export const WithImagesAndDiagram: Story = {
 export const WithMixedAspectRatioDiagrams: Story = {
     args: {
         xhtml: mixedAspectRatioXhtml,
+    }
+};
+
+export const WithCodeBlock: Story = {
+    args: {
+        xhtml: codeBlockXhtml,
     }
 };

@@ -6,12 +6,46 @@ import {ImageLightbox} from "./ImageLightbox";
 import {useMediaImageLightbox} from "./useMediaImageLightbox";
 import {PollRenderer} from "../poll/PollRenderer.tsx";
 import {FormRenderer} from "../form/FormRenderer.tsx";
+import {CopyButton} from "../button/CopyButton.tsx";
 
 interface HydratedRegion {
     key: string;
     node: HTMLElement;
     render: (node: HTMLElement) => React.ReactNode;
 }
+
+interface CodeCopyHost {
+    key: string;
+    host: HTMLElement;
+    text: string;
+}
+
+// A fenced code block's <pre> keeps its highlighted markup exactly as
+// rendered -- unlike interactiveRegions above, this doesn't replace
+// anything, it just wraps the <pre> in a positioning box and appends a host
+// element next to it (a sibling, not a child) to portal a CopyButton into.
+// The button host deliberately lives OUTSIDE the <pre>: the <pre> itself is
+// the horizontally-scrollable element (see note-content.css), and a button
+// placed inside it would scroll away with a long code line instead of
+// staying pinned in the corner. code.textContent (not innerHTML) is what
+// gets copied: rehype-highlight wraps each token in its own <span>, and
+// textContent flattens all of that back down to the plain source text, same
+// as what was actually authored.
+const findCodeBlocks = (root: Element): {code: HTMLElement; pre: HTMLElement}[] =>
+    Array.from(root.querySelectorAll<HTMLElement>("pre > code"))
+        .map((code) => ({code, pre: code.parentElement as HTMLElement}));
+
+const codeBlockWrapperFor = (pre: HTMLElement): HTMLElement => {
+    const existing = pre.parentElement;
+    if (existing?.classList.contains("muncher-code-block")) {
+        return existing;
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = "muncher-code-block";
+    pre.parentElement?.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    return wrapper;
+};
 
 // dangerouslySetInnerHTML produces inert markup -- fine for every directive
 // that's read-only after paint (an <iframe>, an <img>), but some markers
@@ -49,6 +83,7 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
     const {lightbox, handleClick, handleKeyDown, close} = useMediaImageLightbox();
     const sectionRef = useRef<HTMLElement>(null);
     const [hydrated, setHydrated] = useState<HydratedRegion[]>([]);
+    const [codeCopyHosts, setCodeCopyHosts] = useState<CodeCopyHost[]>([]);
 
     // {__html: xhtml} is a fresh object every render. React's prop diff for
     // dangerouslySetInnerHTML compares that wrapper BY REFERENCE, not the
@@ -79,6 +114,27 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [xhtml]);
 
+    useLayoutEffect(() => {
+        const root = sectionRef.current;
+        if (!root) {
+            setCodeCopyHosts([]);
+            return;
+        }
+
+        setCodeCopyHosts(
+            findCodeBlocks(root).map(({code, pre}, index) => {
+                const wrapper = codeBlockWrapperFor(pre);
+                let host = wrapper.querySelector<HTMLElement>(":scope > .muncher-code-copy-host");
+                if (!host) {
+                    host = document.createElement("span");
+                    host.className = "muncher-code-copy-host";
+                    wrapper.appendChild(host);
+                }
+                return {key: `code-copy-${index}`, host, text: code.textContent ?? ""};
+            })
+        );
+    }, [xhtml]);
+
     return (
         <>
             <section
@@ -89,6 +145,8 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
                 onKeyDown={handleKeyDown}
             />
             {hydrated.map(({key, node, render}) => createPortal(render(node), node, key))}
+            {codeCopyHosts.map(({key, host, text}) =>
+                createPortal(<CopyButton text={text} size="small" variant="secondary" label="copy code"/>, host, key))}
             <ImageLightbox show={lightbox !== null} state={lightbox} onClose={close}/>
         </>
     );

@@ -234,6 +234,57 @@
     box-sizing: border-box;
 }
 
+/* Wraps a fenced code block's own <pre> (see RenderedNoteContent's
+   codeBlockWrapperFor) so the copy button's host can sit OUTSIDE the
+   scrollable element -- positioned here, inside the <pre> itself, it would
+   scroll away with a long line instead of staying pinned in the corner.
+   The white background and the horizontal scrolling both actually belong
+   to the <code class="hljs"> element (see .hljs above), not <pre> itself --
+   <pre> is just an unstyled, transparent box around it. padding-bottom
+   therefore has to go on the code element too: putting it on <pre> instead
+   reserves blank space that isn't covered by anything white, leaving the
+   button visibly floating outside the code block on the page background
+   rather than sitting inside its bottom-right corner. */
+.muncher-note-content .muncher-code-block {
+    position: relative;
+
+    .muncher-button {
+        padding: .2rem;
+        .muncher-icon--small {
+            width: .8rem;
+            height: .8rem;
+        }
+    }
+}
+
+.muncher-note-content .muncher-code-block pre > code {
+    padding-bottom: 2.75rem;
+}
+
+.muncher-note-content .muncher-code-copy-host {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /* Without this, the host's own box is taller than the button inside it
+       -- as inline content, it sits in a line box that takes the ambient
+       1.75rem line-height from .muncher-note-content regardless of the
+       button's actual (smaller) height, leaving a gap between the button
+       and this span's own bottom edge even though the span itself is
+       correctly flush with the code block. display: block collapses that
+       line box so the host shrinks exactly to the button's height. */
+    display: block;
+    line-height: 0;
+}
+
+/* Matches the code block's own white (the .hljs background above) rather
+   than the button's default secondary-gray chip fill -- reads as part of
+   the code block's own corner instead of a mismatched pill floating on top
+   of it. */
+.muncher-note-content .muncher-code-copy-host .muncher-button {
+    background: var(--primary-background-color);
+    border: 1px solid var(--border-color);
+}
+
 
 .muncher-note-content .external-link {
     display: inline-flex;
