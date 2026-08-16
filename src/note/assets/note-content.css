@@ -24,19 +24,38 @@
     padding: 0.5rem 0;
 }
 
-/* Mermaid's own <svg> has no built-in max-width, unlike <img>/.media-image
-   below -- on a viewport narrower than the diagram's natural render width,
-   the SVG just overflows the note content in normal flow, widening the whole
-   page instead of scrolling within it. Constraining it here keeps that
-   horizontal scroll (if any) inside the note content, same as an image.
-   !important is needed because Mermaid bakes its own
-   style="max-width: Npx" (from the diagram's original render width) onto
-   the root <svg>, and an inline style always wins over an external
-   stylesheet rule regardless of selector specificity. */
+/* Mermaid always bakes width="100%" onto the root <svg> itself (a
+   presentation attribute, not CSS), so every diagram -- flowchart, sequence,
+   class, whatever -- already stretches to fill the note column's full width
+   with no CSS involved. That's fine for a diagram whose own viewBox is
+   roughly as wide as it is tall (a typical flowchart), but a diagram with a
+   taller aspect ratio (a class diagram: a couple of class boxes stacked
+   vertically with a relationship line and its multiplicity labels between
+   them) gets stretched to that *same* width and, preserving its aspect
+   ratio, balloons to a much greater height -- the actual class boxes end up
+   occupying a small fraction of a very tall, mostly-empty canvas, which
+   reads as "zoomed out" even though nothing was literally scaled down.
+   width/height: auto (overriding Mermaid's own width="100%" attribute,
+   which CSS always wins over) plus max-height, alongside max-width, caps
+   the diagram by *whichever* dimension is more restrictive for its own
+   aspect ratio -- a wide/short diagram is still capped by width (using the
+   available column width, same as before), a narrow/tall one is capped by
+   height instead (shrinking its width along with it), so every diagram ends
+   up rendered at a comparable, contained size regardless of its own aspect
+   ratio. !important on max-width is needed because Mermaid also bakes its
+   own style="max-width: Npx" (its original render width) onto the root
+   <svg>, and an inline style always wins over an external stylesheet rule
+   regardless of selector specificity. cursor: zoom-in matches .media-image
+   below -- both open the same click-to-zoom lightbox (see
+   useMediaImageLightbox). */
 .muncher-note-content svg[id^="mermaid-"] {
-    max-width: 100% !important;
+    width: auto;
     height: auto;
+    max-width: 100% !important;
+    max-height: 24rem;
     display: block;
+    margin: 1rem auto;
+    cursor: zoom-in;
 }
 
 /* Fallback for any <img> written directly in markdown (e.g. a bare
