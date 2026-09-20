@@ -5,6 +5,8 @@ export {Backdrop} from "./backdrop/Backdrop";
 
 export {Badge} from "./badge/Badge";
 export {IconBadge} from "./badge/IconBadge";
+export {LargeRoundedBadge} from "./badge/LargeRoundedBadge";
+export type {LargeRoundedBadgeProps} from "./badge/LargeRoundedBadge";
 
 export {Button} from "./button/Button";
 export {DropdownButton} from "./button/DropdownButton";
@@ -50,6 +52,12 @@ export {Star} from "./star/Star";
 
 export {Tabs} from "./tab/Tabs";
 export {Table} from "./table/Table";
+
+export {Step} from "./step/Step";
+export type {StepProps} from "./step/Step";
+export {StepContainer} from "./step/StepContainer";
+export type {StepContainerProps} from "./step/StepContainer";
+export {StepLine} from "./step/StepLine";
 
 export {Card} from "./card/Card";
 export {FlippableCard} from "./card/FlippableCard";
