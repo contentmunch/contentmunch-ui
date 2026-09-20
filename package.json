@@ -1,6 +1,6 @@
 {
   "name": "@contentmunch/contentmunch-ui",
-  "version": "1.1.105",
+  "version": "1.1.107",
   "description": "Contentmunch UI components",
   "author": "contentmunch",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "build:types": "tsc -p tsconfig.types.json",
     "build:js": "vite build",
     "build": "npm run build:js && npm run build:types && mv lib/contentmunch-ui.css lib/index.css && npm run postbuild:js && npm run postbuild:clean",
-    "postbuild:js": "rsync -avz --exclude='*.ts' src/ lib/",
+    "postbuild:js": "rsync -avz --exclude='*.ts' --exclude='index.css' src/ lib/",
     "postbuild:clean": "npm run clean:stories && npm run clean:public && npm run clean:tsx",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -47,7 +47,6 @@
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",
     "framer-motion": "^12.38.0",
-    "normalize.css": "^8.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
