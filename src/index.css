@@ -70,6 +70,10 @@ html {
     background: var(--tertiary-background-color);
 }
 
+body {
+    margin: 0;
+}
+
 .text-danger {
     color: var(--danger-color);
 }
