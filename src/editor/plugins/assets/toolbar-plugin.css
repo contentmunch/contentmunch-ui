@@ -1,0 +1,86 @@
+.content-editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .05rem;
+    background: hsl(0, 0%, 100%);
+    padding: 0.3rem;
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+    vertical-align: middle;
+
+    i.undo {
+        background-image: url(./icons/arrow-counterclockwise.svg);
+    }
+
+    i.redo {
+        background-image: url(./icons/arrow-clockwise.svg);
+    }
+
+    i.paragraph {
+        background-image: url(./icons/text-paragraph.svg);
+    }
+
+    i.bold {
+        background-image: url(./icons/type-bold.svg);
+    }
+    i.uppercase {
+        background-image: url(./icons/type-uppercase.svg);
+    }
+    i.italic {
+        background-image: url(./icons/type-italic.svg);
+    }
+
+    i.underline {
+        background-image: url(./icons/type-underline.svg);
+    }
+
+    i.code {
+        background-image: url(./icons/code.svg);
+    }
+
+    i.link {
+        background-image: url(./icons/link.svg);
+    }
+
+    i.left-align {
+        background-image: url(./icons/text-left.svg);
+    }
+
+    i.center-align {
+        background-image: url(./icons/text-center.svg);
+    }
+
+    i.justify-align {
+        background-image: url(./icons/justify.svg);
+    }
+
+    i.right-align {
+        background-image: url(./icons/text-right.svg);
+    }
+
+    i.h1 {
+        background-image: url(./icons/type-h1.svg);
+    }
+
+    i.h2 {
+        background-image: url(./icons/type-h2.svg);
+    }
+
+    i.h3 {
+        background-image: url(./icons/type-h3.svg);
+    }
+
+    i.quote {
+        background-image: url(./icons/chat-square-quote.svg);
+    }
+
+    i.bullet-list,
+    i.ul {
+        background-image: url(./icons/list-ul.svg);
+    }
+
+    i.numbered-list,
+    i.ol {
+        background-image: url(./icons/list-ol.svg);
+    }
+}

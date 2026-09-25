@@ -57,6 +57,12 @@
 @import './form/assets/form.css';
 @import './steps/assets/steps.css';
 
+@import './editor/assets/content-editor.css';
+@import './editor/plugins/assets/toolbar-plugin.css';
+@import './editor/plugins/assets/floating-link-editor-plugin.css';
+@import './editor/ui/assets/button.css';
+@import './editor/ui/assets/divider.css';
+
 @import './visualization/assets/pie-chart.css';
 @import './visualization/assets/stacked-bar-chart.css';
 @import './visualization/assets/donut-chart.css';

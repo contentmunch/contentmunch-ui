@@ -1,6 +1,6 @@
 {
   "name": "@contentmunch/contentmunch-ui",
-  "version": "1.1.109",
+  "version": "1.1.110",
   "description": "Contentmunch UI components",
   "author": "contentmunch",
   "license": "MIT",
@@ -50,6 +50,9 @@
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",
     "framer-motion": "^12.38.0",
+    "lexical": "^0.51.0",
+    "@lexical/code-core": "^0.51.0",
+    "@lexical/react": "^0.51.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

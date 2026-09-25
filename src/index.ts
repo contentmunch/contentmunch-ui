@@ -87,6 +87,9 @@ export type {Form, FormField, FormFieldType, FormAnswers, FormSubmissionAck} fro
 export {StepsRenderer, StepsDirectiveError} from "./steps/StepsRenderer.tsx";
 export type {StepsRendererProps} from "./steps/StepsRenderer.tsx";
 
+export {ContentEditor} from "./editor/ContentEditor";
+export type {ContentEditorProps} from "./editor/ContentEditor";
+
 export {PieChart} from "./visualization/PieChart.tsx";
 export {StackedBarChart} from "./visualization/StackedBarChart.tsx";
 export {DonutChart} from "./visualization/DonutChart.tsx";
