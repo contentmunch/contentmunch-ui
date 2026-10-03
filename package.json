@@ -1,6 +1,6 @@
 {
   "name": "@contentmunch/contentmunch-ui",
-  "version": "1.1.110",
+  "version": "1.1.111",
   "description": "Contentmunch UI components",
   "author": "contentmunch",
   "license": "MIT",
@@ -27,8 +27,7 @@
     "clean:tsx": "rimraf lib/*.tsx lib/**/*.tsx lib/**/**/*.tsx lib/**/**/**/*.tsx",
     "clean:stories": "rimraf  lib/*.stories.* lib/**/*.stories.* lib/**/**/*.stories.* lib/**/**/**/*.stories.*",
     "clean:tests": "rimraf lib/*.test.* lib/**/*.test.* lib/setupTests.* lib/__snapshots__/",
-    "clean:public": "rimraf lib/CNAME lib/favicon/ lib/favicon.svg",
-    "clean:docs": "rimraf docs",
+    "clean:public": "rimraf lib/favicon/ lib/favicon.svg",
     "prebuild": "npm run clean",
     "build:types": "tsc -p tsconfig.types.json",
     "build:js": "vite build",
@@ -41,11 +40,8 @@
     "test:coverage": "vitest run --coverage",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs",
-    "prepublishOnly": "npm run build",
-    "predeploy": "",
-    "deploy": "npm run predeploy && npm run build-storybook",
-    "postdeploy": "cp public/CNAME docs/CNAME"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",
@@ -101,7 +97,7 @@
   "bugs": {
     "url": "https://github.com/contentmunch/contentmunch-ui/issues"
   },
-  "homepage": "https://component.contentmunch.com",
+  "homepage": "https://components.contentmunch.com",
   "directories": {
     "doc": "docs",
     "lib": "lib"

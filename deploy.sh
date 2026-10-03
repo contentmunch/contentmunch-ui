@@ -12,32 +12,28 @@ echo "🔢 Bumping npm patch version..."
 NEW_VERSION=$(npm version patch --no-git-tag-version)
 echo "✅ New version generated: $NEW_VERSION"
 
-# Step 3: Run deploy script
-echo "🚀 Running deployment script..."
-npm run deploy
-
-# Step 4: Stage all changes (source code, package files, and deploy artifacts)
+# Step 3: Stage all changes (Storybook is built and deployed by Cloudflare Pages on push)
 echo "➕ Staging all changes..."
 git add .
 
-# Step 5: Prompt for commit message
+# Step 4: Prompt for commit message
 echo ""
 read -rp "✍️ Enter your commit message: " USER_MSG
 COMMIT_MSG="$USER_MSG ($NEW_VERSION)"
 
-# Step 6: Commit everything together
+# Step 5: Commit everything together
 echo "📦 Committing all changes with message: $COMMIT_MSG"
 git commit -m "$COMMIT_MSG"
 
-# Step 7: Create git tag matching the version
+# Step 6: Create git tag matching the version
 git tag "$NEW_VERSION"
 
-# Step 8: Push to GitHub
+# Step 7: Push to GitHub
 echo "📤 Pushing code and tags to origin main..."
 git push origin main
 git push origin "$NEW_VERSION"
 
-# Step 9: Publish to npm registry
+# Step 8: Publish to npm registry
 echo "🚀 Publishing to npm registry..."
 npm publish --access public
 
