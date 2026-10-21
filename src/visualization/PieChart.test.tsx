@@ -1,137 +1,81 @@
-import {describe, expect, it, vi} from 'vitest';
-import {render} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {PieChart} from './PieChart';
-import type {PieChartData} from './data/PieChartData';
+import {describe, expect, it, vi} from "vitest";
+import {render, screen, within} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {PieChart} from "./PieChart.tsx";
+import {leaseTypes, occupancy, spending} from "./fixtures.ts";
 
-const sampleData: PieChartData[] = [
-    {title: 'First', value: 60, isSelected: true, legend: 'First (23: 60%)'},
-    {title: 'Second', value: 1, isSelected: false},
-    {title: 'Third', value: 5, isSelected: false},
-];
+const slices = (c: HTMLElement) => [...c.querySelectorAll(".svg-pie-chart path")];
 
-describe('PieChart', () => {
-    it('renders a container with a chart svg', () => {
-        const {container} = render(<PieChart data={sampleData}/>);
-
-        expect(container.querySelector('.muncher-pie-chart')).toBeInTheDocument();
-        expect(container.querySelector('svg.svg-pie-chart')).toBeInTheDocument();
+describe("PieChart", () => {
+    it("draws one slice per part, in the order the data gives, with the pinned colors", () => {
+        const { container } = render(<PieChart data={occupancy}/>);
+        expect(slices(container).map((p) => p.getAttribute("fill"))).toEqual(["#59a14f", "#e15759"]);
     });
 
-    it('renders one path per data slice', () => {
-        const {container} = render(<PieChart data={sampleData}/>);
-
-        const paths = container.querySelectorAll('svg.svg-pie-chart path');
-        expect(paths).toHaveLength(sampleData.length);
+    it("hands out the palette in the order the parts come, the first color to the first part", () => {
+        const { container } = render(<PieChart data={leaseTypes}/>);
+        expect(slices(container).map((p) => p.getAttribute("fill"))).toEqual(["#4e79a7", "#59a14f", "#f28e2c", "#e15759"]);
     });
 
-    it('marks the selected slice with the "selected" class', () => {
-        const {container} = render(<PieChart data={sampleData}/>);
-
-        const paths = container.querySelectorAll('svg.svg-pie-chart path');
-        expect(paths[0]).toHaveClass('selected');
-        expect(paths[1]).not.toHaveClass('selected');
-        expect(paths[2]).not.toHaveClass('selected');
+    it("titles the legend with the category and writes each part's count and share", () => {
+        const { container } = render(<PieChart data={leaseTypes}/>);
+        const legend = container.querySelector(".svg-pie-chart-legend") as HTMLElement;
+        expect(legend).toHaveTextContent("Lease type");
+        expect(legend).toHaveTextContent("Renewal (48: 48%)");
     });
 
-    it('does not render a legend when withLegend is not set', () => {
-        const {container} = render(<PieChart data={sampleData}/>);
-
-        expect(container.querySelector('svg.svg-pie-chart-legend')).not.toBeInTheDocument();
+    it("is also its numbers: a hidden table, the title and the summary", () => {
+        const { container } = render(<PieChart data={leaseTypes}/>);
+        expect(container.querySelector("figcaption")).toHaveTextContent(leaseTypes.title);
+        expect(container.querySelectorAll("table.muncher-viz-sr tbody tr")).toHaveLength(4);
+        expect(container).toHaveTextContent(leaseTypes.summary);
     });
 
-    it('renders a legend entry per data item when withLegend is true', () => {
-        const {container} = render(<PieChart data={sampleData} withLegend/>);
-
-        const legend = container.querySelector('svg.svg-pie-chart-legend');
-        expect(legend).toBeInTheDocument();
-        expect(legend?.querySelectorAll('.legend-text')).toHaveLength(sampleData.length);
-        expect(legend?.querySelectorAll('.legend-rect')).toHaveLength(sampleData.length);
+    it("leaves the legend out when asked", () => {
+        const { container } = render(<PieChart data={leaseTypes} legend={false}/>);
+        expect(container.querySelector(".svg-pie-chart-legend")).toBeNull();
     });
 
-    it('uses a custom legend title when provided', () => {
-        const {container} = render(<PieChart data={sampleData} withLegend legendTitle="My Legend"/>);
-
-        expect(container.querySelector('.legend-title')?.textContent).toBe('My Legend');
+    it("groups what is past six into Other", () => {
+        const { container } = render(<PieChart data={spending}/>);
+        expect(slices(container)).toHaveLength(6);
+        expect(container.querySelector(".svg-pie-chart-legend")).toHaveTextContent("Other");
     });
 
-    it('defaults the legend title to "Legend" when not provided', () => {
-        const {container} = render(<PieChart data={sampleData} withLegend/>);
-
-        expect(container.querySelector('.legend-title')?.textContent).toBe('Legend');
+    it("reports the key of a clicked slice, and none when the selected one is clicked again", async () => {
+        const onSelect = vi.fn();
+        const { container, rerender } = render(<PieChart data={occupancy} onSelect={onSelect}/>);
+        await userEvent.click(slices(container)[1]);
+        expect(onSelect).toHaveBeenLastCalledWith("Vacant");
+        rerender(<PieChart data={occupancy} selected="Vacant" onSelect={onSelect}/>);
+        await userEvent.click(slices(container)[1]);
+        expect(onSelect).toHaveBeenLastCalledWith(null);
     });
 
-    it('uses the provided legend text when set on the data item', () => {
-        const {container} = render(<PieChart data={sampleData} withLegend/>);
-
-        const legendTexts = container.querySelectorAll('.legend-text');
-        expect(legendTexts[0].textContent).toBe('First (23: 60%)');
+    it("marks the selected part", () => {
+        const { container } = render(<PieChart data={occupancy} selected="Vacant"/>);
+        expect(slices(container)[1]).toHaveClass("selected");
+        expect(slices(container)[0]).not.toHaveClass("selected");
     });
 
-    it('falls back to title + formatted value when legend text is not provided', () => {
-        const {container} = render(<PieChart data={sampleData} withLegend/>);
-
-        const legendTexts = container.querySelectorAll('.legend-text');
-        expect(legendTexts[1].textContent).toBe('Second (1)');
+    it("sizes by preset: the same factor for every kind", () => {
+        const { container, rerender } = render(<PieChart data={leaseTypes}/>);
+        expect((container.querySelector("figure") as HTMLElement).style.getPropertyValue("--viz-diameter")).toBe("220px");
+        rerender(<PieChart data={leaseTypes} size="small"/>);
+        expect((container.querySelector("figure") as HTMLElement).style.getPropertyValue("--viz-diameter")).toBe("165px");
+        rerender(<PieChart data={leaseTypes} size="large"/>);
+        expect((container.querySelector("figure") as HTMLElement).style.getPropertyValue("--viz-diameter")).toBe("253px");
     });
 
-    it('applies a custom value formatter to the legend text', () => {
-        const {container} = render(
-            <PieChart data={sampleData} withLegend valueFormatter={(num) => `${num}%`}/>
-        );
-
-        const legendTexts = container.querySelectorAll('.legend-text');
-        expect(legendTexts[1].textContent).toBe('Second (1%)');
+    it("shows the period it is given", () => {
+        const { container } = render(<PieChart data={spending} period="2026-09"/>);
+        expect(slices(container)).toHaveLength(2);
     });
 
-    it('applies custom colors from colorRange', () => {
-        // Note: the component seeds the d3 ordinal scale's domain with only
-        // the alphabetical min/max title (via d3.extent), so colors are not
-        // simply assigned in data order -- every slice still gets a distinct
-        // color from the given range, just not index-for-index.
-        const colorRange = ['#111111', '#222222', '#333333'];
-        const {container} = render(<PieChart data={sampleData} colorRange={colorRange}/>);
-
-        const paths = container.querySelectorAll('svg.svg-pie-chart path');
-        const fills = Array.from(paths).map(p => p.getAttribute('fill'));
-        expect(fills).toHaveLength(3);
-        expect(new Set(fills).size).toBe(3);
-        fills.forEach(fill => expect(colorRange).toContain(fill));
-    });
-
-    it('calls onClick with the clicked slice index when a path is clicked', async () => {
-        const user = userEvent.setup();
-        const onClick = vi.fn();
-        const {container} = render(<PieChart data={sampleData} onClick={onClick}/>);
-
-        const paths = container.querySelectorAll('svg.svg-pie-chart path');
-        await user.click(paths[1]);
-
-        expect(onClick).toHaveBeenCalledWith(1);
-    });
-
-    it('calls onClick when a legend entry is clicked', async () => {
-        const user = userEvent.setup();
-        const onClick = vi.fn();
-        const {container} = render(<PieChart data={sampleData} withLegend onClick={onClick}/>);
-
-        const legendTexts = container.querySelectorAll('.legend-text');
-        await user.click(legendTexts[2]);
-
-        expect(onClick).toHaveBeenCalledWith(2);
-    });
-
-    it('renders without a legend and without crashing when data is empty', () => {
-        const {container} = render(<PieChart data={[]}/>);
-
-        const paths = container.querySelectorAll('svg.svg-pie-chart path');
-        expect(paths).toHaveLength(0);
-    });
-
-    it('renders an empty legend list when data is empty but withLegend is true', () => {
-        const {container} = render(<PieChart data={[]} withLegend/>);
-
-        expect(container.querySelectorAll('.legend-text')).toHaveLength(0);
-        expect(container.querySelector('.legend-title')).toBeInTheDocument();
+    it("says why it cannot draw bad data, and that there is nothing to draw for empty data", () => {
+        const { rerender } = render(<PieChart data={{ ...leaseTypes, rows: [{ type: "New", leases: -4 }] }}/>);
+        expect(screen.getByRole("alert")).toHaveTextContent(/can.t be drawn.*negative/i);
+        rerender(<PieChart data={{ ...leaseTypes, rows: [] }}/>);
+        expect(within(document.body).getByRole("status")).toHaveTextContent("No data to show.");
     });
 });

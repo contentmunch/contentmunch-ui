@@ -1,54 +1,25 @@
-import type {Meta, StoryFn} from '@storybook/react';
+import type {Meta, StoryObj} from "@storybook/react";
+import type * as React from "react";
 import {useState} from "react";
-import {PieChart} from "./PieChart";
-import type {PieChartData} from "./data/PieChartData";
+import {PieChart} from "./PieChart.tsx";
+import {leaseTypes, occupancy, spending} from "./fixtures.ts";
 
-const meta = {
-    title: 'Visualization/PieChart',
-    component: PieChart,
-    parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
-        layout: 'fullscreen',
-    },
-} satisfies Meta<typeof PieChart>;
+const meta: Meta<typeof PieChart> = { title: "Visualization/Pie", component: PieChart, args: { data: leaseTypes } };
 export default meta;
-type Story = StoryFn<typeof meta>;
+type Story = StoryObj<typeof PieChart>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const Default: Story = {};
+export const PinnedColors: Story = { args: { data: occupancy } };
+export const GroupsTheTailIntoOther: Story = { args: { data: spending } };
+export const Small: Story = { args: { size: "small" } };
+export const Large: Story = { args: { size: "large" } };
+export const OtherPeriod: Story = { args: { data: spending, period: "2026-09" } };
 
-export const Default: Story = () => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [pieData, setPieData] = useState<PieChartData[]>([
-        {title: "First", value: 60, isSelected: true, legend: "First (23: 60%)"},
-        {title: "Second", value: 1, isSelected: false},
-        {title: "Third", value: 5, isSelected: false},
-    ]);
-    const handleButtonClicked = () => {
-        const currentData = [...pieData];
-        currentData[1].value = currentData[1].value === 1 ? 10 : 1;
-        setPieData(currentData);
-    };
-    const handleOnClick = (index: number) => {
-        const currentData = [...pieData];
-        if (currentData[index].isSelected) {
-            currentData[index].isSelected = false;
-            setSelectedIndex(-1);
-        } else {
-            currentData.forEach(value => {
-                value.isSelected = false;
-            });
-            setSelectedIndex(index);
-            currentData[index].isSelected = true;
-        }
-        setPieData(currentData);
-    };
-    return (
-        <>
-            <PieChart data={pieData} onClick={handleOnClick} valueFormatter={(num) => {
-                return num + "%";
-            }} withLegend={true}/>
-            <button onClick={handleButtonClicked}>Change Data</button>
-            {selectedIndex !== -1 ? <p>Selected: {pieData[selectedIndex].title}</p> : ""}
-        </>
-    );
+const Interactive = (args: React.ComponentProps<typeof PieChart>) => {
+    const [selected, setSelected] = useState<string | null>("New");
+    return <PieChart {...args} selected={selected} onSelect={setSelected}/>;
 };
+export const Selectable: Story = { render: (args) => <Interactive {...args}/> };
+
+export const BadData: Story = { args: { data: { ...leaseTypes, rows: [{ type: "Renewal", leases: -4 }] } } };
+export const Empty: Story = { args: { data: { ...leaseTypes, rows: [] } } };

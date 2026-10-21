@@ -63,9 +63,10 @@
 @import './editor/ui/assets/button.css';
 @import './editor/ui/assets/divider.css';
 
-@import './visualization/assets/pie-chart.css';
-@import './visualization/assets/stacked-bar-chart.css';
-@import './visualization/assets/donut-chart.css';
+@import './visualization/plots/assets/pie-chart.css';
+@import './visualization/plots/assets/stacked-bar-chart.css';
+@import './visualization/plots/assets/donut-chart.css';
+@import './visualization/assets/visualization.css';
 
 
 html {

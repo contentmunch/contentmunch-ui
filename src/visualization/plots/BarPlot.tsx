@@ -3,8 +3,8 @@ import * as d3 from "d3";
 import "./assets/stacked-bar-chart.css";
 import type {FieldValue, StackedBarChartData} from "./data/StackedBarChartData";
 
-export const StackedBarChart: React.FC<BarChartProps> = (
-    {data, comparisonData, colorRange, toPercentage, withLegend, showOnlyValues}) => {
+export const BarPlot: React.FC<BarChartProps> = (
+    {data, comparisonData, colorRange, toPercentage, withLegend, showOnlyValues, axisMax}) => {
     const svgRef: RefObject<SVGSVGElement | null> = React.createRef();
     const legendRef: RefObject<SVGSVGElement | null> = React.createRef();
     const draw = useCallback(() => {
@@ -84,7 +84,8 @@ export const StackedBarChart: React.FC<BarChartProps> = (
             const formatData = (num: number): string => toPercentage ? num.toFixed(0) + "%" : num.toString();
             const maxValue = (): number => {
                 const max = d3.max(barData.values, d => fieldTotal(d));
-                return max === undefined ? 0 : +max.toFixed(0);
+                // a fixed axis (axisMax) keeps the scale still while the data changes, as when stepping through time
+                return Math.max(max === undefined ? 0 : +max.toFixed(0), axisMax ?? 0);
             };
             const stackData = d3.stack<any>().keys(barData.stackFields)
                 .value((d, key) => {
@@ -215,7 +216,7 @@ export const StackedBarChart: React.FC<BarChartProps> = (
         }
 
 
-    }, [svgRef, legendRef, data, colorRange, toPercentage, comparisonData, withLegend]);
+    }, [svgRef, legendRef, data, colorRange, toPercentage, comparisonData, withLegend, axisMax]);
 
     useEffect(() => {
         draw();
@@ -242,4 +243,6 @@ export interface BarChartProps {
     colorRange?: string[];
     withLegend?: boolean;
     showOnlyValues?: boolean;
+    /** The axis runs at least this far, so it stays still as the data changes. */
+    axisMax?: number;
 }

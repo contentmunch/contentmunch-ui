@@ -1,0 +1,199 @@
+/* What the figure around a chart adds. The charts themselves are drawn by their own stylesheets, unchanged. */
+/* one font for every visualization, and one place to change it */
+.muncher-viz {
+    --viz-font: var(--sans-serif-font, "Roboto", sans-serif);
+    --viz-ink: var(--primary-color, #13294b);
+    --viz-muted: var(--tertiary-color, #6b7280);
+    position: relative;
+    margin: 0;
+    font-family: var(--viz-font);
+}
+
+.muncher-viz svg text,
+.muncher-viz .muncher-donut-chart,
+.muncher-viz .muncher-donut-chart-center-label,
+.muncher-viz .muncher-donut-chart-center-value {
+    font-family: var(--viz-font);
+}
+
+/* the bar chart used to set its axis, labels and legend in the serif; they join the others */
+.muncher-viz .muncher-bar-chart .svg-bar-chart .tick text,
+.muncher-viz .muncher-bar-chart .svg-bar-chart .bar-text,
+.muncher-viz .muncher-bar-chart .svg-bar-chart-legend text {
+    font-family: var(--viz-font);
+}
+
+/* one size rule: the preset sets the ring's diameter and the bar chart's width */
+.muncher-viz--pie .muncher-pie-chart .svg-pie-chart {
+    width: var(--viz-diameter);
+    height: var(--viz-diameter);
+}
+
+.muncher-viz--bar {
+    max-width: var(--viz-width);
+}
+
+.muncher-viz--bar .muncher-bar-chart .svg-bar-chart {
+    width: 100%;
+}
+
+.muncher-viz-state {
+    margin: 0;
+    padding: 1rem 0;
+    color: var(--muted-color, #6b7280);
+    font-size: .8rem;
+}
+
+/* the title, the summary and the numbers: for screen readers and search */
+.muncher-viz-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* the line chart: the bar chart's axes and labels, the palette, the donut's legend */
+.muncher-viz .svg-line-chart {
+    display: block;
+    width: 100%;
+    max-width: var(--viz-width);
+}
+
+.muncher-viz--line {
+    max-width: var(--viz-width);
+}
+
+.muncher-viz .svg-line-chart text {
+    font-size: 9px;
+    fill: #000;
+}
+
+.muncher-viz .svg-line-chart .axis line {
+    stroke: var(--viz-ink);
+    stroke-width: 1.5;
+}
+
+.muncher-viz .svg-line-chart .line-series path {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: .9;
+}
+
+.muncher-viz .svg-line-chart .line-series circle {
+    opacity: .9;
+}
+
+.muncher-viz .svg-line-chart .line-series .line-value {
+    font-weight: 600;
+    fill: var(--viz-ink);
+}
+
+/* the legend as the donut has it */
+.muncher-viz-legend {
+    list-style: none;
+    margin: .75rem 0 0;
+    padding: 0;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    color: var(--viz-ink);
+}
+
+.muncher-viz-legend-title {
+    font-size: .75rem;
+    font-weight: 600;
+    margin-bottom: .15rem;
+}
+
+.muncher-viz-legend-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .8rem;
+}
+
+.muncher-viz-legend-swatch {
+    width: .65rem;
+    height: .65rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* a KPI: the donut's centre, larger */
+.muncher-kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .25rem;
+    font-size: calc(1rem * var(--viz-factor, 1));
+}
+
+.muncher-kpi-label {
+    font-size: .7em;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--viz-muted);
+}
+
+.muncher-kpi-value {
+    font-size: 2.2em;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--viz-ink);
+    word-break: break-word;
+}
+
+.muncher-kpi-change {
+    font-size: .8em;
+    color: var(--viz-ink);
+}
+
+.muncher-kpi-history {
+    width: 10em;
+    height: auto;
+    margin-top: .25rem;
+    opacity: .9;
+}
+
+.muncher-viz--table {
+    max-width: none;
+}
+
+/* a line marks the period being shown while the time slider plays */
+.muncher-viz .svg-line-chart .line-cursor {
+    stroke: var(--viz-ink);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+    opacity: .6;
+}
+
+.muncher-viz .svg-line-chart .line-series .line-marked {
+    opacity: 1;
+}
+
+/* the time slider: the library's slider, with play controls beside it */
+.muncher-time-slider {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
+    max-width: 36rem;
+}
+
+.muncher-time-slider-controls {
+    display: flex;
+    gap: .25rem;
+    flex-shrink: 0;
+}
+
+.muncher-time-slider .muncher-slider {
+    flex: 1;
+    min-width: 0;
+}
