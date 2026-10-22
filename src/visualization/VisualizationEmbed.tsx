@@ -13,6 +13,8 @@ export interface VisualizationEmbedProps extends React.ComponentProps<"div"> {
     "data-viz-size"?: string;
     "data-viz-static"?: string;
     "data-viz-text"?: string;
+    /** `false` leaves the legend out of this use; a visualization has one otherwise. */
+    "data-viz-legend"?: string;
 }
 
 const cache = new Map<string, Promise<StoredVisualization>>();
@@ -42,8 +44,9 @@ export const datasetOf = (v: Pick<StoredVisualization, "title" | "summary" | "da
 });
 
 /**
- * A visualization in a note, drawn live from what is stored: the numbers, the kind and the options are the visualization's own, so a
- * change to them changes every note that shows it. The caption is its own too, unless this use sets `text`.
+ * A visualization in a note, drawn live from what is stored: the numbers, the kind and the period are the visualization's own, so a
+ * change to them changes every note that shows it. The caption is its own too, unless this use sets `text`. Whether the legend shows
+ * is a choice of the use (`legend="false"`), since the same chart may sit beside a table in one note and alone in another.
  */
 export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => {
     const nid = props["data-viz-nid"];
@@ -79,7 +82,7 @@ export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => 
     const caption = isStatic ? staticText : stored.caption;
     return (
         <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} className={`viz-embed viz-embed--${size}`}>
-            <Visualization kind={stored.kind as Kind} data={datasetOf(stored)} size={size} legend={stored.options?.legend ?? true} period={stored.options?.period ?? null}/>
+            <Visualization kind={stored.kind as Kind} data={datasetOf(stored)} size={size} legend={props["data-viz-legend"] !== "false"} period={stored.options?.period ?? null}/>
             {caption && <p className="viz-embed-caption"><span data-link-text>{caption}</span></p>}
         </div>
     );

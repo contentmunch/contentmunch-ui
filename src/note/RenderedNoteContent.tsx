@@ -58,6 +58,10 @@ const codeBlockWrapperFor = (pre: HTMLElement): HTMLElement => {
 // Only the OUTERMOST match per nesting chain is hydrated, so a region's own
 // rendered output (which may reuse the same marker attribute on its root)
 // is never mistaken for another static node to hydrate on a later pass.
+// What a marker carried, read once. The hydration effect can run more than once for the same content (React's development double run,
+// a re-render with the same xhtml); by the second run the marker has been emptied, so what it carried is remembered per element.
+const captured = new WeakMap<HTMLElement, unknown>();
+
 const findTopLevelMatches = (root: Element, selector: string): HTMLElement[] =>
     Array.from(root.querySelectorAll<HTMLElement>(selector))
         .filter((node) => !node.parentElement?.closest(selector));
@@ -82,6 +86,7 @@ export const defaultInteractiveRegions: InteractiveRegion[] = [
                 data-viz-nid={node.getAttribute("data-viz-nid") ?? undefined}
                 data-viz-size={node.getAttribute("data-viz-size") ?? undefined}
                 data-viz-static={node.getAttribute("data-viz-static") ?? undefined}
+                data-viz-legend={node.getAttribute("data-viz-legend") ?? undefined}
                 data-viz-text={typeof captured === "string" ? captured : undefined}
             />
         ),
@@ -128,9 +133,10 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
         const next: HydratedRegion[] = interactiveRegions.flatMap(({selector, render, capture}) =>
             findTopLevelMatches(root, selector).map((node, index) => {
                 // read what the marker carries (its text, say) before the marker is emptied for the live content
-                const captured = capture?.(node);
+                if (capture && !captured.has(node)) captured.set(node, capture(node));
+                const carried = captured.get(node);
                 node.innerHTML = "";
-                return {key: `${selector}-${index}`, node, render: (n: HTMLElement) => render(n, captured)};
+                return {key: `${selector}-${index}`, node, render: (n: HTMLElement) => render(n, carried)};
             })
         );
         setHydrated(next);

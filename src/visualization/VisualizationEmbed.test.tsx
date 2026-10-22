@@ -1,3 +1,4 @@
+import {StrictMode} from "react";
 import {beforeEach, describe, expect, it, vi} from "vitest";
 import {render, screen, waitFor} from "@testing-library/react";
 import {NoteWidgetClientProvider} from "../note/NoteWidgetClientProvider.tsx";
@@ -50,13 +51,20 @@ describe("VisualizationEmbed", () => {
         await waitFor(() => expect(container.querySelector(".muncher-viz--table")).not.toBeNull());
     });
 
-    it("uses this use's caption when text is given, and the size and legend choices", async () => {
-        getVisualization.mockResolvedValue(stored({options: {legend: false}}));
+    it("uses this use's caption when text is given, and its size", async () => {
         const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-size="large" data-viz-static="true" data-viz-text="Our numbers"/>));
         expect(await screen.findByText("Our numbers")).toBeInTheDocument();
         expect(screen.queryByText("From the leasing system")).not.toBeInTheDocument();
-        expect(container.querySelector(".svg-bar-chart-legend")).toBeNull();
         expect((container.querySelector("figure") as HTMLElement).style.getPropertyValue("--viz-width")).toBe("828px");
+    });
+
+    it("always has a legend, and leaves it out only where the use says legend=false", async () => {
+        const shown = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
+        await waitFor(() => expect(shown.container.querySelector(".svg-bar-chart-legend")).not.toBeNull());
+        shown.unmount();
+        const hidden = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-legend="false"/>));
+        await waitFor(() => expect(hidden.container.querySelector(".muncher-viz--bar")).not.toBeNull());
+        expect(hidden.container.querySelector(".svg-bar-chart-legend")).toBeNull();
     });
 
     it("fetches an address once however many times it is shown, and again after it is forgotten", async () => {
@@ -112,5 +120,17 @@ describe("a stored note with a visualization in it", () => {
         const {container} = render(withClient(<RenderedNoteContent xhtml='<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab"></div></article>'/>));
         expect(await screen.findByText("From the leasing system")).toBeInTheDocument();
         expect(container.querySelectorAll(".muncher-viz--bar")).toHaveLength(1);
+    });
+
+    it("keeps this use's caption when the hydration runs twice, as React does in development", async () => {
+        const xhtml = '<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab" data-viz-static="true"><span data-link-text="">Twice over</span></div></article>';
+        render(withClient(<StrictMode><RenderedNoteContent xhtml={xhtml}/></StrictMode>));
+        expect(await screen.findByText("Twice over")).toBeInTheDocument();
+    });
+
+    it("takes the legend choice of this use from the marker in a stored note", async () => {
+        const {container} = render(withClient(<RenderedNoteContent xhtml='<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab" data-viz-legend="false"></div></article>'/>));
+        await waitFor(() => expect(container.querySelector(".muncher-viz--bar")).not.toBeNull());
+        expect(container.querySelector(".svg-bar-chart-legend")).toBeNull();
     });
 });

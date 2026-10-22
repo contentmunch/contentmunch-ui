@@ -7,7 +7,7 @@ export interface StoredVisualization {
     caption?: string | null;
     summary: string;
     data: { shape: "dataset.v1"; tables: { main: { columns: Column[]; rows: Row[] } } };
-    options?: { legend?: boolean; period?: string };
+    options?: { period?: string };
 }
 
 /**

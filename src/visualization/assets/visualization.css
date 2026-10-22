@@ -23,6 +23,38 @@
     font-family: var(--viz-font);
 }
 
+/* a chart keeps its own spacing wherever it sits: a note's line height and list margins stop at the figure's edge */
+.muncher-viz {
+    line-height: 1.3;
+}
+
+.muncher-viz ul,
+.muncher-viz li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.muncher-viz p {
+    margin: 0;
+}
+
+/* the donut's middle scales with its size, and its label stays on one line */
+.muncher-viz--donut .muncher-donut-chart-center {
+    padding: 0 calc(1.6rem * var(--viz-factor, 1));
+}
+
+.muncher-viz--donut .muncher-donut-chart-center-label {
+    white-space: nowrap;
+    font-size: calc(.7rem * var(--viz-factor, 1));
+    letter-spacing: .02em;
+    margin-bottom: calc(.25rem * var(--viz-factor, 1));
+}
+
+.muncher-viz--donut .muncher-donut-chart-center-value {
+    font-size: calc(1.1rem * var(--viz-factor, 1));
+}
+
 /* one size rule: the preset sets the ring's diameter and the bar chart's width */
 .muncher-viz--pie .muncher-pie-chart .svg-pie-chart {
     width: var(--viz-diameter);
