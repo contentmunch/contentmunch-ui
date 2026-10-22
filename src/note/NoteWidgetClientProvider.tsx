@@ -2,6 +2,7 @@ import * as React from "react";
 import {createContext, useContext} from "react";
 import type {PollWidgetClient} from "../poll/PollWidgetClient.ts";
 import type {FormWidgetClient} from "../form/FormWidgetClient.ts";
+import type {VisualizationWidgetClient} from "../visualization/VisualizationWidgetClient.ts";
 
 // One place a consuming app wires up how PollRenderer/FormRenderer (and any
 // future embedded-widget renderer -- rating, etc.) talk to a backend. This
@@ -13,14 +14,15 @@ import type {FormWidgetClient} from "../form/FormWidgetClient.ts";
 interface NoteWidgetClients {
     poll?: PollWidgetClient;
     form?: FormWidgetClient;
+    visualization?: VisualizationWidgetClient;
 }
 
 const NoteWidgetClientContext = createContext<NoteWidgetClients>({});
 
 export const NoteWidgetClientProvider: React.FC<React.PropsWithChildren<NoteWidgetClients>> = (
-    {poll, form, children}
+    {poll, form, visualization, children}
 ) => (
-    <NoteWidgetClientContext.Provider value={{poll, form}}>
+    <NoteWidgetClientContext.Provider value={{poll, form, visualization}}>
         {children}
     </NoteWidgetClientContext.Provider>
 );
@@ -43,4 +45,14 @@ export const useFormWidgetClient = (): FormWidgetClient => {
         );
     }
     return form;
+};
+
+export const useVisualizationWidgetClient = (): VisualizationWidgetClient => {
+    const {visualization} = useContext(NoteWidgetClientContext);
+    if (!visualization) {
+        throw new Error(
+            "VisualizationEmbed requires a NoteWidgetClientProvider with a `visualization` client wrapping it."
+        );
+    }
+    return visualization;
 };

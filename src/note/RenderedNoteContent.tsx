@@ -5,6 +5,7 @@ import "./assets/note-content.css";
 import {ImageLightbox} from "./ImageLightbox";
 import {useMediaImageLightbox} from "./useMediaImageLightbox";
 import {PollRenderer} from "../poll/PollRenderer.tsx";
+import {VisualizationEmbed} from "../visualization/VisualizationEmbed.tsx";
 import {FormRenderer} from "../form/FormRenderer.tsx";
 import {StepsRenderer} from "../steps/StepsRenderer.tsx";
 import {CopyButton} from "../button/CopyButton.tsx";
@@ -73,6 +74,19 @@ export const defaultInteractiveRegions: InteractiveRegion[] = [
         render: (node) => <PollRenderer data-poll-nid={node.getAttribute("data-poll-nid") ?? undefined}/>,
     },
     {
+        selector: "[data-viz-nid]",
+        // a stored note carries the caption of this use as the marker's text, a rendered preview as an attribute
+        capture: (node) => node.querySelector("[data-link-text]")?.textContent ?? node.getAttribute("data-viz-text") ?? undefined,
+        render: (node, captured) => (
+            <VisualizationEmbed
+                data-viz-nid={node.getAttribute("data-viz-nid") ?? undefined}
+                data-viz-size={node.getAttribute("data-viz-size") ?? undefined}
+                data-viz-static={node.getAttribute("data-viz-static") ?? undefined}
+                data-viz-text={typeof captured === "string" ? captured : undefined}
+            />
+        ),
+    },
+    {
         selector: "[data-form-nid]",
         render: (node) => <FormRenderer data-form-nid={node.getAttribute("data-form-nid") ?? undefined}/>,
     },
@@ -111,10 +125,12 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
             return;
         }
 
-        const next: HydratedRegion[] = interactiveRegions.flatMap(({selector, render}) =>
+        const next: HydratedRegion[] = interactiveRegions.flatMap(({selector, render, capture}) =>
             findTopLevelMatches(root, selector).map((node, index) => {
+                // read what the marker carries (its text, say) before the marker is emptied for the live content
+                const captured = capture?.(node);
                 node.innerHTML = "";
-                return {key: `${selector}-${index}`, node, render};
+                return {key: `${selector}-${index}`, node, render: (n: HTMLElement) => render(n, captured)};
             })
         );
         setHydrated(next);
@@ -165,8 +181,10 @@ export const RenderedNoteContent: React.FC<RenderedNoteContentProps> = (
 export interface InteractiveRegion {
     /** CSS selector identifying the static marker to hydrate, e.g. "[data-poll-nid]". */
     selector: string;
-    /** Given the matched DOM node, return the live content to portal into it. */
-    render: (node: HTMLElement) => React.ReactNode;
+    /** Given the matched DOM node (and what `capture` read from it), return the live content to portal into it. */
+    render: (node: HTMLElement, captured?: unknown) => React.ReactNode;
+    /** Reads what the static marker carries before it is emptied, for `render`: its text, a caption. */
+    capture?: (node: HTMLElement) => unknown;
 }
 
 export interface RenderedNoteContentProps {

@@ -69,7 +69,10 @@ export {RecipeCard} from "./note/RecipeCard.tsx";
 export type {RecipeCardData, RecipeCardIngredient, RecipeCardInstruction, RecipeCardNote} from "./note/RecipeCard.tsx";
 export {FestivalSectionCard} from "./note/FestivalSectionCard.tsx";
 export type {FestivalSection, FestivalSectionCardData, FestivalSectionCardNote, FestivalSectionCardProps} from "./note/FestivalSectionCard.tsx";
-export {NoteWidgetClientProvider, usePollWidgetClient, useFormWidgetClient} from "./note/NoteWidgetClientProvider.tsx";
+export {NoteWidgetClientProvider, usePollWidgetClient, useFormWidgetClient, useVisualizationWidgetClient} from "./note/NoteWidgetClientProvider.tsx";
+export {VisualizationEmbed, VisualizationDirectiveError, forgetVisualization, datasetOf} from "./visualization/VisualizationEmbed.tsx";
+export type {VisualizationEmbedProps} from "./visualization/VisualizationEmbed.tsx";
+export type {VisualizationWidgetClient, StoredVisualization} from "./visualization/VisualizationWidgetClient.ts";
 
 export {ImageLightbox} from "./note/ImageLightbox.tsx";
 export {useMediaImageLightbox} from "./note/useMediaImageLightbox.ts";

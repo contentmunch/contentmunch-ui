@@ -1,0 +1,18 @@
+.viz-embed {
+    margin: 1rem 0;
+}
+
+.viz-embed-loading {
+    color: var(--muted-color, #6b7280);
+}
+
+.viz-embed-caption {
+    margin: .5rem 0 0;
+    font-size: .85rem;
+    color: var(--muted-color, #6b7280);
+}
+
+.viz-embed-error {
+    color: var(--danger-color, #a52a2a);
+    font-size: .85rem;
+}

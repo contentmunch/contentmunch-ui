@@ -67,6 +67,7 @@
 @import './visualization/plots/assets/stacked-bar-chart.css';
 @import './visualization/plots/assets/donut-chart.css';
 @import './visualization/assets/visualization.css';
+@import './visualization/assets/visualization-embed.css';
 
 
 html {
