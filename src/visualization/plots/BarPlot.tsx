@@ -2,6 +2,7 @@ import React, {type RefObject, useCallback, useEffect} from "react";
 import * as d3 from "d3";
 import "./assets/stacked-bar-chart.css";
 import type {FieldValue, StackedBarChartData} from "./data/StackedBarChartData";
+import {BAR_VIEWBOX_WIDTH, barLeftMargin} from "./barLayout.ts";
 
 export const BarPlot: React.FC<BarChartProps> = (
     {data, comparisonData, colorRange, toPercentage, withLegend, showOnlyValues, axisMax}) => {
@@ -62,8 +63,8 @@ export const BarPlot: React.FC<BarChartProps> = (
         if (barData && barData.values && barData.values.length > 0) {
             const barHeight = comparisonData ? 20 : 30;
             const siblingGap = 3;
-            const margin = {top: 0, right: 10, bottom: 40, left: comparisonData ? 150 : 110};
-            const viewBoxWidth = 580;
+            const margin = {top: 0, right: 10, bottom: 40, left: barLeftMargin(comparisonData !== undefined)};
+            const viewBoxWidth = BAR_VIEWBOX_WIDTH;
             const viewBox = `0 0 ${viewBoxWidth} ${barData.values.length * (barHeight) + 20}`;
 
             const height = barData.values.length * barHeight;

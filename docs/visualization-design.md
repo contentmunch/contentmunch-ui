@@ -211,6 +211,7 @@ Bars fill the width they are given, up to that.
 ## 9. Rendering
 
 - A pure adapter turns the dataset into what each drawing takes: `radialModel` for pie and donut, `barPlotInput` for bars. They are tested on their own.
+- Where the legend sits: a pie's or donut's legend goes beside the ring and wraps underneath only when there is no room for both (no container query, so it holds in a note, a panel or Storybook). Line and bar share one legend, a wrapping row of swatches above the plot (the bar's own tiny SVG legend is no longer used).
 - The pie and donut take a legend by default. `legend={false}` leaves it out, for a page that already lists the same parts beside the chart (Balance).
 - Bars take no selection; the drawing has never had one.
 - A bar chart compares at most two groups (a second category, or two periods), as the drawing has always done. With more periods it shows one, chosen by `period`.

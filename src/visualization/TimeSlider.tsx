@@ -1,10 +1,12 @@
 import * as React from "react";
 import {useEffect, useMemo, useState} from "react";
-import type {Dataset} from "./dataset/Dataset.ts";
+import type {CSSProperties} from "react";
+import type {Dataset, VisualizationSize} from "./dataset/Dataset.ts";
 import {canonicalPeriod, formatPeriod, periodsOf, shapeOf} from "./dataset/derive.ts";
 import {Button} from "../button/Button.tsx";
 import {Icon} from "../icon/Icon.tsx";
 import {Slider} from "../slider/Slider.tsx";
+import {barWidthOf} from "./parts/sizes.ts";
 import "./assets/visualization.css";
 
 export interface TimeSliderProps {
@@ -14,13 +16,19 @@ export interface TimeSliderProps {
     onPeriod(period: string): void;
     /** How long each period stays on screen while playing. Default 1200. */
     intervalMs?: number;
+    /**
+     * Lines up with what it drives. `center` sits in the middle, over a pie or donut; `start` (the default) sits at the left, over bars
+     * or a line. Give the chart's `size` and the slider is as wide as that chart.
+     */
+    align?: "start" | "center";
+    size?: VisualizationSize;
 }
 
 /**
  * Steps through the periods of a dataset: play and pause, back and forward, and a slider. It only reports the period; the chart is
  * given it as `period`. It plays through the periods that have data, once, and stops at the last.
  */
-export const TimeSlider: React.FC<TimeSliderProps> = ({ data, period, onPeriod, intervalMs = 1200 }) => {
+export const TimeSlider: React.FC<TimeSliderProps> = ({ data, period, onPeriod, intervalMs = 1200, align = "start", size }) => {
     const periods = useMemo(() => periodsOf(data), [data]);
     const grain = shapeOf(data).time?.grain ?? "month";
     const asked = period ? canonicalPeriod(period, grain) : null;
@@ -49,7 +57,15 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({ data, period, onPeriod, 
     };
 
     return (
-        <div className="muncher-time-slider" role="group" aria-label="Time">
+        <div className={`muncher-time-slider muncher-time-slider--${align}`} role="group" aria-label="Time"
+             style={size ? ({ "--viz-width": `${barWidthOf(size)}px` } as CSSProperties) : undefined}>
+            <Slider
+                min={0}
+                max={last}
+                value={index}
+                setValue={(i) => { setPlaying(false); go(i); }}
+                numberFormatter={(i) => formatPeriod(periods[Math.round(i)] ?? periods[last], grain)}
+            />
             <div className="muncher-time-slider-controls">
                 <Button variant="transparent" title="First period" aria-label="First period" disabled={index === 0} onClick={() => { setPlaying(false); go(0); }}>
                     <Icon name="skip-back"/>
@@ -61,13 +77,6 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({ data, period, onPeriod, 
                     <Icon name="skip-forward"/>
                 </Button>
             </div>
-            <Slider
-                min={0}
-                max={last}
-                value={index}
-                setValue={(i) => { setPlaying(false); go(i); }}
-                numberFormatter={(i) => formatPeriod(periods[Math.round(i)] ?? periods[last], grain)}
-            />
         </div>
     );
 };

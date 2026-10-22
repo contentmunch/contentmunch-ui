@@ -80,9 +80,10 @@ export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => 
     }
 
     const caption = isStatic ? staticText : stored.caption;
+    const legend = props["data-viz-legend"] !== "false";
     return (
-        <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} className={`viz-embed viz-embed--${size}`}>
-            <Visualization kind={stored.kind as Kind} data={datasetOf(stored)} size={size} legend={props["data-viz-legend"] !== "false"} period={stored.options?.period ?? null}/>
+        <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} data-viz-legend={legend ? undefined : "false"} className={`viz-embed viz-embed--${size}`}>
+            <Visualization kind={stored.kind as Kind} data={datasetOf(stored)} size={size} legend={legend} period={stored.options?.period ?? null}/>
             {caption && <p className="viz-embed-caption"><span data-link-text>{caption}</span></p>}
         </div>
     );

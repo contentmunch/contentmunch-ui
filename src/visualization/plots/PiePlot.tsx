@@ -67,7 +67,7 @@ export const PiePlot: React.FC<PieChartProps> = (
                 .classed("value", true)
                 .text((d) => "(" + formatNumber(d.data.value, d.index) + ")"));
         if (withLegend) {
-            const legend = d3.select(legendRef.current).attr("viewBox", "0 0 70 100");
+            const legend = d3.select(legendRef.current).attr("viewBox", `0 0 70 ${pieData.length * 10 + 16}`);
             legend.selectAll("g").remove();
             legend.selectAll("text").remove();
             legend.append("text").text(legendTitle ? legendTitle : "Legend")

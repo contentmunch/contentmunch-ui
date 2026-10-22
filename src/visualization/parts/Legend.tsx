@@ -9,8 +9,9 @@ export interface LegendItem {
 }
 
 /** The legend the donut has always had: a small title, then a swatch and a name for each series. */
-export const Legend: React.FC<{ title?: string; items: LegendItem[] }> = ({ title, items }) => (
-    <ul className="muncher-viz-legend">
+/** `inset` (0 to 1) is how far in from the left the plot starts, so the legend lines up with its axis. */
+export const Legend: React.FC<{ title?: string; items: LegendItem[]; inset?: number }> = ({ title, items, inset }) => (
+    <ul className="muncher-viz-legend" style={inset ? { paddingLeft: `${(inset * 100).toFixed(2)}%` } : undefined}>
         {title && <li className="muncher-viz-legend-title">{title}</li>}
         {items.map((item) => (
             <li key={item.key} className="muncher-viz-legend-item">

@@ -21,6 +21,15 @@ beforeEach(() => vi.useFakeTimers());
 afterEach(() => vi.useRealTimers());
 
 describe("TimeSlider", () => {
+    it("lines up with the chart it drives: left by default, centred over a pie or donut, as wide as a bar or line of its size", () => {
+        const noop = () => undefined;
+        const left = render(<TimeSlider data={monthlyRevenue} onPeriod={noop}/>).container.firstElementChild as HTMLElement;
+        expect(left).toHaveClass("muncher-time-slider--start");
+        const middle = render(<TimeSlider data={monthlyRevenue} onPeriod={noop} align="center" size="large"/>).container.querySelector(".muncher-time-slider--center") as HTMLElement;
+        expect(middle).not.toBeNull();
+        expect(middle.style.getPropertyValue("--viz-width")).toBe("828px");
+    });
+
     it("shows the period it is at, and the first and the last", () => {
         const { container } = render(<Harness start="2026-06"/>);
         expect(container.querySelector(".slider-header")).toHaveTextContent("June 2026");

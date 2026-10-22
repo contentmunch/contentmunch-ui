@@ -96,7 +96,7 @@ export const LineChart: React.FC<LineChartProps> = ({ data, size = "medium", leg
                             })}
                         </svg>
                         {legend && model.series.length > 1 && (
-                            <Legend title={model.seriesLabel || undefined} items={model.series.map((s) => ({ key: s.name, label: s.name, color: s.color }))}/>
+                            <Legend inset={left / WIDTH} title={model.seriesLabel || undefined} items={model.series.map((s) => ({ key: s.name, label: s.name, color: s.color }))}/>
                         )}
                     </div>
                 );

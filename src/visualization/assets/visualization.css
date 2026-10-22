@@ -16,10 +16,9 @@
     font-family: var(--viz-font);
 }
 
-/* the bar chart used to set its axis, labels and legend in the serif; they join the others */
+/* the bar chart used to set its axis and labels in the serif; they join the others */
 .muncher-viz .muncher-bar-chart .svg-bar-chart .tick text,
-.muncher-viz .muncher-bar-chart .svg-bar-chart .bar-text,
-.muncher-viz .muncher-bar-chart .svg-bar-chart-legend text {
+.muncher-viz .muncher-bar-chart .svg-bar-chart .bar-text {
     font-family: var(--viz-font);
 }
 
@@ -37,6 +36,37 @@
 
 .muncher-viz p {
     margin: 0;
+}
+
+/* the legend sits beside the ring and drops underneath only when the space is too narrow for both */
+.muncher-viz--donut .muncher-donut-chart {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem 2rem;
+}
+
+.muncher-viz--donut .muncher-donut-chart-graphic {
+    margin: 0;
+}
+
+.muncher-viz--donut .muncher-donut-chart-legend {
+    width: auto;
+}
+
+/* the pie's legend sits beside it as the donut's does, on a phone too, and is as tall as its entries */
+.muncher-viz--pie .muncher-pie-chart {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem 2rem;
+}
+
+.muncher-viz--pie .muncher-pie-chart .svg-pie-chart-legend {
+    display: block;
+    width: 12rem;
+    height: auto;
 }
 
 /* the donut's middle scales with its size, and its label stays on one line */
@@ -126,22 +156,27 @@
     fill: var(--viz-ink);
 }
 
-/* the legend as the donut has it */
-.muncher-viz-legend {
-    list-style: none;
-    margin: .75rem 0 0;
-    padding: 0;
-    max-width: 220px;
+/* the legend of a line sits above the plot as one wrapping row, so it reads as part of the chart rather than a list under it */
+.muncher-line-chart {
     display: flex;
     flex-direction: column;
-    gap: .35rem;
+}
+
+.muncher-viz-legend {
+    order: -1;
+    list-style: none;
+    margin: 0 0 .5rem;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: .25rem 1rem;
     color: var(--viz-ink);
 }
 
 .muncher-viz-legend-title {
     font-size: .75rem;
     font-weight: 600;
-    margin-bottom: .15rem;
 }
 
 .muncher-viz-legend-item {
@@ -210,22 +245,31 @@
     opacity: 1;
 }
 
-/* the time slider: the library's slider, with play controls beside it */
+/* the time slider: the library's slider, with play controls under it */
 .muncher-time-slider {
     display: flex;
-    align-items: center;
-    gap: .75rem;
+    flex-direction: column;
     margin-bottom: 1rem;
-    max-width: 36rem;
+    max-width: var(--viz-width, 36rem);
 }
 
+/* over a pie or donut, which sit in the middle */
+.muncher-time-slider--center {
+    margin-inline: auto;
+    max-width: min(36rem, var(--viz-width, 36rem));
+}
+
+/* the slider takes the chart's width; the buttons sit centred under it */
 .muncher-time-slider-controls {
     display: flex;
+    justify-content: center;
     gap: .25rem;
-    flex-shrink: 0;
+    /* the slider's box ends below its labels; pull the buttons up to about the distance the labels are from the track */
+    margin-top: -.9rem;
 }
 
 .muncher-time-slider .muncher-slider {
-    flex: 1;
+    width: 100%;
     min-width: 0;
+    margin: 0;
 }

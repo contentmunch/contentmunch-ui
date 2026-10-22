@@ -9,7 +9,7 @@ describe("BarChart", () => {
     it("draws a segment per measure in each bar, with the legend of the measures", () => {
         const { container } = render(<BarChart data={leasesByProperty}/>);
         expect(bars(container)).toHaveLength(5 * 4);
-        expect(container.querySelector(".svg-bar-chart-legend")).toHaveTextContent("Renewal");
+        expect(container.querySelector(".muncher-viz-legend")).toHaveTextContent("Renewal");
     });
 
     it("colors each measure from the palette in order", () => {

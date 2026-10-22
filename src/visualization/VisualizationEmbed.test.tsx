@@ -60,11 +60,14 @@ describe("VisualizationEmbed", () => {
 
     it("always has a legend, and leaves it out only where the use says legend=false", async () => {
         const shown = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
-        await waitFor(() => expect(shown.container.querySelector(".svg-bar-chart-legend")).not.toBeNull());
+        await waitFor(() => expect(shown.container.querySelector(".muncher-viz-legend")).not.toBeNull());
         shown.unmount();
         const hidden = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-legend="false"/>));
         await waitFor(() => expect(hidden.container.querySelector(".muncher-viz--bar")).not.toBeNull());
-        expect(hidden.container.querySelector(".svg-bar-chart-legend")).toBeNull();
+        expect(hidden.container.querySelector(".muncher-viz-legend")).toBeNull();
+        // the wrapper keeps the choice, so an editor snapshot of it (what a note stores) still says legend=false
+        expect(hidden.container.querySelector("[data-viz-nid]")?.getAttribute("data-viz-legend")).toBe("false");
+        expect(shown.container.querySelector("[data-viz-legend]")).toBeNull();
     });
 
     it("fetches an address once however many times it is shown, and again after it is forgotten", async () => {
@@ -131,6 +134,6 @@ describe("a stored note with a visualization in it", () => {
     it("takes the legend choice of this use from the marker in a stored note", async () => {
         const {container} = render(withClient(<RenderedNoteContent xhtml='<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab" data-viz-legend="false"></div></article>'/>));
         await waitFor(() => expect(container.querySelector(".muncher-viz--bar")).not.toBeNull());
-        expect(container.querySelector(".svg-bar-chart-legend")).toBeNull();
+        expect(container.querySelector(".muncher-viz-legend")).toBeNull();
     });
 });

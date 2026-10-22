@@ -8,7 +8,7 @@ import {LineChart} from "./LineChart.tsx";
 import {PieChart} from "./PieChart.tsx";
 import {TimeSlider} from "./TimeSlider.tsx";
 import {latestPeriod} from "./dataset/derive.ts";
-import type {Dataset} from "./dataset/Dataset.ts";
+import type {Dataset, VisualizationSize} from "./dataset/Dataset.ts";
 import {monthlyRevenue, regionalSales} from "./fixtures.ts";
 
 const meta: Meta = { title: "Visualization/Time slider", parameters: { layout: "padded" } };
@@ -16,22 +16,22 @@ export default meta;
 type Story = StoryObj;
 
 /** One slider and whatever it drives. The slider only reports the period; the charts are given it. */
-const Player = ({ data, children, start }: { data: Dataset; start?: string; children: (period: string) => React.ReactNode }) => {
+const Player = ({ data, children, start, align, size }: { data: Dataset; start?: string; align?: "start" | "center"; size?: VisualizationSize; children: (period: string) => React.ReactNode }) => {
     const [period, setPeriod] = useState<string>(start ?? latestPeriod(data) ?? "");
     return (
         <>
-            <TimeSlider data={data} period={period} onPeriod={setPeriod}/>
+            <TimeSlider data={data} period={period} onPeriod={setPeriod} align={align} size={size}/>
             {children(period)}
         </>
     );
 };
 
 /** Shares that change over time are what a pie or donut shows best: press play and watch the parts trade places. */
-export const Donut: Story = { render: () => <Player data={regionalSales} start="2026-01">{(p) => <DonutChart data={regionalSales} period={p}/>}</Player> };
-export const Pie: Story = { render: () => <Player data={regionalSales} start="2026-01">{(p) => <PieChart data={regionalSales} period={p}/>}</Player> };
+export const Donut: Story = { render: () => <Player data={regionalSales} start="2026-01" align="center">{(p) => <DonutChart data={regionalSales} period={p}/>}</Player> };
+export const Pie: Story = { render: () => <Player data={regionalSales} start="2026-01" align="center">{(p) => <PieChart data={regionalSales} period={p}/>}</Player> };
 
 /** The bars keep the same regions in the same places and the axis does not move, so a change in length is a change in value. */
-export const Bars: Story = { render: () => <Player data={regionalSales} start="2026-01">{(p) => <BarChart data={regionalSales} period={p} size="large"/>}</Player> };
+export const Bars: Story = { render: () => <Player data={regionalSales} start="2026-01" size="large">{(p) => <BarChart data={regionalSales} period={p} size="large"/>}</Player> };
 
 /** A KPI follows the slider: the value for the month, the change from the month before, and the history so far. */
 export const Kpi: Story = { render: () => <Player data={monthlyRevenue} start="2026-03">{(p) => <KpiChart data={monthlyRevenue} period={p}/>}</Player> };
@@ -59,7 +59,7 @@ export const FasterPlayback: Story = {
     render: () => {
         const Fast = () => {
             const [period, setPeriod] = useState("2026-01");
-            return (<><TimeSlider data={regionalSales} period={period} onPeriod={setPeriod} intervalMs={400}/><DonutChart data={regionalSales} period={period}/></>);
+            return (<><TimeSlider data={regionalSales} period={period} onPeriod={setPeriod} intervalMs={400} align="center"/><DonutChart data={regionalSales} period={period}/></>);
         };
         return <Fast/>;
     },
