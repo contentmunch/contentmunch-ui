@@ -19,6 +19,12 @@ describe("where the legend sits", () => {
         expect(viz).toMatch(/\.muncher-line-chart\s*{[^}]*flex-direction:\s*column/);
     });
 
+    it("makes a bar or line fill its container up to its size, even in a centred or flex one", () => {
+        const viz = css("visualization.css");
+        expect(viz).toMatch(/\.muncher-viz--bar\s*{[^}]*width:\s*100%;[^}]*max-width:\s*var\(--viz-width\)/);
+        expect(viz).toMatch(/\.muncher-viz--line\s*{[^}]*width:\s*100%;[^}]*max-width:\s*var\(--viz-width\)/);
+    });
+
     it("keeps the time slider's buttons right under its track, not a margin away", () => {
         expect(css("visualization.css")).toMatch(/\.muncher-time-slider \.muncher-slider\s*{[^}]*margin:\s*0/);
     });

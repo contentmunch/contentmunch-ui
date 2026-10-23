@@ -91,7 +91,9 @@
     height: var(--viz-diameter);
 }
 
+/* as wide as the container allows, up to the size's width; without the width a figure in a centred or flex container shrinks to the drawing's default 300px */
 .muncher-viz--bar {
+    width: 100%;
     max-width: var(--viz-width);
 }
 
@@ -126,7 +128,9 @@
     max-width: var(--viz-width);
 }
 
+/* as wide as the container allows, up to the size's width; without the width a figure in a centred or flex container shrinks to the drawing's default 300px */
 .muncher-viz--line {
+    width: 100%;
     max-width: var(--viz-width);
 }
 
