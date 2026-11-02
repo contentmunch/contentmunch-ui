@@ -1,4 +1,4 @@
-import {describe, expect, it} from 'vitest';
+import {beforeEach, describe, expect, it} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {StepsRenderer, StepsDirectiveError} from './StepsRenderer';
@@ -132,5 +132,35 @@ describe('StepsDirectiveError', () => {
         render(<StepsDirectiveError/>);
 
         expect(screen.getByText(/Invalid :::steps directive/)).toBeInTheDocument();
+    });
+});
+
+describe('StepsRenderer memory', () => {
+    beforeEach(() => window.localStorage.clear());
+
+    it('keeps a tick across a reload of the page', async () => {
+        const raw = JSON.stringify(flatSteps);
+        const first = render(<StepsRenderer data-steps={raw}/>);
+        await userEvent.click(screen.getAllByRole('checkbox')[1]);
+        first.unmount();
+
+        render(<StepsRenderer data-steps={raw}/>);
+
+        const boxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
+        expect(boxes.map((b) => b.checked)).toEqual([false, true, false]);
+    });
+
+    it('forgets the tick when it is unticked, and does not share ticks with another list', async () => {
+        const raw = JSON.stringify(flatSteps);
+        const first = render(<StepsRenderer data-steps={raw}/>);
+        await userEvent.click(screen.getAllByRole('checkbox')[0]);
+        await userEvent.click(screen.getAllByRole('checkbox')[0]);
+        expect(window.localStorage.length).toBe(0);
+        await userEvent.click(screen.getAllByRole('checkbox')[0]);
+        first.unmount();
+
+        render(<StepsRenderer data-steps={JSON.stringify(['Something else'])}/>);
+
+        expect((screen.getByRole('checkbox') as HTMLInputElement).checked).toBe(false);
     });
 });

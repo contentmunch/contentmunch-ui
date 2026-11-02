@@ -38,16 +38,50 @@ const normalizeItems = (raw: unknown): StepNode[] =>
 // own numbering restarting from 1. Checked state is local UI state only,
 // keyed by dotted path ("0", "0.1", "1.2.0", ...) so nested items never
 // collide with siblings at other depths -- same as RecipeCard's crossable
-// items, nothing is persisted, so reloading resets every box. Shared across
+// items. Ticks are remembered in this browser (see memoryKey), never saved to the note, so the list itself never needs to be rewritten.
+// Shared across
 // every consumer of RenderedNoteContent (contentmunch-notes-ui's own live
 // preview, plus foodopean-ui/tithi-ui rendering a note's static xhtml) --
 // see defaultInteractiveRegions in RenderedNoteContent.tsx, which hydrates
 // any `[data-steps]` marker in server-rendered content with this component,
 // same mechanism as poll/form.
+// Ticks are remembered in this browser (localStorage), per page and per list: the key is the page's path plus a hash of the list's own
+// content, so two lists on one page never share ticks and an edited list starts fresh rather than showing ticks against the wrong
+// steps. Storage can be missing or full (private windows, blocked site data); then the ticks last until the page is closed, as before.
+const hashOf = (text: string) => {
+    let hash = 5381;
+    for (let i = 0; i < text.length; i++) hash = ((hash << 5) + hash + text.charCodeAt(i)) | 0;
+    return (hash >>> 0).toString(36);
+};
+
+const memoryKey = (raw: string | undefined) =>
+    raw ? `muncher-steps:${window.location.pathname}:${hashOf(raw)}` : undefined;
+
+const remembered = (key: string | undefined): Set<string> => {
+    if (!key) return new Set();
+    try {
+        const stored = JSON.parse(window.localStorage.getItem(key) ?? "[]");
+        return new Set(Array.isArray(stored) ? stored.filter((path): path is string => typeof path === "string") : []);
+    } catch {
+        return new Set();
+    }
+};
+
+const remember = (key: string | undefined, checked: Set<string>) => {
+    if (!key) return;
+    try {
+        if (checked.size === 0) window.localStorage.removeItem(key);
+        else window.localStorage.setItem(key, JSON.stringify([...checked]));
+    } catch {
+        // nowhere to keep it: the ticks still work for this visit
+    }
+};
+
 export const StepsRenderer: React.FC<StepsRendererProps> = (props) => {
     const raw = props["data-steps"];
     const ordered = props["data-steps-ordered"] === "true";
-    const [checked, setChecked] = useState<Set<string>>(new Set());
+    const key = memoryKey(raw);
+    const [checked, setChecked] = useState<Set<string>>(() => remembered(key));
 
     let items: StepNode[] = [];
     try {
@@ -60,6 +94,7 @@ export const StepsRenderer: React.FC<StepsRendererProps> = (props) => {
         setChecked((prev) => {
             const next = new Set(prev);
             if (next.has(path)) next.delete(path); else next.add(path);
+            remember(key, next);
             return next;
         });
     };
