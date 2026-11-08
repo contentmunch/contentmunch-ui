@@ -1,6 +1,7 @@
 import {StrictMode} from "react";
 import {beforeEach, describe, expect, it, vi} from "vitest";
 import {render, screen, waitFor} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {NoteWidgetClientProvider} from "../note/NoteWidgetClientProvider.tsx";
 import {RenderedNoteContent} from "../note/RenderedNoteContent.tsx";
 import {forgetVisualization, VisualizationDirectiveError, VisualizationEmbed} from "./VisualizationEmbed.tsx";
@@ -164,5 +165,93 @@ describe("a stored note with a visualization in it", () => {
     it("takes the kind of this use from the marker in a stored note", async () => {
         const {container} = render(withClient(<RenderedNoteContent xhtml='<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab" data-viz-kind="table"></div></article>'/>));
         await waitFor(() => expect(container.querySelector(".muncher-viz--table")).not.toBeNull());
+    });
+
+    describe("picking a part of a donut", () => {
+        const donut = () => stored({
+            kind: "donut",
+            data: {
+                shape: "dataset.v1",
+                tables: {main: {columns: [{name: "part", role: "category"}, {name: "MB", role: "measure", unit: "count"}], rows: [{part: "Rent", MB: 60}, {part: "Food", MB: 40}]}},
+            },
+        });
+        const middle = (container: HTMLElement) => container.querySelector(".muncher-donut-chart-center-label")?.textContent;
+
+        it("shows the part a reader clicks in the middle, and the total again when it is clicked again", async () => {
+            getVisualization.mockResolvedValue(donut());
+            const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
+            await waitFor(() => expect(container.querySelector(".muncher-donut-slice")).not.toBeNull());
+            const before = middle(container);
+
+            await userEvent.click(container.querySelectorAll(".muncher-donut-slice")[1]);
+            expect(middle(container)).toBe("Food");
+
+            await userEvent.click(container.querySelectorAll(".muncher-donut-slice")[1]);
+            expect(middle(container)).toBe(before);
+        });
+
+        it("picks the same part from its legend entry", async () => {
+            getVisualization.mockResolvedValue(donut());
+            const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
+            await waitFor(() => expect(container.querySelector(".muncher-donut-chart-legend-item")).not.toBeNull());
+
+            await userEvent.click(container.querySelectorAll(".muncher-donut-chart-legend-item")[0]);
+
+            expect(middle(container)).toBe("Rent");
+            expect(container.querySelector(".muncher-donut-chart-legend-item.is-selected")).not.toBeNull();
+        });
+
+        it("keeps the pick to this chart: another chart of the same data is not affected, and nothing is stored", async () => {
+            getVisualization.mockResolvedValue(donut());
+            const {container} = render(withClient(<><VisualizationEmbed data-viz-nid="vz/vzab"/><VisualizationEmbed data-viz-nid="vz/vzab"/></>));
+            await waitFor(() => expect(container.querySelectorAll(".muncher-donut-slice")).toHaveLength(4));
+            const setItem = vi.spyOn(Storage.prototype, "setItem");
+
+            await userEvent.click(container.querySelectorAll(".muncher-donut-slice")[0]);
+
+            const labels = [...container.querySelectorAll(".muncher-donut-chart-center-label")].map(e => e.textContent);
+            expect(labels[0]).toBe("Rent");
+            expect(labels[1]).not.toBe("Rent");
+            expect(setItem).not.toHaveBeenCalled();
+            setItem.mockRestore();
+        });
+    });
+
+    describe("picking a part of a pie", () => {
+        const pie = () => stored({
+            kind: "pie",
+            data: {
+                shape: "dataset.v1",
+                tables: {main: {columns: [{name: "part", role: "category"}, {name: "MB", role: "measure", unit: "count"}], rows: [{part: "Rent", MB: 60}, {part: "Food", MB: 40}]}},
+            },
+        });
+
+        it("marks the slice a reader clicks, and the same part in the legend, and clears it when clicked again", async () => {
+            getVisualization.mockResolvedValue(pie());
+            const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
+            await waitFor(() => expect(container.querySelectorAll(".svg-pie-chart path")).toHaveLength(2));
+
+            await userEvent.click(container.querySelectorAll(".svg-pie-chart path")[1]);
+            await waitFor(() => expect(container.querySelectorAll(".svg-pie-chart path")[1].classList.contains("selected")).toBe(true));
+            expect(container.querySelectorAll(".svg-pie-chart path")[0].classList.contains("selected")).toBe(false);
+            expect(container.querySelectorAll(".legend-text--selected")).toHaveLength(1);
+            expect(container.querySelector(".legend-text--selected")?.textContent).toContain("Food");
+
+            await userEvent.click(container.querySelectorAll(".svg-pie-chart path")[1]);
+            await waitFor(() => expect(container.querySelectorAll(".legend-text--selected")).toHaveLength(0));
+        });
+
+        it("picks the part from its legend entry, by its swatch or its words", async () => {
+            getVisualization.mockResolvedValue(pie());
+            const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab"/>));
+            await waitFor(() => expect(container.querySelectorAll(".legend-text")).toHaveLength(2));
+
+            await userEvent.click(container.querySelectorAll(".legend-text")[0]);
+            await waitFor(() => expect(container.querySelector(".legend-text--selected")?.textContent).toContain("Rent"));
+
+            await userEvent.click(container.querySelectorAll(".legend-rect")[1]);
+            await waitFor(() => expect(container.querySelector(".legend-text--selected")?.textContent).toContain("Food"));
+            expect(container.querySelectorAll(".legend-text--selected")).toHaveLength(1);
+        });
     });
 });

@@ -61,12 +61,15 @@ export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => 
 
     const [stored, setStored] = useState<StoredVisualization | null>(null);
     const [error, setError] = useState<string | null>(null);
+    // The part of a pie or donut a reader clicked. It lives only in this page, for as long as the chart is on it: nothing is stored or sent.
+    const [selected, setSelected] = useState<string | null>(null);
 
     useEffect(() => {
         if (!nid) return;
         let cancelled = false;
         setStored(null);
         setError(null);
+        setSelected(null);
         fetchVisualization(nid, getVisualization)
             .then((found) => !cancelled && setStored(found))
             .catch(() => !cancelled && setError(`Could not find the visualization "${nid}"`));
@@ -99,7 +102,8 @@ export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => 
     const legend = props["data-viz-legend"] !== "false";
     return (
         <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} data-viz-legend={legend ? undefined : "false"} data-viz-kind={asked} className={`viz-embed viz-embed--${size}`}>
-            <Visualization kind={kind} data={data} size={size} legend={legend} period={stored.options?.period ?? null}/>
+            <Visualization kind={kind} data={data} size={size} legend={legend} period={stored.options?.period ?? null}
+                           selected={selected} onSelect={setSelected}/>
             {caption && <p className="viz-embed-caption"><span data-link-text>{caption}</span></p>}
         </div>
     );

@@ -5,7 +5,7 @@ import type {FieldValue, StackedBarChartData} from "./data/StackedBarChartData";
 import {BAR_VIEWBOX_WIDTH, barLeftMargin} from "./barLayout.ts";
 
 export const BarPlot: React.FC<BarChartProps> = (
-    {data, comparisonData, colorRange, toPercentage, withLegend, showOnlyValues, axisMax}) => {
+    {data, comparisonData, colorRange, toPercentage, withLegend, showOnlyValues, axisMax, focus}) => {
     const svgRef: RefObject<SVGSVGElement | null> = React.createRef();
     const legendRef: RefObject<SVGSVGElement | null> = React.createRef();
     const draw = useCallback(() => {
@@ -124,6 +124,7 @@ export const BarPlot: React.FC<BarChartProps> = (
                 .selectAll("g")
                 .data(stackData(barData.values))
                 .join("g")
+                .attr("data-series", d => d.key)
                 .attr("fill-opacity", 0.9);
 
             const fill = g.attr("fill", d => z(d.key) as string);
@@ -222,6 +223,11 @@ export const BarPlot: React.FC<BarChartProps> = (
     useEffect(() => {
         draw();
     }, [draw]);
+    // the series shown alone keeps its colour and the others fade; redrawn bars start from full again, so this follows the drawing
+    useEffect(() => {
+        d3.select(svgRef.current).selectAll<SVGGElement, unknown>("g[data-series]")
+            .style("opacity", function () { return focus && this.getAttribute("data-series") !== focus ? 0.2 : null; });
+    }, [draw, focus, svgRef]);
     return (
         <div className="muncher-bar-chart">
             <svg ref={svgRef} className="svg-bar-chart"/>
@@ -246,4 +252,6 @@ export interface BarChartProps {
     showOnlyValues?: boolean;
     /** The axis runs at least this far, so it stays still as the data changes. */
     axisMax?: number;
+    /** The series shown alone; the others fade. */
+    focus?: string | null;
 }

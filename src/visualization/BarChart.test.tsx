@@ -1,5 +1,6 @@
 import {describe, expect, it} from "vitest";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {BarChart} from "./BarChart.tsx";
 import {comparison, leaseMix, leasesByProperty, regionsByMonth, twoMonths} from "./fixtures.ts";
 
@@ -70,5 +71,33 @@ describe("BarChart", () => {
     it("has a state for no rows", () => {
         render(<BarChart data={{ ...leasesByProperty, rows: [] }}/>);
         expect(screen.getByRole("status")).toHaveTextContent("No data to show.");
+    });
+
+    describe("the legend", () => {
+        const faded = (c: HTMLElement) => [...c.querySelectorAll<SVGGElement>(".svg-bar-chart g[data-series]")]
+            .filter((g) => g.style.opacity === "0.2").map((g) => g.getAttribute("data-series"));
+
+        it("shows a series alone while the pointer is on its name, and everything again after", async () => {
+            const { container } = render(<BarChart data={leasesByProperty}/>);
+            const items = container.querySelectorAll<HTMLElement>(".muncher-viz-legend-item");
+            await userEvent.hover(items[0]);
+            expect(faded(container)).toHaveLength(3);
+            expect(faded(container)).not.toContain(items[0].textContent);
+            await userEvent.unhover(items[0]);
+            expect(faded(container)).toEqual([]);
+        });
+
+        it("holds a series on a click and lets go on the next", async () => {
+            const { container } = render(<BarChart data={leasesByProperty}/>);
+            const item = container.querySelectorAll<HTMLElement>(".muncher-viz-legend-item")[1];
+            await userEvent.click(item);
+            await userEvent.unhover(item);
+            expect(item).toHaveAttribute("aria-pressed", "true");
+            expect(faded(container)).toHaveLength(3);
+            await userEvent.click(item);
+            await userEvent.unhover(item);
+            expect(item).toHaveAttribute("aria-pressed", "false");
+            expect(faded(container)).toEqual([]);
+        });
     });
 });

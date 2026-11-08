@@ -5,6 +5,7 @@ import {validateFor} from "./dataset/validate.ts";
 import {lineModel} from "./adapters/line.ts";
 import {canonicalPeriod, shapeOf} from "./dataset/derive.ts";
 import {Figure} from "./parts/Figure.tsx";
+import {useSeriesFocus} from "./parts/useSeriesFocus.ts";
 import {Legend} from "./parts/Legend.tsx";
 
 /** Lines take no selection. They draw every period; a `period` only marks one with a cursor. */
@@ -20,6 +21,7 @@ const CHAR = 5.6;
 
 /** How did this change over time? One line per measure, or per value of the category; the axis starts at zero. */
 export const LineChart: React.FC<LineChartProps> = ({ data, size = "medium", legend = true, period }) => {
+    const series = useSeriesFocus();
     const problems = validateFor("line", data);
     const model = problems.length === 0 ? lineModel(data) : null;
     return (
@@ -71,7 +73,7 @@ export const LineChart: React.FC<LineChartProps> = ({ data, size = "medium", leg
                                 const last = [...s.points].reverse().findIndex((p) => p.value !== null);
                                 const lastIndex = last < 0 ? -1 : s.points.length - 1 - last;
                                 return (
-                                    <g key={s.name} className="line-series" fill={color} stroke={color}>
+                                    <g key={s.name} className="line-series" fill={color} stroke={color} opacity={series.focus && series.focus !== s.name ? 0.2 : 1}>
                                         {runs.map((d) => <path key={d} d={d} fill="none"/>)}
                                         {s.points.map((p, i) => p.value === null ? null : (
                                             <circle key={model.periods[i]} cx={x(i)} cy={y(p.value)} r={3.5} stroke="none">
@@ -96,7 +98,7 @@ export const LineChart: React.FC<LineChartProps> = ({ data, size = "medium", leg
                             })}
                         </svg>
                         {legend && model.series.length > 1 && (
-                            <Legend inset={left / WIDTH} title={model.seriesLabel || undefined} items={model.series.map((s) => ({ key: s.name, label: s.name, color: s.color }))}/>
+                            <Legend {...series} inset={left / WIDTH} title={model.seriesLabel || undefined} items={model.series.map((s) => ({ key: s.name, label: s.name, color: s.color }))}/>
                         )}
                     </div>
                 );

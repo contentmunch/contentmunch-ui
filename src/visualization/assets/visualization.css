@@ -190,6 +190,24 @@
     font-size: .8rem;
 }
 
+.muncher-viz-legend-item--pickable {
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.muncher-viz-legend-item--pickable:hover,
+.muncher-viz-legend-item--held {
+    text-decoration: underline;
+}
+
+.muncher-viz-legend-item--held {
+    font-weight: 600;
+}
+
+.muncher-viz-legend-item--dim {
+    opacity: .5;
+}
+
 .muncher-viz-legend-swatch {
     width: .65rem;
     height: .65rem;

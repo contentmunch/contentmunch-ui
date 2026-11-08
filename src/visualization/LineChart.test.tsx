@@ -1,5 +1,6 @@
 import {describe, expect, it} from "vitest";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {LineChart} from "./LineChart.tsx";
 import {funnelByMonth, monthlyRevenue, regionsByMonth} from "./fixtures.ts";
 
@@ -48,5 +49,21 @@ describe("LineChart", () => {
     it("has no cursor without a period", () => {
         const { container } = render(<LineChart data={regionsByMonth}/>);
         expect(container.querySelector(".line-cursor")).toBeNull();
+    });
+
+    it("fades the other lines while a legend name is hovered or held", async () => {
+        const { container } = render(<LineChart data={regionsByMonth}/>);
+        const items = container.querySelectorAll<HTMLElement>(".muncher-viz-legend-item");
+        const opacities = () => [...container.querySelectorAll(".line-series")].map((g) => g.getAttribute("opacity"));
+        expect(new Set(opacities())).toEqual(new Set(["1"]));
+        await userEvent.hover(items[0]);
+        expect(opacities()[0]).toBe("1");
+        expect(opacities().slice(1).every((o) => o === "0.2")).toBe(true);
+        await userEvent.click(items[0]);
+        await userEvent.unhover(items[0]);
+        expect(opacities().slice(1).every((o) => o === "0.2")).toBe(true);
+        await userEvent.click(items[0]);
+        await userEvent.unhover(items[0]);
+        expect(new Set(opacities())).toEqual(new Set(["1"]));
     });
 });
