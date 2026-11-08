@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import {useVisualizationWidgetClient} from "../note/NoteWidgetClientProvider.tsx";
 import {Visualization} from "./Visualization.tsx";
 import type {Dataset, VisualizationSize} from "./dataset/Dataset.ts";
-import {KINDS} from "./registry.ts";
+import {KIND_LABELS, KINDS} from "./registry.ts";
+import {validateFor} from "./dataset/validate.ts";
 import type {Kind} from "./dataset/validate.ts";
 import type {StoredVisualization} from "./VisualizationWidgetClient.ts";
 import "./assets/visualization-embed.css";
@@ -15,6 +16,8 @@ export interface VisualizationEmbedProps extends React.ComponentProps<"div"> {
     "data-viz-text"?: string;
     /** `false` leaves the legend out of this use; a visualization has one otherwise. */
     "data-viz-legend"?: string;
+    /** How this use draws the data when it is not the visualization's own kind (a table beside its bar chart): the numbers stay one. */
+    "data-viz-kind"?: string;
 }
 
 const cache = new Map<string, Promise<StoredVisualization>>();
@@ -46,7 +49,8 @@ export const datasetOf = (v: Pick<StoredVisualization, "title" | "summary" | "da
 /**
  * A visualization in a note, drawn live from what is stored: the numbers, the kind and the period are the visualization's own, so a
  * change to them changes every note that shows it. The caption is its own too, unless this use sets `text`. Whether the legend shows
- * is a choice of the use (`legend="false"`), since the same chart may sit beside a table in one note and alone in another.
+ * is a choice of the use (`legend="false"`), since the same chart may sit beside a table in one note and alone in another. So is the kind
+ * (`kind="table"`): one dataset, shown as a chart in one place and as its table in another, both reading the same numbers.
  */
 export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => {
     const nid = props["data-viz-nid"];
@@ -79,11 +83,23 @@ export const VisualizationEmbed: React.FC<VisualizationEmbedProps> = (props) => 
         return <span className="viz-embed-error">&quot;{nid}&quot; is a kind of visualization this page does not know ({stored.kind})</span>;
     }
 
+    const asked = props["data-viz-kind"]?.trim().toLowerCase() || undefined;
+    const data = datasetOf(stored);
+    if (asked) {
+        if (!KINDS.includes(asked as Kind)) {
+            return <span className="viz-embed-error">&quot;{nid}&quot; is shown as &quot;{asked}&quot;, a kind this page does not know</span>;
+        }
+        const problems = validateFor(asked as Kind, data);
+        if (problems.length > 0) {
+            return <span className="viz-embed-error">&quot;{nid}&quot; cannot be shown as a {KIND_LABELS[asked as Kind].toLowerCase()}: {problems[0]}</span>;
+        }
+    }
+    const kind = (asked ?? stored.kind) as Kind;
     const caption = isStatic ? staticText : stored.caption;
     const legend = props["data-viz-legend"] !== "false";
     return (
-        <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} data-viz-legend={legend ? undefined : "false"} className={`viz-embed viz-embed--${size}`}>
-            <Visualization kind={stored.kind as Kind} data={datasetOf(stored)} size={size} legend={legend} period={stored.options?.period ?? null}/>
+        <div data-viz-nid={nid} data-viz-static={isStatic ? "true" : undefined} data-viz-size={size} data-viz-legend={legend ? undefined : "false"} data-viz-kind={asked} className={`viz-embed viz-embed--${size}`}>
+            <Visualization kind={kind} data={data} size={size} legend={legend} period={stored.options?.period ?? null}/>
             {caption && <p className="viz-embed-caption"><span data-link-text>{caption}</span></p>}
         </div>
     );

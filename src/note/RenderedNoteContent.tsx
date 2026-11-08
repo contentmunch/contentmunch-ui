@@ -87,6 +87,7 @@ export const defaultInteractiveRegions: InteractiveRegion[] = [
                 data-viz-size={node.getAttribute("data-viz-size") ?? undefined}
                 data-viz-static={node.getAttribute("data-viz-static") ?? undefined}
                 data-viz-legend={node.getAttribute("data-viz-legend") ?? undefined}
+                data-viz-kind={node.getAttribute("data-viz-kind") ?? undefined}
                 data-viz-text={typeof captured === "string" ? captured : undefined}
             />
         ),

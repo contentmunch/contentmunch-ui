@@ -136,4 +136,33 @@ describe("a stored note with a visualization in it", () => {
         await waitFor(() => expect(container.querySelector(".muncher-viz--bar")).not.toBeNull());
         expect(container.querySelector(".muncher-viz-legend")).toBeNull();
     });
+
+    it("draws this use as another kind when it asks, and keeps asking in the markup it leaves", async () => {
+        const {container} = render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-kind="table"/>));
+        await waitFor(() => expect(container.querySelector(".muncher-viz--table")).not.toBeNull());
+        expect(container.querySelector(".muncher-viz--bar")).toBeNull();
+        expect((container.querySelector("[data-viz-nid]") as HTMLElement).getAttribute("data-viz-kind")).toBe("table");
+    });
+
+    it("reads the numbers once for a chart and its table in the same note", async () => {
+        const {container} = render(withClient(<><VisualizationEmbed data-viz-nid="vz/vzab"/><VisualizationEmbed data-viz-nid="vz/vzab" data-viz-kind="table"/></>));
+        await waitFor(() => expect(container.querySelector(".muncher-viz--table")).not.toBeNull());
+        expect(container.querySelector(".muncher-viz--bar")).not.toBeNull();
+        expect(getVisualization).toHaveBeenCalledTimes(1);
+    });
+
+    it("says so when the data cannot be drawn as the kind asked", async () => {
+        render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-kind="line"/>));
+        expect(await screen.findByText(/cannot be shown as a line: A line needs a time column/)).toBeInTheDocument();
+    });
+
+    it("says so when the kind asked is not one it knows", async () => {
+        render(withClient(<VisualizationEmbed data-viz-nid="vz/vzab" data-viz-kind="radar"/>));
+        expect(await screen.findByText(/a kind this page does not know/)).toBeInTheDocument();
+    });
+
+    it("takes the kind of this use from the marker in a stored note", async () => {
+        const {container} = render(withClient(<RenderedNoteContent xhtml='<article xmlns="http://www.w3.org/1999/xhtml"><div data-viz-nid="vz/vzab" data-viz-kind="table"></div></article>'/>));
+        await waitFor(() => expect(container.querySelector(".muncher-viz--table")).not.toBeNull());
+    });
 });
