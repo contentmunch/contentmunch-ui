@@ -167,3 +167,12 @@ export type {IconName} from "./icon/Drawings";
 export type {ComboboxItem} from "./input/Combobox"
 export type {RenderedNoteContentProps, InteractiveRegion} from "./note/RenderedNoteContent.tsx";
 export {copyToClipboard} from "./utils/Utils";
+
+export {PasskeyManager} from "./passkey/PasskeyManager";
+export type {PasskeyManagerProps} from "./passkey/PasskeyManager";
+export {PasskeySignInButton} from "./passkey/PasskeySignInButton";
+export type {PasskeySignInButtonProps} from "./passkey/PasskeySignInButton";
+export {createPasskeyClient} from "./passkey/passkeyClient";
+export type {PasskeyClient, PasskeyHttp, PasskeySummary} from "./passkey/passkeyClient";
+export {PasskeyCancelled, passkeysSupported} from "./passkey/webauthn";
+export {deviceLabel} from "./passkey/deviceLabel";

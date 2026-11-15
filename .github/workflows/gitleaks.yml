@@ -1,0 +1,22 @@
+name: Secret scan
+
+# Fails when a password, token or key is found anywhere in the repository's history, so a secret committed by mistake is noticed the day it
+# happens, not after it has been public for months. gitleaks runs from its own image: nothing is installed, and no license is needed.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan the history for secrets
+        run: |
+          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.21.2 \
+            detect --source /repo --redact --verbose --exit-code 1

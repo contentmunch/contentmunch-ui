@@ -1,0 +1,33 @@
+.passkey-signin { display: grid; gap: .4rem; justify-items: start; }
+
+.passkey-manager { display: grid; gap: .7rem; max-width: 36rem; font-family: var(--sans-serif-font), sans-serif; }
+
+.passkey-title { display: flex; align-items: center; gap: .4rem; margin: 0; font-size: 1rem; }
+
+.passkey-hint { margin: 0; color: var(--muted-color); font-size: .88rem; }
+
+.passkey-list { display: grid; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+
+.passkey-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0 .8rem;
+    padding: .55rem .7rem;
+    border: 1px solid var(--border-color);
+    border-radius: .5rem;
+}
+
+.passkey-name { font-weight: 500; }
+
+.passkey-meta { grid-column: 1; color: var(--muted-color); font-size: .8rem; }
+
+.passkey-item > button, .passkey-confirm { grid-column: 2; grid-row: 1 / span 2; }
+
+.passkey-confirm { display: flex; gap: .4rem; }
+
+.passkey-add { display: grid; gap: .6rem; justify-items: start; }
+
+.passkey-notice { margin: 0; color: var(--success-color); font-size: .88rem; }
+
+.passkey-error { margin: 0; color: var(--danger-color); font-size: .88rem; }
